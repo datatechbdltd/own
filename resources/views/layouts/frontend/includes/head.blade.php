@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <title> @stack('title') | {{ config('app.name') }}</title>
 <!-- Stylesheets -->
 <link href="{{ asset('assets/frontend/css/bootstrap.css') }}" rel="stylesheet">
@@ -18,4 +19,4 @@
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 
-@stack('head')
+@stack('style')

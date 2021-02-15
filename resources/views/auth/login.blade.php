@@ -11,9 +11,7 @@
 @push('style')
 
 @endpush
-@push('food')
 
-@endpush
 @section('content')
 <div class="auth-box login-box">
     <!-- Start row -->
@@ -85,3 +83,6 @@
     <!-- End row -->
 </div>
 @endsection
+@push('script')
+
+@endpush

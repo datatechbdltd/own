@@ -15,4 +15,4 @@
 <script src="{{ asset('assets/frontend/js/script.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/color-settings.js') }}"></script>
 
-@stack('foot')
+@stack('script')
