@@ -18,7 +18,7 @@
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item"><a href="#" class="profile-icon"><img src="assets/panel/vertical/images/svg-icon/user.svg" class="img-fluid" alt="user"></a></li>
                     <li class="list-inline-item"><a href="#" class="profile-icon"><img src="assets/panel/vertical/images/svg-icon/email.svg" class="img-fluid" alt="email"></a></li>
-                    <li class="list-inline-item"><a href="#" class="profile-icon"><img src="assets/panel/vertical/images/svg-icon/logout.svg" class="img-fluid" alt="logout"></a></li>
+                    <li class="list-inline-item logout-btn" onclick="logout()"><a href="javascript:0" class="profile-icon"><img src="assets/panel/vertical/images/svg-icon/logout.svg" class="img-fluid" alt="logout"></a></li>
                 </ul>
               </div>
         </div>

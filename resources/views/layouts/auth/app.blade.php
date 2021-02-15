@@ -17,6 +17,8 @@
     <link href="{{ asset('assets/panel/horizontal/css/flag-icon.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/panel/horizontal/css/style.css') }}" rel="stylesheet" type="text/css">
     <!-- End CSS -->
+    <!--====== AJAX ======-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body class="vertical-layout">
     <!-- Start Containerbar -->
@@ -36,5 +38,7 @@
     <script src="{{ asset('assets/panel/horizontal/js/detect.js') }}"></script>
     <script src="{{ asset('assets/panel/horizontal/js/jquery.slimscroll.js') }}"></script>
     <!-- End js -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    @include('sweetalert::alert')
 </body>
 </html>

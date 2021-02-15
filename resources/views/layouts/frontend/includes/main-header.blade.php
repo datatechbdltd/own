@@ -154,7 +154,12 @@
 
                         <!-- Quote Btn -->
                         <div class="btn-box">
-                            <a href="contact.html" class="quote-btn btn-style-four"><span class="txt">Get A Quote</span></a>
+                            @guest
+                                <a href="{{ route('login') }}" class="quote-btn btn-style-four"><span class="txt">{{ __('Login') }}</span></a>
+                                @else
+                                <a href="{{ route('dashboard') }}" class="quote-btn btn-style-four"><span class="txt">{{ __('Your Panel') }}</span></a>
+                            @endguest
+
                         </div>
 
                     </div>

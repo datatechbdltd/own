@@ -23,6 +23,11 @@
             <!-- End Rightbar -->
         </div>
         <!-- End Containerbar -->
+        @if(Auth::check())
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        @endif
         <!-- Start JS -->
         @include('layouts.backend.includes.foot')
     <!-- End JS -->

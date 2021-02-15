@@ -65,9 +65,12 @@
 
 <!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></div>
-
+@if(Auth::check())
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+@endif
 @include('layouts.frontend.includes.foot')
-
 </body>
 
 <!-- Design and developed by datatech bd ltd -->
