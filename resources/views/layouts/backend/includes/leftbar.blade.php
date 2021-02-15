@@ -11,8 +11,8 @@
         <div class="profilebar text-center">
             <img src="assets/panel/vertical/images/users/profile.svg" class="img-fluid" alt="profile">
             <div class="profilename">
-              <h5 class="text-white">Shourya Kumar</h5>
-              <p>Social Media Strategist</p>
+              <h5 class="text-white">{{ auth()->user()->name }}</h5>
+              <p>{{ auth()->user()->email }}</p>
             </div>
             <div class="userbox">
                 <ul class="list-inline mb-0">
@@ -39,10 +39,18 @@
                 </li>
                 <li>
                     <a href="javaScript:void();">
-                        <img src="assets/panel/vertical/images/svg-icon/layouts.svg" class="img-fluid" alt="layouts"><span>Layouts</span><i class="feather icon-chevron-right pull-right"></i>
+                        <img src="assets/panel/vertical/images/svg-icon/layouts.svg" class="img-fluid" alt="layouts"><span>Website</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{url('/template/panel-vertical/../light-vertical')}}"><i class="mdi mdi-circle"></i>Light - Vertical</a></li>
+                        <li>
+                            <a href="javaScript:void();">
+                               <span>Banner</span><i class="feather icon-chevron-right pull-right"></i>
+                            </a>
+                            <ul class="vertical-submenu">
+                                <li><a href="{{ route('website.banner.index') }}"><i class="mdi mdi-circle"></i>Banners</a></li>
+                                <li><a href="{{url('/template/panel-vertical/../light-horizontal')}}"><i class="mdi mdi-circle"></i>Create</a></li>
+                            </ul>
+                        </li>
                         <li><a href="{{url('/template/panel-vertical/../light-horizontal')}}"><i class="mdi mdi-circle"></i>Light - Horizontal</a></li>
                         <li><a href="#"><i class="mdi mdi-circle"></i>Dark - Vertical</a></li>
                         <li><a href="{{url('/template/panel-vertical/../dark-horizontal')}}"><i class="mdi mdi-circle"></i>Dark - Horizontal</a></li>

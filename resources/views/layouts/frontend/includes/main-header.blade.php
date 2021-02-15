@@ -54,11 +54,11 @@
 
                         <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li class="current dropdown"><a href="#">Home</a>
+                                <li class="current dropdown"><a href="javascript:0">{{ __('Home') }}</a>
                                     <ul>
-                                        <li><a href="index.html">Home Page 01</a></li>
-                                        <li><a href="index-2.html">Home Page 02</a></li>
-                                        <li><a href="index-3.html">Home Page 03</a></li>
+                                        <li><a href="{{ url('/') }}">Home Page 01</a></li>
+                                        <li><a href="{{ url('/') }}">Home Page 02</a></li>
+                                        <li><a href="{{ url('/') }}">Home Page 03</a></li>
                                         <li class="dropdown"><a href="#">Header Styles</a>
                                             <ul>
                                                 <li><a href="index.html">Header Style 01</a></li>
