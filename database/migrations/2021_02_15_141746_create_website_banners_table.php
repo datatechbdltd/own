@@ -15,6 +15,13 @@ class CreateWebsiteBannersTable extends Migration
     {
         Schema::create('website_banners', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
+            $table->string('highlight')->nullable();
+            $table->text('description')->nullable();
+            $table->string('btn_url')->nullable();
+            $table->string('video_url')->nullable();
+            $table->string('image')->nullable();
+            $table->string('color')->nullable();
             $table->timestamps();
         });
     }
