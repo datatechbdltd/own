@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SocialLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class SocialLinkController extends Controller
 {
@@ -47,11 +48,11 @@ class SocialLinkController extends Controller
         $socliallink = new SocialLink();
         $socliallink->url = $request->url;
         $socliallink->name = $request->name;
-        $socliallink->status = $request->status;
+        $socliallink->is_active = $request->status;
 
         if ($request->hasFile('icon')) {
             $image             = $request->file('icon');
-            $folder_path       = 'assets/uploads/images/website/social-link/';
+            $folder_path       = 'uploads/images/website/social-link/';
             $image_new_name    = Str::random(20).'-'.now()->timestamp.'.'.$image->getClientOriginalExtension();
             //resize and save to server
             Image::make($image->getRealPath())->save($folder_path.$image_new_name);
@@ -60,14 +61,13 @@ class SocialLinkController extends Controller
         try {
 
             $socliallink->save();
-            return redirect('website.socialLink.index')->withToastSuccess( 'Social link created successfully');
+            return redirect()->route('website.socialLink.index')->withToastSuccess( 'Social link created successfully');
 
         }catch (\Exception $exception){
 
-            return back()->withErrors( 'Something went wrong !'.$exception);
+//            return back()->withErrors( 'Something went wrong !'.$exception);
+            dd($exception);
         }
-
-
     }
 
     /**
@@ -89,7 +89,7 @@ class SocialLinkController extends Controller
      */
     public function edit(SocialLink $socialLink)
     {
-        //
+        return view('backend.website.social-link.edit',compact('socialLink'));
     }
 
     /**
@@ -101,7 +101,37 @@ class SocialLinkController extends Controller
      */
     public function update(Request $request, SocialLink $socialLink)
     {
-        //
+        $request->validate([
+
+            'url' => 'required|required',
+            'name' => 'required|required',
+            'status' => 'required',
+            'icon' => 'nullable|image',
+        ]);
+        $socliallink = new SocialLink();
+        $socliallink = SocialLink::find
+        $socliallink->url = $request->url;
+        $socliallink->name = $request->name;
+        $socliallink->is_active = $request->status;
+
+        if ($request->hasFile('icon')) {
+            $image             = $request->file('icon');
+            $folder_path       = 'uploads/images/website/social-link/';
+            $image_new_name    = Str::random(20).'-'.now()->timestamp.'.'.$image->getClientOriginalExtension();
+            //resize and save to server
+            Image::make($image->getRealPath())->save($folder_path.$image_new_name);
+            $socliallink->icon = $folder_path.$image_new_name;
+        }
+        try {
+
+            $socliallink->save();
+            return redirect()->route('website.socialLink.index')->withToastSuccess( 'Social link created successfully');
+
+        }catch (\Exception $exception){
+
+//            return back()->withErrors( 'Something went wrong !'.$exception);
+            dd($exception);
+        }
     }
 
     /**

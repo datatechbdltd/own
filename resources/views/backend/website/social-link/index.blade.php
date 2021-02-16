@@ -74,6 +74,10 @@ Social links
                                             <span class="badge badge-danger">Inactive</span>
                                         @endif
                                     </td>
+                                    <td>
+                                        <a href="{{ route('website.socialLink.edit', $link->id) }}" class="btn btn-info mb-2"><i class="fa fa-pencil"></i> Edit</a>
+                                        <a class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
