@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\WebsiteBanner;
+use App\Models\SocialLink;
 use Illuminate\Database\Seeder;
 
-class WebsiteBannerSeeder extends Seeder
+class SocialLinkSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class WebsiteBannerSeeder extends Seeder
      */
     public function run()
     {
-        WebsiteBanner::factory()->count(3)->create();
+        SocialLink::factory()->count(4)->create();
     }
 }

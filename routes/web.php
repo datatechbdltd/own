@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteBannerController;
+use App\Http\Controllers\SocialLinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::group(['prefix' => 'website', 'as' => 'website.'], function () {
     Route::resource('banner', WebsiteBannerController::class);
+    Route::resource('socialLink', SocialLinkController::class);
 });
 
 

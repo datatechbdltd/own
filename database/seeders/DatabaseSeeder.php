@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StaticOptionSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(WebsiteBannerSeeder::class);
+        $this->call(SocialLinkSeeder::class);
     }
 }
