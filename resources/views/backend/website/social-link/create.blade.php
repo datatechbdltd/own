@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 @push('title')
-
+    Social link create
 @endpush
 @push('meta-description')
 
@@ -38,8 +38,6 @@
         <!-- Start row -->
         <div class="row offset-lg-1">
             <!-- Start col -->
-
-
             <div class="col-lg-10">
                 <form action="{{ route('website.socialLink.store') }}" method="post" enctype="multipart/form-data">
                     @csrf

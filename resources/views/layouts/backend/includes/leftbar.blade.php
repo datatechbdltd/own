@@ -57,7 +57,16 @@
                             </a>
                             <ul class="vertical-submenu">
                                 <li><a href="{{ route('website.socialLink.index') }}"><i class="mdi mdi-circle"></i>Social links</a></li>
-                                <li><a href="{{url('/template/panel-vertical/../light-horizontal')}}"><i class="mdi mdi-circle"></i>Create</a></li>
+                                <li><a href="{{ route('website.socialLink.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javaScript:void();">
+                               <span>Seo</span><i class="feather icon-chevron-right pull-right"></i>
+                            </a>
+                            <ul class="vertical-submenu">
+                                <li><a href="{{ route('website.seo.index') }}"><i class="mdi mdi-circle"></i>Seo list</a></li>
+                                <li><a href="{{ route('website.seo.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
                             </ul>
                         </li>
                         <li><a href="{{url('/template/panel-vertical/../light-horizontal')}}"><i class="mdi mdi-circle"></i>Light - Horizontal</a></li>

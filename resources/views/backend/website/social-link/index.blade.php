@@ -21,7 +21,7 @@ Social links
             <div class="breadcrumb-list">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:0">Scial links</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:0">Social links</a></li>
                 </ol>
             </div>
         </div>
@@ -40,19 +40,14 @@ Social links
     <!-- Start col -->
     <div class="col-lg-12">
         <div class="card m-b-30">
-            <div class="card-header">
-                <h5 class="card-title">Basic Table</h5>
-            </div>
             <div class="card-body">
-                <h6 class="card-subtitle">Just add the base class  <code>.table</code> and
-                    <code>&lt;table&gt;</code>.</h6>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                         <tr>
                             <th scope="col">Url</th>
                             <th scope="col">Icon</th>
-                            <th scope="col">name</th>
+                            <th scope="col">Name</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -76,7 +71,11 @@ Social links
                                     </td>
                                     <td>
                                         <a href="{{ route('website.socialLink.edit', $link->id) }}" class="btn btn-info mb-2"><i class="fa fa-pencil"></i> Edit</a>
-                                        <a class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                                        <a class="btn btn-danger delete-btn"><i class="fa fa-trash"></i> Delete</a>
+                                        <form class="delete-form" action="{{ route('website.socialLink.destroy',$link->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -93,6 +92,24 @@ Social links
 <!-- End Contentbar -->
 @endsection
 @push('script')
-
+    <script>
+        $(document).ready(function() {
+            $('.delete-btn').click(function(){
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).parent().find('.delete-form').submit();
+                    }
+                })
+            });
+        });
+    </script>
 @endpush()
 

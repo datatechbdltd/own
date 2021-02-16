@@ -2,9 +2,10 @@
     <!-- Social Box -->
     <ul class="social-box">
         <li><a href="#" class="fa fa-facebook-f"></a></li>
-        <li><a href="#" class="fa fa-linkedin"></a></li>
-        <li><a href="#" class="fa fa-twitter"></a></li>
-        <li><a href="#" class="fa fa-google"></a></li>
+
+        @foreach($social_link as $link)
+            <li><a href="{{ $link->url }}" class="fa fa-facebook-f"></a></li>
+        @endforeach
     </ul>
 
     <div class="pattern-layer-one" style="background-image: url(images/icons/pattern-1.png)"></div>

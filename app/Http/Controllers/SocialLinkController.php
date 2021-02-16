@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SocialLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class SocialLinkController extends Controller
@@ -65,8 +66,7 @@ class SocialLinkController extends Controller
 
         }catch (\Exception $exception){
 
-//            return back()->withErrors( 'Something went wrong !'.$exception);
-            dd($exception);
+            return back()->withErrors( 'Something went wrong !'.$exception);
         }
     }
 
@@ -108,13 +108,16 @@ class SocialLinkController extends Controller
             'status' => 'required',
             'icon' => 'nullable|image',
         ]);
-        $socliallink = new SocialLink();
-        $socliallink = SocialLink::find
+        $socliallink = $socialLink;
         $socliallink->url = $request->url;
         $socliallink->name = $request->name;
         $socliallink->is_active = $request->status;
 
+
         if ($request->hasFile('icon')) {
+            if ($socliallink->icon != null)
+                File::delete(public_path($socliallink->icon)); //Old image delete
+
             $image             = $request->file('icon');
             $folder_path       = 'uploads/images/website/social-link/';
             $image_new_name    = Str::random(20).'-'.now()->timestamp.'.'.$image->getClientOriginalExtension();
@@ -125,12 +128,10 @@ class SocialLinkController extends Controller
         try {
 
             $socliallink->save();
-            return redirect()->route('website.socialLink.index')->withToastSuccess( 'Social link created successfully');
+            return redirect()->route('website.socialLink.index')->withToastSuccess( 'Social link updated successfully');
 
         }catch (\Exception $exception){
-
-//            return back()->withErrors( 'Something went wrong !'.$exception);
-            dd($exception);
+            return back()->withErrors( 'Something went wrong !'.$exception);
         }
     }
 
@@ -142,6 +143,18 @@ class SocialLinkController extends Controller
      */
     public function destroy(SocialLink $socialLink)
     {
-        //
+        if ($socialLink->exists()){
+            $social_link = $socialLink;
+            try {
+                if ($social_link->icon != null)
+                    File::delete(public_path($social_link->icon)); //Old image delete
+                $social_link->delete();
+                return redirect()->back()->withToastSuccess('Successfully deleted');
+            }catch (\Exception $exception){
+                return redirect()->back()->withErrors('Something going wrong. Error:'.$exception->getMessage());
+            }
+        }else{
+            return redirect()->back()->withErrors('Invalid Social link.');
+        }
     }
 }

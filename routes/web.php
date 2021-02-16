@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
+use App\Http\Controllers\WebsiteSeoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,8 @@ use App\Http\Controllers\SocialLinkController;
 */
 
 Route::get('/', function () {
-    return view('frontend.home');
+    $social_link = \App\Models\SocialLink::orderBy('id','desc')->get();
+    return view('frontend.home' ,compact('social_link'));
 });
 
 Route::get('/dashboard', function () {
@@ -27,6 +29,7 @@ Route::get('/dashboard', function () {
 Route::group(['prefix' => 'website', 'as' => 'website.'], function () {
     Route::resource('banner', WebsiteBannerController::class);
     Route::resource('socialLink', SocialLinkController::class);
+    Route::resource('seo', WebsiteSeoController::class);
 });
 
 
