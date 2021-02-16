@@ -152,7 +152,9 @@ class WebsiteBannerController extends Controller
     public function destroy(WebsiteBanner $websiteBanner)
     {
         try {
-            $websiteBanner->image;
+            if ($websiteBanner->image != null)
+            File::delete(public_path($websiteBanner->image)); //Old image delete
+
             $websiteBanner->delete();
         }catch (\Exception$exception){
             return response()->json([

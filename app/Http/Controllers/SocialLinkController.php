@@ -41,8 +41,8 @@ class SocialLinkController extends Controller
     {
         $request->validate([
 
-            'url' => 'required|required',
-            'name' => 'required|required',
+            'url' => 'required',
+            'name' => 'required',
             'status' => 'required',
             'icon' => 'required|image',
         ]);

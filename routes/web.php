@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\WebsiteSeoController;
+use App\Http\Controllers\WebsiteServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,9 @@ use App\Http\Controllers\WebsiteSeoController;
 */
 
 Route::get('/', function () {
-    $social_link = \App\Models\SocialLink::orderBy('id','desc')->get();
-    return view('frontend.home' ,compact('social_link'));
+    $social_link = \App\Models\SocialLink::where('is_active', true)->orderBy('id','desc')->get();
+    $website_seos = \App\Models\WebsiteSeo::where('is_active', true)->orderBy('id','desc')->get();
+    return view('frontend.home' ,compact('social_link','website_seos'));
 });
 
 Route::get('/dashboard', function () {
@@ -29,7 +31,10 @@ Route::get('/dashboard', function () {
 Route::group(['prefix' => 'website', 'as' => 'website.'], function () {
     Route::resource('websiteBanner', WebsiteBannerController::class);
     Route::resource('socialLink', SocialLinkController::class);
-    Route::resource('seo', WebsiteSeoController::class);
+    Route::resource('websiteSeo', WebsiteSeoController::class);
+    Route::resource('WebsiteService', WebsiteServiceController::class);
+    Route::post('/website-seo-static-option-update', [WebsiteSeoController::class, 'websiteSeoStaticOptionUpdate'])->name('websiteSeoStaticOptionUpdate');
+    Route::post('/website-service-static-option-update', [WebsiteServiceController::class, 'websiteServiceStaticOptionUpdate'])->name('websiteServiceStaticOptionUpdate');
 });
 
 
