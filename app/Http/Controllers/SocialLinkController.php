@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SocialLink;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SocialLinkController extends Controller
 {
@@ -36,7 +37,37 @@ class SocialLinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'url' => 'required|required',
+            'name' => 'required|required',
+            'status' => 'required',
+            'icon' => 'required|image',
+        ]);
+        $socliallink = new SocialLink();
+        $socliallink->url = $request->url;
+        $socliallink->name = $request->name;
+        $socliallink->status = $request->status;
+
+        if ($request->hasFile('icon')) {
+            $image             = $request->file('icon');
+            $folder_path       = 'assets/uploads/images/website/social-link/';
+            $image_new_name    = Str::random(20).'-'.now()->timestamp.'.'.$image->getClientOriginalExtension();
+            //resize and save to server
+            Image::make($image->getRealPath())->save($folder_path.$image_new_name);
+            $socliallink->icon = $folder_path.$image_new_name;
+        }
+        try {
+
+            $socliallink->save();
+            return redirect('website.socialLink.index')->withToastSuccess( 'Social link created successfully');
+
+        }catch (\Exception $exception){
+
+            return back()->withErrors( 'Something went wrong !'.$exception);
+        }
+
+
     }
 
     /**
