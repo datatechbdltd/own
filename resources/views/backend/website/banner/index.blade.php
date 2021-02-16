@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 @push('title')
-
+{{ __('Website banner') }}
 @endpush
 @push('meta-description')
 
@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-4 col-lg-4">
                 <div class="widgetbar">
-                    <button class="btn btn-primary">{{ __('Add new banner') }}</button>
+                    <a href="{{ route('website.websiteBanner.create') }}" class="btn btn-primary">{{ __('Add new banner') }}</a>
                 </div>
             </div>
         </div>
@@ -42,15 +42,15 @@
            @foreach($banners as $banner)
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="card m-b-30">
-                        <img class="card-img-top" src="{{ $banner->image }}" alt="Card image cap">
+                        <img class="card-img-top" src="{{ $banner->image ?? get_static_option('no_image') }}" alt="Card image cap">
                         <div class="card-body text-center" style="background-color: {{ $banner->color }}">
                             <h5 class="card-title font-12">{{ $banner->title }}</h5>
                             <h5 class="card-title font-18">{{ $banner->highlight }}</h5>
                             <p class="card-text mb-3">{{ $banner->description }}</p>
-                            <a href="{{ $banner->btn_url }}" class="btn btn-primary">{{ __('BUTTON') }}</a>
-                            <a href="{{ $banner->video_url }}" class="btn btn-success">{{ __('VIDEO') }}</a>
-                            <a href="{{ $banner->video_url }}" class="btn btn-warning">{{ __('EDIT') }}</a>
-                            <a href="{{ $banner->video_url }}" class="btn btn-danger">{{ __('DELETE') }}</a>
+                            <a href="{{ $banner->btn_url }}" class="btn btn-primary" target="_blank">{{ __('BUTTON') }}</a>
+                            <a href="{{ $banner->video_url }}" class="btn btn-success" target="_blank">{{ __('VIDEO') }}</a>
+                            <a href="{{ route('website.websiteBanner.edit', $banner) }}" class="btn btn-warning">{{ __('EDIT') }}</a>
+                            <button class="btn btn-danger" onclick="delete_function(this)" value="{{ route('website.websiteBanner.destroy', $banner) }}">{{ __('DELETE') }}</button>
                         </div>
                     </div>
                 </div>

@@ -47,8 +47,8 @@
                                <span>Banner</span><i class="feather icon-chevron-right pull-right"></i>
                             </a>
                             <ul class="vertical-submenu">
-                                <li><a href="{{ route('website.banner.index') }}"><i class="mdi mdi-circle"></i>Banners</a></li>
-                                <li><a href="{{url('/template/panel-vertical/../light-horizontal')}}"><i class="mdi mdi-circle"></i>Create</a></li>
+                                <li><a href="{{ route('website.websiteBanner.index') }}"><i class="mdi mdi-circle"></i>Banners</a></li>
+                                <li><a href="{{ route('website.websiteBanner.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
                             </ul>
                         </li>
                         <li>

@@ -27,7 +27,7 @@ Route::get('/dashboard', function () {
 
 
 Route::group(['prefix' => 'website', 'as' => 'website.'], function () {
-    Route::resource('banner', WebsiteBannerController::class);
+    Route::resource('websiteBanner', WebsiteBannerController::class);
     Route::resource('socialLink', SocialLinkController::class);
     Route::resource('seo', WebsiteSeoController::class);
 });

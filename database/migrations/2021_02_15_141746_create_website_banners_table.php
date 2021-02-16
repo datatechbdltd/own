@@ -22,6 +22,8 @@ class CreateWebsiteBannersTable extends Migration
             $table->string('video_url')->nullable();
             $table->string('image')->nullable();
             $table->string('color')->nullable();
+            $table->integer('serial')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
