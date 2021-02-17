@@ -98,9 +98,9 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="javaScript:void();"><i class="mdi mdi-circle"></i>Email<i class="feather icon-chevron-right pull-right"></i></a>
+                            <a href="javaScript:void();"><i class="mdi mdi-circle"></i>Leads<i class="feather icon-chevron-right pull-right"></i></a>
                             <ul class="vertical-submenu">
-                                <li><a href="{{url('/template/panel-vertical/apps-email-inbox')}}"><i class="mdi mdi-circle"></i>Email Inbox</a></li>
+                                <li><a href="{{ route('lead.lead.index') }}"><i class="mdi mdi-circle"></i>All Leads</a></li>
                                 <li><a href="{{url('/template/panel-vertical/apps-email-open')}}"><i class="mdi mdi-circle"></i>Email Open</a></li>
                                 <li><a href="{{url('/template/panel-vertical/apps-email-compose')}}"><i class="mdi mdi-circle"></i>Email Compose</a></li>
                             </ul>

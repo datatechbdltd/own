@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lead;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class LeadController extends Controller
 {
@@ -12,9 +13,20 @@ class LeadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()){
+            $data = Lead::orderBy('id', 'desc')->get();
+            return DataTables::of($data)
+                ->addColumn('action', function($data) {
+                    return '<a href="'.route('lead.lead.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
+                            <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('lead.lead.destroy', $data).'">DELETE</button>';
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }else{
+            return view('backend.lead.index');
+        }
     }
 
     /**
@@ -80,6 +92,17 @@ class LeadController extends Controller
      */
     public function destroy(Lead $lead)
     {
-        //
+        try {
+            $lead->delete();
+            return response()->json([
+                'type' => 'success',
+                'message' => 'Successfully deleted.',
+            ]);
+        }catch (\Exception $exception){
+            return response()->json([
+                'type' => 'error',
+                'message' => 'Something going wrong. '.$exception->getMessage(),
+            ]);
+        }
     }
 }

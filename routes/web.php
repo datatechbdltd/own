@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LeadCategoryController;
+use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LeadDistrictController;
 use App\Http\Controllers\LeadServiceController;
 use App\Http\Controllers\LeadThanaController;
@@ -46,6 +47,7 @@ Route::group(['prefix' => 'lead', 'as' => 'lead.'], function () {
     Route::resource('leadDistrict', LeadDistrictController::class);
     Route::resource('leadService', LeadServiceController::class);
     Route::resource('leadThana', LeadThanaController::class);
+    Route::resource('lead', LeadController::class);
 });
 
 
