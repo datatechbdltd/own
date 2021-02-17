@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\LeadCategoryController;
+use App\Http\Controllers\LeadDistrictController;
+use App\Http\Controllers\LeadServiceController;
+use App\Http\Controllers\LeadSettingController;
+use App\Http\Controllers\LeadThanaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
@@ -35,6 +40,13 @@ Route::group(['prefix' => 'website', 'as' => 'website.'], function () {
     Route::resource('WebsiteService', WebsiteServiceController::class);
     Route::post('/website-seo-static-option-update', [WebsiteSeoController::class, 'websiteSeoStaticOptionUpdate'])->name('websiteSeoStaticOptionUpdate');
     Route::post('/website-service-static-option-update', [WebsiteServiceController::class, 'websiteServiceStaticOptionUpdate'])->name('websiteServiceStaticOptionUpdate');
+});
+
+Route::group(['prefix' => 'lead', 'as' => 'lead.'], function () {
+    Route::resource('leadCategory', LeadCategoryController::class);
+    Route::resource('leadDistrict', LeadDistrictController::class);
+    Route::resource('leadService', LeadServiceController::class);
+    Route::resource('leadThana', LeadThanaController::class);
 });
 
 

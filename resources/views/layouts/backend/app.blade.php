@@ -19,6 +19,7 @@
             <!-- End Leftbar -->
             <!-- Start Rightbar -->
             @include('layouts.backend.includes.rightbar')
+
             @yield('content')
             <!-- End Rightbar -->
         </div>

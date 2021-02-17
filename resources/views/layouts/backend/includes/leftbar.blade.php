@@ -85,11 +85,18 @@
                 </li>
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/panel/vertical/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>Apps</span><i class="feather icon-chevron-right pull-right"></i>
+                      <img src="assets/panel/vertical/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>Leads</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{url('/template/panel-vertical/apps-calender')}}"><i class="mdi mdi-circle"></i>Calender</a></li>
-                        <li><a href="{{url('/template/panel-vertical/apps-chat')}}"><i class="mdi mdi-circle"></i>Chat</a></li>
+                        <li>
+                            <a href="javaScript:void();"><i class="mdi mdi-circle"></i>Setting<i class="feather icon-chevron-right pull-right"></i></a>
+                            <ul class="vertical-submenu">
+                                <li><a href="{{ route('lead.leadCategory.index') }}"><i class="mdi mdi-circle"></i>Caegory</a></li>
+                                <li><a href="{{ route('lead.leadService.index') }}"><i class="mdi mdi-circle"></i>Service</a></li>
+                                <li><a href="{{ route('lead.leadDistrict.index') }}"><i class="mdi mdi-circle"></i>District</a></li>
+                                <li><a href="{{ route('lead.leadThana.index') }}"><i class="mdi mdi-circle"></i>Thana</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="javaScript:void();"><i class="mdi mdi-circle"></i>Email<i class="feather icon-chevron-right pull-right"></i></a>
                             <ul class="vertical-submenu">

@@ -58,4 +58,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    //leads
+    public function leads(){
+        return $this->hasMany(Lead::class, 'add_by_id','id');
+    }
 }
