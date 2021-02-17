@@ -19,8 +19,18 @@
             <!-- End Leftbar -->
             <!-- Start Rightbar -->
             @include('layouts.backend.includes.rightbar')
-
-            @yield('content')
+            <div class="rightbar">
+                <!-- Start Topbar Mobile -->
+            @include('layouts.backend.includes.topbar-mobile')
+                <!-- End Topbar Mobile -->
+                <!-- Start Topbar -->
+            @include('layouts.backend.includes.topbar')
+                <!-- End Topbar -->
+                @yield('content')
+                <!-- Start Footerbar -->
+            @include('layouts.backend.includes.footer')
+                <!-- End Footerbar -->
+            </div>
             <!-- End Rightbar -->
         </div>
         <!-- End Containerbar -->

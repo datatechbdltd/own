@@ -15,7 +15,7 @@
 <link href="{{ asset('assets/panel/vertical/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 
-@section('rightbar-content')
+@section('content')
 <!-- Start Breadcrumbbar -->
 <div class="breadcrumbbar">
     <div class="row align-items-center">

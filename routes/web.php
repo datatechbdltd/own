@@ -3,7 +3,6 @@
 use App\Http\Controllers\LeadCategoryController;
 use App\Http\Controllers\LeadDistrictController;
 use App\Http\Controllers\LeadServiceController;
-use App\Http\Controllers\LeadSettingController;
 use App\Http\Controllers\LeadThanaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteBannerController;

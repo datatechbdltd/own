@@ -12,7 +12,7 @@ Social links
 
 @endpush
 
-@section('rightbar-content')
+@section('content')
 <!-- Start Breadcrumbbar -->
 <div class="breadcrumbbar">
     <div class="row align-items-center">
