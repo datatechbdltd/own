@@ -9,9 +9,9 @@ use Yajra\DataTables\Facades\DataTables;
 class LeadController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Exception
      */
     public function index(Request $request)
     {

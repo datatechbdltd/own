@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LeadDistrictSeeder::class);
         $this->call(LeadServiceSeeder::class);
         $this->call(LeadSeeder::class);
+        $this->call(RoleAndPermissionSeeder::class);
     }
 }

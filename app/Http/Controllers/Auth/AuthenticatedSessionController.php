@@ -32,6 +32,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (\auth()->user()->can('lead_collect_from_website'))
+        return redirect(RouteServiceProvider::LEAD);
+        else
         return redirect(RouteServiceProvider::HOME);
     }
 

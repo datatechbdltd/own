@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LeadCategoryController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LeadDistrictController;
@@ -26,6 +27,11 @@ Route::get('/', function () {
     $social_link = \App\Models\SocialLink::where('is_active', true)->orderBy('id','desc')->get();
     $website_seos = \App\Models\WebsiteSeo::where('is_active', true)->orderBy('id','desc')->get();
     return view('frontend.home' ,compact('social_link','website_seos'));
+});
+
+Route::group(['as' => 'frontend.'], function () {
+   Route::get('lead-collection',[FrontendController::class, 'leadCollectionPage'])->name('leadCollectionPage');
+   Route::post('lead-collection',[FrontendController::class, 'storeLead'])->name('storeLead');
 });
 
 Route::get('/dashboard', function () {
