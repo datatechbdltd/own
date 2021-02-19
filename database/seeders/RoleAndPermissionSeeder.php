@@ -32,12 +32,24 @@ class RoleAndPermissionSeeder extends Seeder
         $marketer = Role::find(3);
         $customer = Role::find(4);
 
-        //application-setting
+        //admin_dashboard
+        $permission = Permission::create(['name' => 'admin_dashboard']);
+        $admin->givePermissionTo($permission);
+
+        //application_setting
         $permission = Permission::create(['name' => 'application_setting']);
         $admin->givePermissionTo($permission);
 
         //lead_collect_from_website
         $permission = Permission::create(['name' => 'lead_collect_from_website']);
+        $marketer->givePermissionTo($permission);
+
+        //store_lead
+        $permission = Permission::create(['name' => 'store_lead']);
+        $marketer->givePermissionTo($permission);
+
+        //import_lead
+        $permission = Permission::create(['name' => 'import_lead']);
         $marketer->givePermissionTo($permission);
     }
 }

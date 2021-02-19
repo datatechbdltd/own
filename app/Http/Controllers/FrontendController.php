@@ -9,6 +9,7 @@ use App\Models\LeadDistrict;
 use App\Models\LeadService;
 use App\Models\LeadThana;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class FrontendController extends Controller
@@ -18,8 +19,13 @@ class FrontendController extends Controller
         $lead_services = LeadService::orderBy('id', 'desc')->get();
         $lead_districts = LeadDistrict::orderBy('id', 'desc')->get();
         $lead_thanas = LeadThana::orderBy('id', 'desc')->get();
-        $leads = auth()->user()->leads;
-        return view('frontend.lead-collection', compact('lead_categories','lead_services','lead_districts','lead_thanas', 'leads'));
+        if (Auth::check()){
+            $leads = auth()->user()->leads;
+            return view('frontend.lead-collection', compact('lead_categories','lead_services','lead_districts','lead_thanas', 'leads'));
+        }else{
+            return view('frontend.lead-collection');
+        }
+
     }
 
     public function storeLead(Request $request){

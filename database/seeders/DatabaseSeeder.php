@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LeadServiceSeeder::class);
         $this->call(LeadSeeder::class);
         $this->call(RoleAndPermissionSeeder::class);
+        $this->call(SmsCampaignSeeder::class);
     }
 }

@@ -24,12 +24,13 @@
     <section class="contact-page-section">
         <div class="auto-container">
             <div class="row clearfix">
+                @if(Auth::check())
                 <!-- Form Form -->
                 <div class="form-column col-lg-12 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <!-- Sec Title -->
                         <div class="sec-title">
-                            <div class="title">Hello @if(auth()->check()) {{ auth()->user()->name }} @else marketer ! @endif </div>
+                            <div class="title">Hello {{ auth()->user()->name }} !</div>
                             <h2>Ready to Collect?</h2>
                         </div>
                         <!-- Default Form -->
@@ -121,23 +122,19 @@
                             <hr>
                             <form action="{{ route('frontend.importLead') }}" method="POST" enctype="multipart/form-data" class="row">
                                 @csrf
-
-                                    <div class="form-group col">
-                                        <level><b class="text-danger">Chose import file (.xlsx)</b> <i><a href="{{ url('/'. get_static_option('sample_leads')) }}">Sample file</a></i></level>
-                                        <br>
-                                        <input type="file" accept=".xlsx" name="file">
-                                        @error('file')
-                                        <div class="text-danger"><b>{{ $message }}</b></div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group col">
-                                        <button type="submit" class="theme-btn btn-style-four"><span class="txt">Import now</span></button>
-                                    </div>
-
-
+                                <div class="form-group col">
+                                    <level><b class="text-danger">Chose import file (.xlsx)</b> <i><a href="{{ url('/'. get_static_option('sample_leads')) }}">Sample file</a></i></level>
+                                    <br>
+                                    <input type="file" accept=".xlsx" name="file">
+                                    @error('file')
+                                    <div class="text-danger"><b>{{ $message }}</b></div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col">
+                                    <button type="submit" class="theme-btn btn-style-four"><span class="txt">Import now</span></button>
+                                </div>
                             </form>
                             <hr>
-
                         </div>
                     </div>
                 </div>
@@ -147,8 +144,7 @@
                         <!-- Sec Title -->
                         <div class="sec-title">
                             <div class="title">Your collection summery</div>
-                            <h2>Ready to Get Started?</h2>
-                            <div class="text">Give us a call or drop by anytime, we endeavour to  answer all enquiries within 24 hours on business days. We will be happy to answer your questions.</div>
+                            <h2>{{ auth()->user()->name }}</h2>
                         </div>
 
                         <!-- Info List -->
@@ -184,6 +180,61 @@
                       </div>
                     </div>
                 </div>
+                @else
+                        <div class="form-column col-lg-12 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <!-- Sec Title -->
+                                <div class="sec-title">
+                                    <div class="title">Hello data collector !</div>
+                                    <h2>Interested to earn money ?</h2>
+                                </div>
+                                <!-- Default Form -->
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="default-form contact-form">
+                                            <form novalidate="novalidate" action="{{ route('login') }}" method="POST">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <input type="text" name="email" value="{{ old('email') }}" placeholder="Email" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="password" value="{{ old('password') }}" placeholder="Password" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="theme-btn btn-style-three"><span class="txt">Login now</span></button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="default-form contact-form">
+                                            <form novalidate="novalidate" action="{{ route('register') }}" method="POST">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="email" value="{{ old('email') }}" placeholder="Email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="password" value="{{ old('password') }}" placeholder="Password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="theme-btn btn-style-four"><span class="txt">Register and earn</span></button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                @endif
             </div>
         </div>
     </section>

@@ -91,7 +91,7 @@
                         <li>
                             <a href="javaScript:void();"><i class="mdi mdi-circle"></i>Setting<i class="feather icon-chevron-right pull-right"></i></a>
                             <ul class="vertical-submenu">
-                                <li><a href="{{ route('lead.leadCategory.index') }}"><i class="mdi mdi-circle"></i>Caegory</a></li>
+                                <li><a href="{{ route('lead.leadCategory.index') }}"><i class="mdi mdi-circle"></i>Category</a></li>
                                 <li><a href="{{ route('lead.leadService.index') }}"><i class="mdi mdi-circle"></i>Service</a></li>
                                 <li><a href="{{ route('lead.leadDistrict.index') }}"><i class="mdi mdi-circle"></i>District</a></li>
                                 <li><a href="{{ route('lead.leadThana.index') }}"><i class="mdi mdi-circle"></i>Thana</a></li>
@@ -105,8 +105,14 @@
                                 <li><a href="{{url('/template/panel-vertical/apps-email-compose')}}"><i class="mdi mdi-circle"></i>Email Compose</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{url('/template/panel-vertical/apps-kanban-board')}}"><i class="mdi mdi-circle"></i>Kanban Board</a></li>
-                        <li><a href="{{url('/template/panel-vertical/apps-onboarding-screens')}}"><i class="mdi mdi-circle"></i>Onboarding Screens</a></li>
+                        <li>
+                            <a href="javaScript:void();"><i class="mdi mdi-circle"></i>Campaign<i class="feather icon-chevron-right pull-right"></i></a>
+                            <ul class="vertical-submenu">
+                                <li><a href="{{ route('campaign.smsCampaign.index') }}"><i class="mdi mdi-circle"></i>By Email</a></li>
+                                <li><a href="{{ route('campaign.smsCampaign.index') }}"><i class="mdi mdi-circle"></i>By SMS</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="mdi mdi-circle"></i>Kanban Board</a></li>
                     </ul>
                 </li>
                 <li>

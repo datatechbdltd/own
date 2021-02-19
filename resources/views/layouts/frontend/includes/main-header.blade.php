@@ -99,22 +99,19 @@
                                         <li><a href="account.html">Account</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#">Blog</a>
+                                <li class="dropdown"><a href="#">Career</a>
                                     <ul>
-                                        <li><a href="blog.html">Our Blog</a></li>
-                                        <li><a href="blog-classic.html">Blog Classic</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                        <li><a href="not-found.html">Not Found</a></li>
+                                        <li><a href="#">Apply for Internship</a></li>
+                                        <li><a href="#">Apply Job</a></li>
+                                        <li><a href="{{ route('frontend.leadCollectionPage') }}">Data collection</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="contact.html">Contact us</a></li>
                             </ul>
                         </div>
                     </nav>
-
                     <!-- Main Menu End-->
                     <div class="outer-box clearfix">
-
                         <!-- Cart Box -->
                         <div class="cart-box">
                             <div class="dropdown">

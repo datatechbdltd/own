@@ -22,6 +22,7 @@
                 }
             })
         });
+
         $(".delete-btn").click(function (){
             var url = $(this).value;
             Swal.fire({
