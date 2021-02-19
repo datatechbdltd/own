@@ -118,6 +118,26 @@
                                     </div>
                                 </div>
                             </form>
+                            <hr>
+                            <form action="{{ route('frontend.importLead') }}" method="POST" enctype="multipart/form-data" class="row">
+                                @csrf
+
+                                    <div class="form-group col">
+                                        <level><b class="text-danger">Chose import file (.xlsx)</b> <i><a href="{{ url('/'. get_static_option('sample_leads')) }}">Sample file</a></i></level>
+                                        <br>
+                                        <input type="file" accept=".xlsx" name="file">
+                                        @error('file')
+                                        <div class="text-danger"><b>{{ $message }}</b></div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group col">
+                                        <button type="submit" class="theme-btn btn-style-four"><span class="txt">Import now</span></button>
+                                    </div>
+
+
+                            </form>
+                            <hr>
+
                         </div>
                     </div>
                 </div>
@@ -136,17 +156,12 @@
                           <div class="col-lg-6 col-md-6 col-sm-12">
                               <ul class="info-list">
                                   <li>
-                                      <span class="icon flaticon-placeholder-4"></span>
-                                      <strong>Total Leads</strong>
-                                     {{ $leads->count() }}
-                                  </li>
-                                  <li>
-                                      <span class="icon flaticon-phone-call"></span>
+                                      <span class="icon"></span>
                                       <strong>Today's leads</strong>
                                       {{ $leads->where('created_at', '>=', \Carbon\Carbon::today())->count() }}
                                   </li>
                                   <li>
-                                      <span class="icon flaticon-stopwatch"></span>
+                                      <span class="icon"></span>
                                       <strong>Last 7 days</strong>
                                       {{ $leads->where('created_at', '>=', \Carbon\Carbon::today()->subDays(7))->count() }}
                                   </li>
@@ -155,24 +170,18 @@
                           <div class="col-lg-6 col-md-6 col-sm-12">
                               <ul class="info-list">
                                   <li>
-                                      <span class="icon flaticon-placeholder-4"></span>
-                                      <strong>FL 33401, USA</strong>
-                                      576d University St, Seattle, UK
+                                      <span class="icon"></span>
+                                      <strong>Rating</strong>
+                                      {{ $leads->where('category_id', 1)->count() }}/{{ $leads->count() }}
                                   </li>
                                   <li>
-                                      <span class="icon flaticon-phone-call"></span>
-                                      <strong>009-215-5596</strong>
-                                      Give us a call
-                                  </li>
-                                  <li>
-                                      <span class="icon flaticon-stopwatch"></span>
-                                      <strong>meto@mail.com</strong>
-                                      Get in Touch
+                                      <span class="icon"></span>
+                                      <strong>Total Leads</strong>
+                                      {{ $leads->count() }}
                                   </li>
                               </ul>
                           </div>
                       </div>
-
                     </div>
                 </div>
             </div>

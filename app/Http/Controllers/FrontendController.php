@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\LeadImport;
 use App\Models\Lead;
 use App\Models\LeadCategory;
 use App\Models\LeadDistrict;
 use App\Models\LeadService;
 use App\Models\LeadThana;
-use Database\Seeders\LeadSeeder;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FrontendController extends Controller
 {
@@ -49,5 +50,15 @@ class FrontendController extends Controller
         $lead->description  =   $request->description;
         $lead->save();
         return back()->withToastSuccess('Successfully inserted');
+    }
+
+    public function importLead(Request $request)
+    {
+        try {
+            Excel::import(new LeadImport, $request->file('file'));
+            return back()->withSuccess('Import completed');
+        }catch (\Exception $exception){
+            return back()->withErrors('Something going wrong. '. $exception->getMessage());
+        }
     }
 }

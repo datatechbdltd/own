@@ -9,7 +9,19 @@ class Lead extends Model
 {
     use HasFactory;
     protected $fillable = [
-
+        'add_by_id',
+        'name',
+        'email',
+        'phone',
+        'date_of_birth',
+        'gender',
+        'is_married',
+        'company_name',
+        'profession',
+        'address',
+        'company_website',
+        'company_facebook_page',
+        'description',
     ];
     //adder
     public function adder(){

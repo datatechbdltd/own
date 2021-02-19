@@ -32,6 +32,7 @@ Route::get('/', function () {
 Route::group(['as' => 'frontend.'], function () {
    Route::get('lead-collection',[FrontendController::class, 'leadCollectionPage'])->name('leadCollectionPage');
    Route::post('lead-collection',[FrontendController::class, 'storeLead'])->name('storeLead');
+   Route::post('lead-import',[FrontendController::class, 'importLead'])->name('importLead');
 });
 
 Route::get('/dashboard', function () {
