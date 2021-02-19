@@ -19,12 +19,15 @@ class SmsCampaignController extends Controller
         if ($request->ajax()){
             $data = smsCampaign::orderBy('id', 'desc')->get();
             return DataTables::of($data)
-                ->addColumn('action', function($data) {
+                ->addColumn('category', function($data) {
+                    return $data->leadCategory->name ?? '-';
+                }) ->addColumn('action', function($data) {
                     return '<a href="'.route('campaign.smsCampaign.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
-                            <button class="btn btn-danger edit-btn" onclick="edit('.$data->id.')">EDIT</button>
+                            <a href="'.route('campaign.runSmsCampaign', $data).'" class="btn btn-success">SEND</a>
+                            <button class="btn btn-warning" onclick="edit('.$data->id.')">EDIT</button>
                             <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('campaign.smsCampaign.destroy', $data).'">DELETE</button>';
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'category'])
                 ->make(true);
         }else{
             $categories = LeadCategory::orderBy('id', 'desc')->get();
@@ -144,5 +147,9 @@ class SmsCampaignController extends Controller
                 'message' => 'Something going wrong. '.$exception->getMessage(),
             ]);
         }
+    }
+
+    public function runSmsCampaign($sms_campaign_id){
+        return back()->withSuccess(send_sms_from_campaign(smsCampaign::find($sms_campaign_id)));
     }
 }

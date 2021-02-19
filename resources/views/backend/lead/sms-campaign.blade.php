@@ -52,6 +52,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Repeat</th>
+                                    <th>Category</th>
                                     <th>Message</th>
                                     <th>Action</th>
                                 </tr>
@@ -63,8 +64,9 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Repeat</th>
+                                    <th>Category</th>
                                     <th>Message</th>
-                                    <th>Action</th>
+
                                 </tr>
                                 </tfoot>
                             </table>
@@ -120,10 +122,14 @@
             $('#modal').modal('show');
         });
 
-        function edit(id){
+        function edit(sms_campaign_id){
             $('.submit-btn').val('update');
-            $('#hidden-id').val(id)
+            $('#hidden-id').val(sms_campaign_id)
             $('#modal').modal('show');
+        };
+
+        function sendMessage(sms_campaign_id){
+           alert(sms_campaign_id);
         };
 
         $('.submit-btn').click(function() {
@@ -200,6 +206,7 @@
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'repeat', name: 'repeat' },
+                    { data: 'category', name: 'category' },
                     { data: 'message', name: 'message' },
                     { data: 'action', name: 'action' },
                 ], initComplete: function () {

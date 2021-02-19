@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\smsCampaign;
 use App\Models\StaticOption;
+use Illuminate\Support\Facades\Cache;
 
 if (!function_exists('random_code')){
 
@@ -93,10 +95,27 @@ if (!function_exists('random_code')){
         }
     }
 
-
-
     function check_online_status($user_id){
-        return \Illuminate\Support\Facades\Cache::has('is-online-'.$user_id);
+        return Cache::has('is-online-'.$user_id);
+    }
+
+    function send_sms_from_campaign(smsCampaign $smsCampaign){
+        $success = 0;
+        $failed= 0;
+        foreach ($smsCampaign->leadCategory->leads as $user){
+            if (send_message($user->phone, $smsCampaign->message)){
+                $success ++;
+            }else{
+                $failed++;
+            }
+        }
+        $smsCampaign->repeat++;
+        $smsCampaign->save();
+        return 'Successfully send:'.$success.' and failed:'.$failed.' of:'.$smsCampaign->leadCategory->leads->count();
+    }
+
+    function send_message($number, $message){
+        return true;
     }
 
 

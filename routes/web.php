@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CronJobController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LeadCategoryController;
 use App\Http\Controllers\LeadController;
@@ -7,7 +8,8 @@ use App\Http\Controllers\LeadDistrictController;
 use App\Http\Controllers\LeadServiceController;
 use App\Http\Controllers\LeadThanaController;
 use App\Http\Controllers\SmsCampaignController;
-use App\Http\Controllers\SmsCampainController;
+use App\Models\SocialLink;
+use App\Models\WebsiteSeo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
@@ -26,8 +28,8 @@ use App\Http\Controllers\WebsiteServiceController;
 */
 
 Route::get('/', function () {
-    $social_link = \App\Models\SocialLink::where('is_active', true)->orderBy('id','desc')->get();
-    $website_seos = \App\Models\WebsiteSeo::where('is_active', true)->orderBy('id','desc')->get();
+    $social_link = SocialLink::where('is_active', true)->orderBy('id','desc')->get();
+    $website_seos = WebsiteSeo::where('is_active', true)->orderBy('id','desc')->get();
     return view('frontend.home' ,compact('social_link','website_seos'));
 });
 
@@ -38,7 +40,7 @@ Route::group(['as' => 'frontend.'], function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/dashboard', function () {
+    Route::get('dashboard', function () {
         return view('backend.dashboard.index');
     })->name('dashboard');
 
@@ -47,8 +49,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('socialLink', SocialLinkController::class);
         Route::resource('websiteSeo', WebsiteSeoController::class);
         Route::resource('WebsiteService', WebsiteServiceController::class);
-        Route::post('/website-seo-static-option-update', [WebsiteSeoController::class, 'websiteSeoStaticOptionUpdate'])->name('websiteSeoStaticOptionUpdate');
-        Route::post('/website-service-static-option-update', [WebsiteServiceController::class, 'websiteServiceStaticOptionUpdate'])->name('websiteServiceStaticOptionUpdate');
+        Route::post('website-seo-static-option-update', [WebsiteSeoController::class, 'websiteSeoStaticOptionUpdate'])->name('websiteSeoStaticOptionUpdate');
+        Route::post('website-service-static-option-update', [WebsiteServiceController::class, 'websiteServiceStaticOptionUpdate'])->name('websiteServiceStaticOptionUpdate');
     });
 
     Route::group(['prefix' => 'lead', 'as' => 'lead.'], function () {
@@ -61,8 +63,12 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'campaign', 'as' => 'campaign.'], function () {
         Route::resource('smsCampaign', SmsCampaignController::class);
-
+        Route::get('run-sms-campaign/{sms_campaign_id}', [SmsCampaignController::class, 'runSmsCampaign'])->name('runSmsCampaign');
     });
+});
+
+Route::group(['prefix' => 'cron', 'as' => 'cron.'], function () {
+
 });
 
 
