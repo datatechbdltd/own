@@ -23,7 +23,7 @@ class EmailCampaignController extends Controller
                     return $data->leadCategory->name ?? '-';
                 }) ->addColumn('action', function($data) {
                     return '<a href="'.route('campaign.emailCampaign.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
-                            <a href="'.route('campaign.emailCampaign', $data).'" class="btn btn-success">SEND</a>
+                            <a href="'.route('campaign.runEmailCampaign', $data).'" class="btn btn-success">SEND</a>
                             <button class="btn btn-warning" onclick="edit('.$data->id.')">EDIT</button>
                             <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('campaign.emailCampaign.destroy', $data).'">DELETE</button>';
                 })
@@ -151,7 +151,7 @@ class EmailCampaignController extends Controller
         }
     }
 
-    public function runSmsCampaign($email_campaign_id){
+    public function runEmailCampaign($email_campaign_id){
         return back()->withSuccess(send_email_from_campaign(emailCampaign::find($email_campaign_id)));
     }
 }

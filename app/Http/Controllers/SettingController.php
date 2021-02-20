@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestSmtp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SettingController extends Controller
 {
@@ -44,14 +46,15 @@ class SettingController extends Controller
         }
     }
 
-    public function testUpdate(Request $request){
+    public function testSmtp(Request $request){
         $request->validate([
             'email' => 'required|email'
         ]);
-        if (send_smt($request->input('email')) == true){
-            return redirect()->back()->withToastSuccess('SMTP working Successfully !');
-        }else{
-            return redirect()->back()->withErrors('SMTP is not working !');
+        try {
+            Mail::to($request->email)->send(new TestSmtp());
+            return back()->withSuccess('Successfully mail sent.');
+        }catch (\Exception $exception){
+            return back()->withErrors('Something going wrong. '.$exception->getMessage());
         }
     }
 }

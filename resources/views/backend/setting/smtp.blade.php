@@ -77,7 +77,7 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <form action="" method="post">
+                    <form action="{{ route('setting.testSmtp') }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label>Send test email to make sure that your SMTP settings is set correctly.</label>

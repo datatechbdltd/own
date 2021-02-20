@@ -22,7 +22,7 @@ class EmailCampaignFactory extends Factory
     public function definition()
     {
         return [
-            'created_by_id' => $this->faker->numberBetween(1,10),
+            'created_by_id' => $this->faker->numberBetween(1,5),
             'category_id' => $this->faker->numberBetween(1,10),
             'message' => $this->faker->text(50),
             'repeat' => $this->faker->numberBetween(1, 10),

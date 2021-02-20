@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class emailCampaign extends Model
 {
     use HasFactory;
+
+    //leadCategory
+    public function leadCategory(){
+        return $this->belongsTo(LeadCategory::class, 'category_id','id');
+    }
+
 }

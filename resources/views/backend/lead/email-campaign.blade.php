@@ -135,10 +135,10 @@
         $('.submit-btn').click(function() {
             var url, type = "";
             if ($(this).val() == 'add'){
-                url = "{{ route('campaign.smsCampaign.store') }}";
+                url = "{{ route('campaign.emailCampaign.store') }}";
                 type= "POST"
             }else{
-                url =  "/campaign/smsCampaign/"+$('#hidden-id').val();
+                url =  "/campaign/emailCampaign/"+$('#hidden-id').val();
                 type = "PATCH";
             }
             $.ajax({
@@ -202,7 +202,7 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('campaign.smsCampaign.index') !!}',
+                ajax: '{!! route('campaign.emailCampaign.index') !!}',
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'repeat', name: 'repeat' },

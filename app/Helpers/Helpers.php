@@ -1,9 +1,11 @@
 <?php
 
+use App\Mail\EmailCampaignMail;
 use App\Models\emailCampaign;
 use App\Models\smsCampaign;
 use App\Models\StaticOption;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
 
 if (!function_exists('random_code')){
 
@@ -109,7 +111,7 @@ if (!function_exists('random_code')){
         }
         $smsCampaign->repeat++;
         $smsCampaign->save();
-        return 'Successfully send:'.$success.' and failed:'.$failed.' of:'.$smsCampaign->leadCategory->leads->count();
+        return 'Successfully send:'.$success.' and failed:'.$failed.' out of:'.$smsCampaign->leadCategory->leads->count().' sms';
     }
 
     function send_message($number, $message){
@@ -120,8 +122,9 @@ if (!function_exists('random_code')){
     function send_email_from_campaign(emailCampaign $emailCampaign){
         $success = 0;
         $failed= 0;
+        $error = '';
         foreach ($emailCampaign->leadCategory->leads as $user){
-            if (send_email($user->email, $emailCampaign->message)){
+            if (send_email($user->email, $emailCampaign) == true){
                 $success ++;
             }else{
                 $failed++;
@@ -129,11 +132,16 @@ if (!function_exists('random_code')){
         }
         $emailCampaign->repeat++;
         $emailCampaign->save();
-        return 'Successfully send:'.$success.' and failed:'.$failed.' of:'.$emailCampaign->leadCategory->leads->count();
+        return 'Successfully send:'.$success.' and failed:'.$failed.' out of:'.$emailCampaign->leadCategory->leads->count().' email'. $error;
     }
 
-    function send_email($email, $message){
-        return true;
+    function send_email($email, $emailCampaign){
+        try {
+            Mail::to($email)->send(new EmailCampaignMail($emailCampaign));
+            return true;
+        }catch (\Exception $exception){
+            return false;
+        }
     }
 
 

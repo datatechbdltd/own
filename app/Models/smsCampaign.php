@@ -13,4 +13,5 @@ class smsCampaign extends Model
     public function leadCategory(){
         return $this->belongsTo(LeadCategory::class, 'category_id','id');
     }
+
 }

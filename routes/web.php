@@ -73,7 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
         Route::get('get-smtp-page', [SettingController::class, 'getSmtpPage'])->name('getSmtpPage');
         Route::post('smtp-update', [SettingController::class, 'smtpUpdate'])->name('smtpUpdate');
-        Route::post('smtp-test', [SettingController::class, 'testUpdate'])->name('testUpdate');
+        Route::post('smtp-test', [SettingController::class, 'testSmtp'])->name('testSmtp');
     });
 });
 
