@@ -25,8 +25,7 @@ class EmailCampaignController extends Controller
                 ->addColumn('auto_run_at', function($data) {
                     return $data->auto_run_at ?? '-';
                 }) ->addColumn('action', function($data) {
-                    return '<a href="'.route('campaign.emailCampaign.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
-                            <a href="'.route('campaign.runEmailCampaign', $data).'" class="btn btn-success">SEND</a>
+                    return '<a href="'.route('campaign.runEmailCampaign', $data).'" class="btn btn-success">SEND</a>
                             <a href="'.route('campaign.emailCampaign.edit', $data).'" class="btn btn-warning">EDIT</a>
                             <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('campaign.emailCampaign.destroy', $data).'">DELETE</button>';
                 })

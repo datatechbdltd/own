@@ -25,8 +25,7 @@ class SmsCampaignController extends Controller
                 ->addColumn('auto_run_at', function($data) {
                     return $data->auto_run_at ?? '-';
                 }) ->addColumn('action', function($data) {
-                    return '<a href="'.route('campaign.smsCampaign.show', $data).'" class="btn btn-primary mce-btn-small" target="_blank">SHOW</a>
-                            <a href="'.route('campaign.runSmsCampaign', $data).'" class="btn btn-success mce-btn-small">SEND</a>
+                    return '<a href="'.route('campaign.runSmsCampaign', $data).'" class="btn btn-success mce-btn-small">SEND</a>
                             <a href="'.route('campaign.smsCampaign.edit', $data).'" class="btn btn-warning mce-btn-small">EDIT</a>
                             <button class="btn btn-danger mce-btn-small" onclick="delete_function(this)" value="'.route('campaign.smsCampaign.destroy', $data).'">DELETE</button>';
                 })

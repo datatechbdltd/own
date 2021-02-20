@@ -85,7 +85,7 @@
                 </li>
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/panel/vertical/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>Leads</span><i class="feather icon-chevron-right pull-right"></i>
+                      <img src="assets/panel/vertical/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>Lead management</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li>
