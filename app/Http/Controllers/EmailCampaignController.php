@@ -21,17 +21,19 @@ class EmailCampaignController extends Controller
             return DataTables::of($data)
                 ->addColumn('category', function($data) {
                     return $data->leadCategory->name ?? '-';
+                })
+                ->addColumn('auto_run_at', function($data) {
+                    return $data->auto_run_at ?? '-';
                 }) ->addColumn('action', function($data) {
                     return '<a href="'.route('campaign.emailCampaign.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
                             <a href="'.route('campaign.runEmailCampaign', $data).'" class="btn btn-success">SEND</a>
-                            <button class="btn btn-warning" onclick="edit('.$data->id.')">EDIT</button>
+                            <a href="'.route('campaign.emailCampaign.edit', $data).'" class="btn btn-warning">EDIT</a>
                             <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('campaign.emailCampaign.destroy', $data).'">DELETE</button>';
                 })
-                ->rawColumns(['action', 'category'])
+                ->rawColumns(['action', 'category', 'auto_run_at'])
                 ->make(true);
         }else{
-            $categories = LeadCategory::orderBy('id', 'desc')->get();
-            return view('backend.lead.email-campaign', compact('categories'));
+            return view('backend.lead.email-campaign');
         }
     }
 
@@ -42,37 +44,36 @@ class EmailCampaignController extends Controller
      */
     public function create()
     {
-        //
+        $categories = LeadCategory::orderBy('id', 'desc')->get();
+        return view('backend.lead.email-campaign-create', compact( 'categories'));
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $request->validate([
             'category' => 'required|exists:lead_categories,id',
-            'message' => 'required|min:5'
+            'message' => 'required|min:5',
+            'is_auto_run' => 'nullable|boolean'
         ]);
         $campaign = new emailCampaign();
         $campaign->created_by_id = auth()->user()->id;
         $campaign->category_id = $request->category;
         $campaign->message = $request->message;
         $campaign->attachment = $request->attachment;
+        if ($request->is_auto_run){
+            $campaign->auto_run_at = $request->auto_run_at;
+        }else{
+            $campaign->auto_run_at = null;
+        }
         try {
             $campaign->save();
-            return response()->json([
-                'type' => 'success',
-                'message' => 'Successfully saved.',
-            ]);
+            return redirect()->route('campaign.emailCampaign.index')->withToastSuccess('Successfully Saved');
         }catch (\Exception $exception){
-            return response()->json([
-                'type' => 'error',
-                'message' => 'Something going wrong. '.$exception->getMessage(),
-            ]);
+            return back()->withErrors('Something going wrong. '.$exception->getMessage());
         }
     }
 
@@ -95,37 +96,35 @@ class EmailCampaignController extends Controller
      */
     public function edit(emailCampaign $emailCampaign)
     {
-        //
+        $categories = LeadCategory::orderBy('id', 'desc')->get();
+        return view('backend.lead.email-campaign-edit', compact('emailCampaign', 'categories'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\emailCampaign  $emailCampaign
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param emailCampaign $emailCampaign
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, emailCampaign $emailCampaign)
     {
         $request->validate([
             'category' => 'required|exists:lead_categories,id',
-            'message' => 'required|min:5'
+            'message' => 'required|min:5',
+            'is_auto_run' => 'nullable|boolean'
         ]);
-        $emailCampaign->created_by_id = auth()->user()->id;
         $emailCampaign->category_id = $request->category;
         $emailCampaign->message = $request->message;
         $emailCampaign->attachment = $request->attachment;
+        if ($request->is_auto_run){
+            $emailCampaign->auto_run_at = $request->auto_run_at;
+        }else{
+            $emailCampaign->auto_run_at = null;
+        }
         try {
             $emailCampaign->save();
-            return response()->json([
-                'type' => 'success',
-                'message' => 'Successfully updated.',
-            ]);
+            return back()->withToastSuccess('Successfully Updated');
         }catch (\Exception $exception){
-            return response()->json([
-                'type' => 'error',
-                'message' => 'Something going wrong. '.$exception->getMessage(),
-            ]);
+            return back()->withErrors('Something going wrong. '.$exception->getMessage());
         }
     }
 

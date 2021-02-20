@@ -19,6 +19,7 @@ class CreateSmsCampaignsTable extends Migration
             $table->foreignId('category_id');
             $table->text('message');
             $table->integer('repeat')->default(0);
+            $table->time('auto_run_at')->nullable();
             $table->timestamps();
         });
     }

@@ -21,13 +21,16 @@ class SmsCampaignController extends Controller
             return DataTables::of($data)
                 ->addColumn('category', function($data) {
                     return $data->leadCategory->name ?? '-';
-                }) ->addColumn('action', function($data) {
-                    return '<a href="'.route('campaign.smsCampaign.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
-                            <a href="'.route('campaign.runSmsCampaign', $data).'" class="btn btn-success">SEND</a>
-                            <button class="btn btn-warning" onclick="edit('.$data->id.')">EDIT</button>
-                            <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('campaign.smsCampaign.destroy', $data).'">DELETE</button>';
                 })
-                ->rawColumns(['action', 'category'])
+                ->addColumn('auto_run_at', function($data) {
+                    return $data->auto_run_at ?? '-';
+                }) ->addColumn('action', function($data) {
+                    return '<a href="'.route('campaign.smsCampaign.show', $data).'" class="btn btn-primary mce-btn-small" target="_blank">SHOW</a>
+                            <a href="'.route('campaign.runSmsCampaign', $data).'" class="btn btn-success mce-btn-small">SEND</a>
+                            <a href="'.route('campaign.smsCampaign.edit', $data).'" class="btn btn-warning mce-btn-small">EDIT</a>
+                            <button class="btn btn-danger mce-btn-small" onclick="delete_function(this)" value="'.route('campaign.smsCampaign.destroy', $data).'">DELETE</button>';
+                })
+                ->rawColumns(['action', 'category', 'auto_run_at'])
                 ->make(true);
         }else{
             $categories = LeadCategory::orderBy('id', 'desc')->get();
@@ -55,12 +58,18 @@ class SmsCampaignController extends Controller
     {
         $request->validate([
             'category' => 'required|exists:lead_categories,id',
-            'message' => 'required|min:5'
+            'message' => 'required|min:5',
+            'is_auto_run' => 'nullable|boolean'
         ]);
         $campaign = new smsCampaign();
         $campaign->created_by_id = auth()->user()->id;
         $campaign->category_id = $request->category;
         $campaign->message = $request->message;
+         if ($request->is_auto_run){
+            $campaign->auto_run_at = $request->auto_run_at;
+        }else{
+            $campaign->auto_run_at = null;
+        }
         try {
             $campaign->save();
             return response()->json([
@@ -94,7 +103,8 @@ class SmsCampaignController extends Controller
      */
     public function edit(smsCampaign $smsCampaign)
     {
-        //
+        $categories = LeadCategory::orderBy('id', 'desc')->get();
+        return view('backend.lead.sms-campaign-edit', compact('smsCampaign', 'categories'));
     }
 
     /**
@@ -108,22 +118,21 @@ class SmsCampaignController extends Controller
     {
         $request->validate([
             'category' => 'required|exists:lead_categories,id',
-            'message' => 'required|min:5'
+            'message' => 'required|min:5',
+            'is_auto_run' => 'nullable|boolean'
         ]);
-        $smsCampaign->created_by_id = auth()->user()->id;
         $smsCampaign->category_id = $request->category;
         $smsCampaign->message = $request->message;
+         if ($request->is_auto_run){
+             $smsCampaign->auto_run_at = $request->auto_run_at;
+        }else{
+             $smsCampaign->auto_run_at = null;
+        }
         try {
             $smsCampaign->save();
-            return response()->json([
-                'type' => 'success',
-                'message' => 'Successfully updated.',
-            ]);
+            return back()->withToastSuccess('Successfully Updated');
         }catch (\Exception $exception){
-            return response()->json([
-                'type' => 'error',
-                'message' => 'Something going wrong. '.$exception->getMessage(),
-            ]);
+            return back()->withErrors('Something going wrong. '.$exception->getMessage());
         }
     }
 

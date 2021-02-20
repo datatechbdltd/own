@@ -20,6 +20,7 @@ class CreateEmailCampaignsTable extends Migration
             $table->longText('message');
             $table->string('attachment')->nullable();
             $table->integer('repeat')->default(0);
+            $table->time('auto_run_at')->nullable();
             $table->timestamps();
         });
     }

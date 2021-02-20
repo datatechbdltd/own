@@ -54,6 +54,7 @@
                                     <th>Repeat</th>
                                     <th>Category</th>
                                     <th>Message</th>
+                                    <th>Auto run at</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -66,6 +67,7 @@
                                     <th>Repeat</th>
                                     <th>Category</th>
                                     <th>Message</th>
+                                    <th>Auto run at</th>
 
                                 </tr>
                                 </tfoot>
@@ -101,6 +103,15 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label>Auto run at<span class="text-danger">*</span></label>
+                            <div class="input-group-prepend form-group col-md-6 col-xl-6">
+                                <div class="input-group-text">
+                                    <input type="checkbox" aria-label="Checkbox for following text input" id="is_auto_run" name="is_auto_run" value="1">
+                                </div>
+                                <input type="time" class="form-control" aria-label="Text input with checkbox" id="auto_run_at" name="auto_run_at">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="message" class="col-form-label">Message:</label>
                             <textarea class="form-control" id="message" rows="5"></textarea>
                         </div>
@@ -123,7 +134,9 @@
         });
 
         function edit(sms_campaign_id){
+            alert($(this).val())
             $('.submit-btn').val('update');
+            //$('#auto_run_at').val(auto_run_at)
             $('#hidden-id').val(sms_campaign_id)
             $('#modal').modal('show');
         };
@@ -149,6 +162,8 @@
                     _token:'{{ csrf_token() }}',
                     category: $('#category').val(),
                     message: $('#message').val(),
+                    auto_run_at: $('#auto_run_at').val(),
+                    is_auto_run: $('#is_auto_run').is( ':checked' ) ? 1 : null,
                 },
                 beforeSend: function (){
                     $('.submit-btn').prop("disabled",true);
@@ -208,6 +223,7 @@
                     { data: 'repeat', name: 'repeat' },
                     { data: 'category', name: 'category' },
                     { data: 'message', name: 'message' },
+                    { data: 'auto_run_at', name: 'auto_run_at' },
                     { data: 'action', name: 'action' },
                 ], initComplete: function () {
                     this.api().columns().every(function () {
