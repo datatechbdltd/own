@@ -101,18 +101,30 @@
                             <a href="javaScript:void();"><i class="mdi mdi-circle"></i>Leads<i class="feather icon-chevron-right pull-right"></i></a>
                             <ul class="vertical-submenu">
                                 <li><a href="{{ route('lead.lead.index') }}"><i class="mdi mdi-circle"></i>All Leads</a></li>
-                                <li><a href="{{url('/template/panel-vertical/apps-email-open')}}"><i class="mdi mdi-circle"></i>Email Open</a></li>
-                                <li><a href="{{url('/template/panel-vertical/apps-email-compose')}}"><i class="mdi mdi-circle"></i>Email Compose</a></li>
+                                <li><a href="{{url('template/panel-vertical/apps-email-open')}}"><i class="mdi mdi-circle"></i>Email Open</a></li>
+                                <li><a href="{{url('template/panel-vertical/apps-email-compose')}}"><i class="mdi mdi-circle"></i>Email Compose</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="javaScript:void();"><i class="mdi mdi-circle"></i>Campaign<i class="feather icon-chevron-right pull-right"></i></a>
                             <ul class="vertical-submenu">
-                                <li><a href="{{ route('campaign.smsCampaign.index') }}"><i class="mdi mdi-circle"></i>By Email</a></li>
+                                <li><a href="{{ route('campaign.emailCampaign.index') }}"><i class="mdi mdi-circle"></i>By Email</a></li>
                                 <li><a href="{{ route('campaign.smsCampaign.index') }}"><i class="mdi mdi-circle"></i>By SMS</a></li>
                             </ul>
                         </li>
                         <li><a href="#"><i class="mdi mdi-circle"></i>Kanban Board</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javaScript:void();">
+                      <img src="assets/panel/vertical/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>SETTING</span><i class="feather icon-chevron-right pull-right"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('setting.getSmtpPage') }}"><i class="mdi mdi-circle"></i>SMTP</a></li>
+                        <li><a href="#"><i class="mdi mdi-circle"></i>Sms</a></li>
+                        <li><a href="#"><i class="mdi mdi-circle"></i>Identity</a></li>
+                        <li><a href="#"><i class="mdi mdi-circle"></i>Seo</a></li>
+                        <li><a href="#"><i class="mdi mdi-circle"></i>Permissions</a></li>
                     </ul>
                 </li>
                 <li>

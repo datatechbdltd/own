@@ -111,5 +111,5 @@ Social links
             });
         });
     </script>
-@endpush()
+@endpush
 

@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\CronJobController;
+use App\Http\Controllers\EmailCampaignController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LeadCategoryController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LeadDistrictController;
 use App\Http\Controllers\LeadServiceController;
 use App\Http\Controllers\LeadThanaController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SmsCampaignController;
 use App\Models\SocialLink;
 use App\Models\WebsiteSeo;
@@ -64,6 +66,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'campaign', 'as' => 'campaign.'], function () {
         Route::resource('smsCampaign', SmsCampaignController::class);
         Route::get('run-sms-campaign/{sms_campaign_id}', [SmsCampaignController::class, 'runSmsCampaign'])->name('runSmsCampaign');
+        Route::resource('emailCampaign', EmailCampaignController::class);
+        Route::get('run-email-campaign/{email_campaign_id}', [EmailCampaignController::class, 'runEmailCampaign'])->name('runEmailCampaign');
+    });
+
+    Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
+        Route::get('get-smtp-page', [SettingController::class, 'getSmtpPage'])->name('getSmtpPage');
+        Route::post('smtp-update', [SettingController::class, 'smtpUpdate'])->name('smtpUpdate');
+        Route::post('smtp-test', [SettingController::class, 'testUpdate'])->name('testUpdate');
     });
 });
 

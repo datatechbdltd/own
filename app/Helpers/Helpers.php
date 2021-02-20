@@ -1,12 +1,11 @@
 <?php
 
+use App\Models\emailCampaign;
 use App\Models\smsCampaign;
 use App\Models\StaticOption;
 use Illuminate\Support\Facades\Cache;
 
 if (!function_exists('random_code')){
-
-
 
     function set_static_option($key, $value)
     {
@@ -51,14 +50,12 @@ if (!function_exists('random_code')){
     {
         $envFile = app()->environmentFilePath();
         $str = file_get_contents($envFile);
-
         if (count($values) > 0) {
             foreach ($values as $envKey => $envValue) {
                 $str .= "\n"; // In case the searched variable is in the last line without \n
                 $keyPosition = strpos($str, "{$envKey}=");
                 $endOfLinePosition = strpos($str, "\n", $keyPosition);
                 $oldLine = substr($str, $keyPosition, $endOfLinePosition - $keyPosition);
-
                 // If key does not exist, add it
                 if (!$keyPosition || !$endOfLinePosition || !$oldLine) {
                     $str .= "{$envKey}={$envValue}\n";
@@ -73,32 +70,33 @@ if (!function_exists('random_code')){
         return true;
     }
 
-
-    function test_smtp_mail($to)
-    {
-        $subject= 'SMTP Test';
-        $message= 'SMTP working fine';
-        $name = get_static_option('smtp_email_from_name');
-        $from = get_static_option('smtp_email_from_email');
-        $headers = "From: " . $name . " \r\n";
-        $headers .= "Reply-To: <$from> \r\n";
-        $headers .= "Return-Path: " . ($from) . "\r\n";;
-        $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-        $headers .= "X-Priority: 2\nX-MSmail-Priority: high";;
-        $headers .= "X-Mailer: PHP" . phpversion() . "\r\n";
-
-        if (mail($to, $subject, $message, $headers)) {
-            return true;
-        }else{
-            return false;
-        }
-    }
+//
+//    function test_smtp_mail($to)
+//    {
+//        $subject= 'SMTP Test';
+//        $message= 'SMTP working fine';
+//        $name = end('MAIL_FROM_NAME');
+//        $from = end('MAIL_FROM_ADDRESS');
+//        $headers = "From: " . $name . " \r\n";
+//        $headers .= "Reply-To: <$from> \r\n";
+//        $headers .= "Return-Path: " . ($from) . "\r\n";;
+//        $headers .= "MIME-Version: 1.0\r\n";
+//        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+//        $headers .= "X-Priority: 2\nX-MSmail-Priority: high";;
+//        $headers .= "X-Mailer: PHP" . phpversion() . "\r\n";
+//
+//        if (mail($to, $subject, $message, $headers)) {
+//            return true;
+//        }else{
+//            return false;
+//        }
+//    }
 
     function check_online_status($user_id){
         return Cache::has('is-online-'.$user_id);
     }
 
+    //SMS sending
     function send_sms_from_campaign(smsCampaign $smsCampaign){
         $success = 0;
         $failed= 0;
@@ -115,6 +113,26 @@ if (!function_exists('random_code')){
     }
 
     function send_message($number, $message){
+        return true;
+    }
+
+    //Email sending
+    function send_email_from_campaign(emailCampaign $emailCampaign){
+        $success = 0;
+        $failed= 0;
+        foreach ($emailCampaign->leadCategory->leads as $user){
+            if (send_email($user->email, $emailCampaign->message)){
+                $success ++;
+            }else{
+                $failed++;
+            }
+        }
+        $emailCampaign->repeat++;
+        $emailCampaign->save();
+        return 'Successfully send:'.$success.' and failed:'.$failed.' of:'.$emailCampaign->leadCategory->leads->count();
+    }
+
+    function send_email($email, $message){
         return true;
     }
 

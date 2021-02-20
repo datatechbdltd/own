@@ -120,5 +120,5 @@
 @endsection
 @push('script')
 
-@endpush()
+@endpush
 
