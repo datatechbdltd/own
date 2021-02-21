@@ -7,6 +7,7 @@ use App\Models\StaticOption;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use GuzzleHttp\Client;
 
 
 
@@ -118,18 +119,39 @@ if (!function_exists('random_code')){
     }
 
     function send_message($number, $message){
-        $response = Http::post('https://gpcmp.grameenphone.com/ecmapigw/webresources/ecmapigw.v2', [
-            "username" => "Dataadmin",
-            "password" => "ebNq5x@cGk438Zj",
-            "apicode" => "1",
-            "msisdn" => $number,
-            "countrycode" => "880",
-            "cli" => "2222",
-            "messagetype" => "1",
-            "message" => $message,
-            "messageid" => "0"
+//        $response = Http::post('https://gpcmp.grameenphone.com/ecmapigw/webresources/ecmapigw.v2', [
+//            "username" => "Dataadmin",
+//            "password" => "ebNq5x@cGk438Zj",
+//            "apicode" => "1",
+//            "msisdn" => $number,
+//            "countrycode" => "880",
+//            "cli" => "2222",
+//            "messagetype" => "1",
+//            "message" => $message,
+//            "messageid" => "0"
+//        ]);
+
+        $client = new Client();
+        $url = "https://gpcmp.grameenphone.com/ecmapigw/webresources/ecmapigw.v2";
+        $response = $client->post($url,[
+            'headers' => ['Content-type' => 'application/json'],
+            'json' => [
+                "username" => "Dataadmin",
+                "password" => "ebNq5x@cGk438Zj",
+                "apicode" => "1",
+                "msisdn" => $number,
+                "countrycode" => "880",
+                "cli" => "New Shapla",
+                "messagetype" => "3",
+                "message" => $message,
+                "messageid" => "0"
+            ],
         ]);
-        dd($response);
+
+        //return $response->getBody();
+
+
+        dd($response->getBody());
     }
 
     //Email sending
