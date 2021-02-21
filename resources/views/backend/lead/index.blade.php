@@ -96,11 +96,11 @@
                         <select name="category" id="category" class="form-control">
                             {{--Insert by ajax--}}
                         </select>
-                        <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                        <hr>
+                        <button type="submit" class="btn btn-danger submit-btn form-control">Submit</button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                 </div>
             </div>
