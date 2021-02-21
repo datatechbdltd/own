@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lead;
+use App\Models\LeadCategory;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -18,11 +19,15 @@ class LeadController extends Controller
         if ($request->ajax()){
             $data = Lead::orderBy('id', 'desc')->get();
             return DataTables::of($data)
+                ->addColumn('category', function($data) {
+                    return $data->category->name ?? '-';
+                })
                 ->addColumn('action', function($data) {
                     return '<a href="'.route('lead.lead.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
+                           <button class="btn btn-info" onclick="change_category(this)" value="'.$data->id.'">Category</button>
                             <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('lead.lead.destroy', $data).'">DELETE</button>';
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'category'])
                 ->make(true);
         }else{
             return view('backend.lead.index');
@@ -103,6 +108,53 @@ class LeadController extends Controller
                 'type' => 'error',
                 'message' => 'Something going wrong. '.$exception->getMessage(),
             ]);
+        }
+    }
+
+    public function category(Request $request){
+        if(!$request->ajax()){
+            return view('errors.404')->withErrors('Wrong access.');
+        }else{
+            $categories = LeadCategory::all();
+            $lead = Lead::find($request->lead);
+            $items = array();
+            foreach($categories as $category) {
+                if($lead->category_id ==  $category->id){
+                    $items[] = '<option class="bg-success" selected value="'.$category->id.'">'.$category->name.'</option>';
+                }else{
+                    $items[] = '<option value="'.$category->id.'">'.$category->name.'</option>';
+                }
+            }
+            return response()->json([
+                'categories' => $items
+            ]);
+        }
+    }
+
+    public function categoryChange(Request $request){
+        if(!$request->ajax()){
+            return view('errors.404')->withErrors('Wrong access.');
+        }else{
+           $request->validate([
+              'category' => 'required|exists:lead_categories,id',
+              'lead' => 'required|exists:leads,id'
+           ]);
+           $lead =Lead::find($request->lead);
+           $lead->category_id = $request->category;
+            try
+            {
+                $lead->save();
+                return response()->json([
+                    'type' => 'success',
+                    'message' => 'Successfully updated'
+                ]);
+            }catch (\Exception $exception){
+                return response()->json([
+                    'type' => 'error',
+                    'message' => 'Something going wrong. '.$exception->getMessage()
+                ]);
+            }
+
         }
     }
 }

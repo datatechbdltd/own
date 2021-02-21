@@ -30,6 +30,6 @@ class EmailCampaignMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.email-campaign')->with("emailCampaign", $this->emailCampaign);
+        return $this->view('mails.email-campaign');
     }
 }

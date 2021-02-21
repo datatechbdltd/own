@@ -61,6 +61,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('leadService', LeadServiceController::class);
         Route::resource('leadThana', LeadThanaController::class);
         Route::resource('lead', LeadController::class);
+        Route::post('lead/get/category', [LeadController::class, 'category']);
+        Route::post('lead/category/change', [LeadController::class, 'categoryChange']);
     });
 
     Route::group(['prefix' => 'campaign', 'as' => 'campaign.'], function () {

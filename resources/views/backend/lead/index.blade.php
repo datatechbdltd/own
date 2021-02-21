@@ -49,27 +49,12 @@
                             <table id="datatable" class="display table table-striped table-bordered">
                                 <thead>
                                 <tr>
-
-{{--                                    <th>add_by_id</th>--}}
-{{--                                    <th>update_by_id</th>--}}
-{{--                                    <th>category_id</th>--}}
-{{--                                    <th>service_id</th>--}}
-{{--                                    <th>district_id</th>--}}
-{{--                                    <th>thana_id</th>--}}
-                                    <th>name</th>
-                                    <th>email</th>
-                                    <th>phone</th>
-{{--                                    <th>date_of_birth</th>--}}
-{{--                                    <th>gender</th>--}}
-{{--                                    <th>is_married</th>--}}
-                                    <th>company_name</th>
-{{--                                    <th>profession</th>--}}
-{{--                                    <th>address</th>--}}
-{{--                                    <th>company_website</th>--}}
-{{--                                    <th>company_facebook_page</th>--}}
-{{--                                    <th>description</th>--}}
-{{--                                    <th>Created At</th>--}}
-{{--                                    <th>Updated At</th>--}}
+                                    <th>#</th>
+                                    <th>Category</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Company_name</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -78,28 +63,12 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-
-                                    {{--                                    <th>add_by_id</th>--}}
-                                    {{--                                    <th>update_by_id</th>--}}
-                                    {{--                                    <th>category_id</th>--}}
-                                    {{--                                    <th>service_id</th>--}}
-                                    {{--                                    <th>district_id</th>--}}
-                                    {{--                                    <th>thana_id</th>--}}
-                                    <th>name</th>
-                                    <th>email</th>
-                                    <th>phone</th>
-                                    {{--                                    <th>date_of_birth</th>--}}
-                                    {{--                                    <th>gender</th>--}}
-                                    {{--                                    <th>is_married</th>--}}
-                                    <th>company_name</th>
-                                    {{--                                    <th>profession</th>--}}
-                                    {{--                                    <th>address</th>--}}
-                                    {{--                                    <th>company_website</th>--}}
-                                    {{--                                    <th>company_facebook_page</th>--}}
-                                    {{--                                    <th>description</th>--}}
-{{--                                    <th>Created At</th>--}}
-{{--                                    <th>Updated At</th>--}}
-{{--                                    <th>Action</th>--}}
+                                    <th>#</th>
+                                    <th>Category</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Company name</th>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -112,9 +81,92 @@
         <!-- End row -->
     </div>
     <!-- End Contentbar -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="varying-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="varying-modal-label">Change category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="modal-form">
+                        <input type="hidden" id="hidden-value">
+                        <select name="category" id="category" class="form-control">
+                            {{--Insert by ajax--}}
+                        </select>
+                        <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('script')
     <script>
+        $('.submit-btn').click(function() {
+            $.ajax({
+                url: 'lead/lead/category/change',
+                type: 'post',
+                cache: false,
+                data:{
+                    _token:'{{ csrf_token() }}',
+                    category: $('#category').val(),
+                    lead: $('#hidden-value').val(),
+                },
+                beforeSend: function (){
+                    $('.submit-btn').prop("disabled",true);
+                },
+                complete: function (){
+                    $('.submit-btn').prop("disabled",false);
+                },
+                success: function (data) {
+                    if (data.type == 'success'){
+                        $('#modal').modal('hide');
+                        $('#modal-from').trigger("reset");
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: data.type,
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(function() {
+                            location.reload();
+                        }, 800);//
+                    }else{
+                        Swal.fire({
+                            icon: data.type,
+                            title: 'Oops...',
+                            text: data.message,
+                            footer: 'Something went wrong!'
+                        });
+                    }
+                },
+                error: function (xhr) {
+                    var errorMessage = '<div class="card bg-danger">\n' +
+                        '                        <div class="card-body text-center p-5">\n' +
+                        '                            <span class="text-white">';
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        errorMessage +=(''+value+'<br>');
+                    });
+                    errorMessage +='</span>\n' +
+                        '                        </div>\n' +
+                        '                    </div>';
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        footer: errorMessage
+                    });
+                },
+            });
+        });
+
         $(function() {
             $('#datatable').DataTable({
                 responsive: true,
@@ -122,27 +174,12 @@
                 serverSide: true,
                 ajax: '{!! route('lead.lead.index') !!}',
                 columns: [
-                    // { data: 'id', name: 'id' },
-                    // { data: 'add_by_id', name: 'add_by_id' },
-                    // { data: 'update_by_id', name: 'update_by_id' },
-                    // { data: 'category_id', name: 'category_id' },
-                    // { data: 'service_id', name: 'service_id' },
-                    // { data: 'district_id', name: 'district_id' },
-                    // { data: 'thana_id', name: 'thana_id' },
+                    { data: 'id', name: 'id' },
+                    { data: 'category', name: 'category' },
                     { data: 'name', name: 'name' },
                     { data: 'email', name: 'email' },
                     { data: 'phone', name: 'phone' },
-                    // { data: 'date_of_birth', name: 'date_of_birth' },
-                    // { data: 'gender', name: 'gender' },
-                    // { data: 'is_married', name: 'is_married' },
                     { data: 'company_name', name: 'company_name' },
-                    // { data: 'profession', name: 'profession' },
-                    // { data: 'address', name: 'address' },
-                    // { data: 'company_website', name: 'company_website' },
-                    // { data: 'company_facebook_page', name: 'company_facebook_page' },
-                    // { data: 'description', name: 'description' },
-                    // { data: 'created_at', name: 'created_at' },
-                    // { data: 'updated_at', name: 'updated_at' },
                     { data: 'action', name: 'action' },
                 ], initComplete: function () {
                     this.api().columns().every(function () {

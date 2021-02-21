@@ -17,7 +17,7 @@ class CreateLeadsTable extends Migration
             $table->id();
             $table->foreignId('add_by_id')->nullable()->comment('who add this lead');
             $table->foreignId('update_by_id')->nullable()->comment('who update this lead');
-            $table->foreignId('category_id')->nullable();
+            $table->foreignId('category_id')->default(1);
             $table->foreignId('service_id')->nullable();
             $table->foreignId('district_id')->nullable();
             $table->foreignId('thana_id')->nullable();
