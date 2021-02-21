@@ -80,7 +80,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::group(['prefix' => 'cron', 'as' => 'cron.'], function () {
-
+    Route::get('auto-job', [CronJobController::class, 'auto_job'])->name('auto_job');
 });
 
 

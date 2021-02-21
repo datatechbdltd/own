@@ -111,7 +111,7 @@ if (!function_exists('random_code')){
         }
         $smsCampaign->repeat++;
         $smsCampaign->save();
-        return 'Successfully send:'.$success.' and failed:'.$failed.' out of:'.$smsCampaign->leadCategory->leads->count().' sms';
+        return '#campaign ID:'.$smsCampaign->id.' Successfully send:'.$success.' and failed:'.$failed.' out of:'.$smsCampaign->leadCategory->leads->count().' sms';
     }
 
     function send_message($number, $message){
@@ -132,7 +132,7 @@ if (!function_exists('random_code')){
         }
         $emailCampaign->repeat++;
         $emailCampaign->save();
-        return 'Successfully send:'.$success.' and failed:'.$failed.' out of:'.$emailCampaign->leadCategory->leads->count().' email'. $error;
+        return '#campaign ID:'.$emailCampaign->id.' Successfully send:'.$success.' and failed:'.$failed.' out of:'.$emailCampaign->leadCategory->leads->count().' email'. $error;
     }
 
     function send_email($email, $emailCampaign){

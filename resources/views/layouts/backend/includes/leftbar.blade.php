@@ -108,8 +108,10 @@
                         <li>
                             <a href="javaScript:void();"><i class="mdi mdi-circle"></i>Campaign<i class="feather icon-chevron-right pull-right"></i></a>
                             <ul class="vertical-submenu">
-                                <li><a href="{{ route('campaign.emailCampaign.index') }}"><i class="mdi mdi-circle"></i>By Email</a></li>
-                                <li><a href="{{ route('campaign.smsCampaign.index') }}"><i class="mdi mdi-circle"></i>By SMS</a></li>
+                                <li><a href="{{ route('campaign.emailCampaign.index') }}"><i class="mdi mdi-circle"></i>Instant Email</a></li>
+                                <li><a href="{{ route('campaign.emailCampaign.create') }}"><i class="mdi mdi-circle"></i>Create email</a></li>
+                                <li><a href="{{ route('campaign.smsCampaign.index') }}"><i class="mdi mdi-circle"></i>Instant SMS</a></li>
+                                <li><a href="{{ route('campaign.smsCampaign.index') }}"><i class="mdi mdi-circle"></i>Create SMS</a></li>
                             </ul>
                         </li>
                         <li><a href="#"><i class="mdi mdi-circle"></i>Kanban Board</a></li>

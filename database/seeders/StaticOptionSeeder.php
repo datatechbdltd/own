@@ -13,6 +13,7 @@ class StaticOptionSeeder extends Seeder
      */
     public function run()
     {
+        set_static_option('reporting_email', 'datatechbdltd@gmail.com');
         set_static_option('company_name', null);
         set_static_option('company_motto', null);
         set_static_option('company_email', '');
