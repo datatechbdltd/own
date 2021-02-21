@@ -43,5 +43,6 @@ producing exceptional SEO for business.');
 
         set_static_option('no_image', 'uploads/images/setting/no-image.png');
         set_static_option('sample_leads', 'uploads/samples/sample-leads-of-datatech-bd-ltd.xlsx');
+        set_static_option('is_bulk_import_from_website', 'yes');// yes | no
     }
 }

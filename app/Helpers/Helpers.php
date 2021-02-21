@@ -5,7 +5,10 @@ use App\Models\emailCampaign;
 use App\Models\smsCampaign;
 use App\Models\StaticOption;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+
+
 
 if (!function_exists('random_code')){
 
@@ -115,7 +118,18 @@ if (!function_exists('random_code')){
     }
 
     function send_message($number, $message){
-        return true;
+        $response = Http::post('https://gpcmp.grameenphone.com/ecmapigw/webresources/ecmapigw.v2', [
+            "username" => "Dataadmin",
+            "password" => "ebNq5x@cGk438Zj",
+            "apicode" => "1",
+            "msisdn" => $number,
+            "countrycode" => "880",
+            "cli" => "2222",
+            "messagetype" => "1",
+            "message" => $message,
+            "messageid" => "0"
+        ]);
+        dd($response);
     }
 
     //Email sending

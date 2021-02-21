@@ -17,9 +17,6 @@
             </ul>
         </div>
     </section>
-
-
-
     <!--End Page Title-->
     <section class="contact-page-section">
         <div class="auto-container">
@@ -119,6 +116,7 @@
                                     </div>
                                 </div>
                             </form>
+                            @if(get_static_option('is_bulk_import_from_website') == 'yes')
                             <hr>
                             <form action="{{ route('frontend.importLead') }}" method="POST" enctype="multipart/form-data" class="row">
                                 @csrf
@@ -134,6 +132,7 @@
                                     <button type="submit" class="theme-btn btn-style-four"><span class="txt">Import now</span></button>
                                 </div>
                             </form>
+                            @endif
                             <hr>
                         </div>
                     </div>

@@ -38,6 +38,7 @@ Route::get('/', function () {
 Route::group(['as' => 'frontend.'], function () {
    Route::get('lead-collection',[FrontendController::class, 'leadCollectionPage'])->name('leadCollectionPage');
    Route::post('lead-collection',[FrontendController::class, 'storeLead'])->name('storeLead')->middleware(['permission:store_lead']);
+   if(get_static_option('is_bulk_import_from_website') == 'yes')
    Route::post('lead-import',[FrontendController::class, 'importLead'])->name('importLead')->middleware(['permission:import_lead']);
 });
 
@@ -82,6 +83,12 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['prefix' => 'cron', 'as' => 'cron.'], function () {
     Route::get('auto-job', [CronJobController::class, 'auto_job'])->name('auto_job');
+});
+
+Route::group(['prefix' => 'test'], function () {
+   Route::get('/message', function (){
+       send_message('01304734623', 'Hello message');
+   });
 });
 
 
