@@ -172,7 +172,11 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
+                @if(Route::is('lead.lead.index'))
                 ajax: '{!! route('lead.lead.index') !!}',
+                @else
+                ajax: '/lead/getByCategory/{!! $lead_category_id !!}',
+                @endif
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'category', name: 'category' },

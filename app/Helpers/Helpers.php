@@ -143,4 +143,10 @@ if (!function_exists('random_code')){
             return false;
         }
     }
+
+    function lead_categories(){
+       return \App\Models\LeadCategory::all();
+    }
+
+
 }

@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('leadService', LeadServiceController::class);
         Route::resource('leadThana', LeadThanaController::class);
         Route::resource('lead', LeadController::class);
+        Route::get('getByCategory/{lead_category_id}', [LeadController::class, 'getByCategory'])->name('getByCategory');
         Route::post('lead/get/category', [LeadController::class, 'category']);
         Route::post('lead/category/change', [LeadController::class, 'categoryChange']);
     });

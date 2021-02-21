@@ -157,4 +157,26 @@ class LeadController extends Controller
 
         }
     }
+
+    public function getByCategory(Request $request, $lead_category_id){
+        if ($request->ajax()){
+//            $data = Lead::orderBy('id', 'desc')->get();
+            $data = LeadCategory::find($lead_category_id)->leads;
+            return DataTables::of($data)
+                ->addColumn('category', function($data) {
+                    return $data->category->name ?? '-';
+                })
+                ->addColumn('action', function($data) {
+                    return '<a href="'.route('lead.lead.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
+                           <button class="btn btn-info" onclick="change_category(this)" value="'.$data->id.'">Category</button>
+                            <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('lead.lead.destroy', $data).'">DELETE</button>';
+                })
+                ->rawColumns(['action', 'category'])
+                ->make(true);
+        }else{
+            return view('backend.lead.index', compact('lead_category_id'));
+        }
+
+
+    }
 }

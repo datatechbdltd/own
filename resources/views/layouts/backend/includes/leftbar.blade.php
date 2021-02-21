@@ -101,8 +101,9 @@
                             <a href="javaScript:void();"><i class="mdi mdi-circle"></i>Leads<i class="feather icon-chevron-right pull-right"></i></a>
                             <ul class="vertical-submenu">
                                 <li><a href="{{ route('lead.lead.index') }}"><i class="mdi mdi-circle"></i>All Leads</a></li>
-                                <li><a href="{{url('template/panel-vertical/apps-email-open')}}"><i class="mdi mdi-circle"></i>Email Open</a></li>
-                                <li><a href="{{url('template/panel-vertical/apps-email-compose')}}"><i class="mdi mdi-circle"></i>Email Compose</a></li>
+                                @foreach(lead_categories() as $lead_category)
+                                <li><a href="{{ route('lead.getByCategory', $lead_category->id) }}"><i class="mdi mdi-circle"></i>{{ $lead_category->name }} &nbsp; <span class="badge badge-success pull-right">{{ $lead_category->leads->count() }}</span></a></li>
+                                @endforeach
                             </ul>
                         </li>
                         <li>

@@ -12,13 +12,6 @@ use Illuminate\Support\Facades\Mail;
 class CronJobController extends Controller
 {
     public function auto_job(){
-//        echo Carbon::now()->format('h:m:s');
-//        echo '*****';
-//        echo date('h:m:s');
-//
-//        $smsCampaign = smsCampaign::where('auto_run_at', Carbon::now()->format('h:m'))->get();
-//        dd($smsCampaign);
-
         $smsCampaigns = smsCampaign::where('auto_run_at', Carbon::now()->format('h:m'))->get();
         $emailCampaigns = emailCampaign::where('auto_run_at', Carbon::now()->format('h:m'))->get();
 
