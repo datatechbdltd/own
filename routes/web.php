@@ -38,7 +38,7 @@ Route::get('/', function () {
 Route::group(['as' => 'frontend.'], function () {
    Route::get('lead-collection',[FrontendController::class, 'leadCollectionPage'])->name('leadCollectionPage');
    Route::post('lead-collection',[FrontendController::class, 'storeLead'])->name('storeLead')->middleware(['permission:store_lead']);
-   if(get_static_option('is_bulk_import_from_website') == 'yes')
+//   if(get_static_option('is_bulk_import_from_website') == 'yes')
    Route::post('lead-import',[FrontendController::class, 'importLead'])->name('importLead')->middleware(['permission:import_lead']);
 });
 
