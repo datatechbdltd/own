@@ -44,21 +44,14 @@ class SocialLinkController extends Controller
             'url' => 'required',
             'name' => 'required',
             'status' => 'required',
-            'icon' => 'required|image',
+            'icon' => 'required|string',
         ]);
         $socliallink = new SocialLink();
         $socliallink->url = $request->url;
         $socliallink->name = $request->name;
         $socliallink->is_active = $request->status;
+        $socliallink->icon = $request->icon;
 
-        if ($request->hasFile('icon')) {
-            $image             = $request->file('icon');
-            $folder_path       = 'uploads/images/website/social-link/';
-            $image_new_name    = Str::random(20).'-'.now()->timestamp.'.'.$image->getClientOriginalExtension();
-            //resize and save to server
-            Image::make($image->getRealPath())->save($folder_path.$image_new_name);
-            $socliallink->icon = $folder_path.$image_new_name;
-        }
         try {
 
             $socliallink->save();
@@ -106,25 +99,15 @@ class SocialLinkController extends Controller
             'url' => 'required|required',
             'name' => 'required|required',
             'status' => 'required',
-            'icon' => 'nullable|image',
+            'icon' => 'nullable|string',
         ]);
         $socliallink = $socialLink;
         $socliallink->url = $request->url;
         $socliallink->name = $request->name;
         $socliallink->is_active = $request->status;
+        $socliallink->icon = $request->icon;
 
 
-        if ($request->hasFile('icon')) {
-            if ($socliallink->icon != null)
-                File::delete(public_path($socliallink->icon)); //Old image delete
-
-            $image             = $request->file('icon');
-            $folder_path       = 'uploads/images/website/social-link/';
-            $image_new_name    = Str::random(20).'-'.now()->timestamp.'.'.$image->getClientOriginalExtension();
-            //resize and save to server
-            Image::make($image->getRealPath())->save($folder_path.$image_new_name);
-            $socliallink->icon = $folder_path.$image_new_name;
-        }
         try {
 
             $socliallink->save();
@@ -143,18 +126,11 @@ class SocialLinkController extends Controller
      */
     public function destroy(SocialLink $socialLink)
     {
-        if ($socialLink->exists()){
-            $social_link = $socialLink;
-            try {
-                if ($social_link->icon != null)
-                    File::delete(public_path($social_link->icon)); //Old image delete
-                $social_link->delete();
-                return redirect()->back()->withToastSuccess('Successfully deleted');
-            }catch (\Exception $exception){
-                return redirect()->back()->withErrors('Something going wrong. Error:'.$exception->getMessage());
-            }
-        }else{
-            return redirect()->back()->withErrors('Invalid Social link.');
+        try {
+            $socialLink->delete();
+            return redirect()->back()->withToastSuccess('Successfully deleted');
+        }catch (\Exception $exception){
+            return redirect()->back()->withErrors('Something going wrong. Error:'.$exception->getMessage());
         }
     }
 }

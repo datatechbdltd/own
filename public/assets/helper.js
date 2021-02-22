@@ -26,6 +26,7 @@
 
     function delete_function(objButton){
         var url = objButton.value;
+        // alert(objButton.value)
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",

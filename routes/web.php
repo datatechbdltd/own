@@ -12,6 +12,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SmsCampaignController;
 use App\Models\SocialLink;
 use App\Models\WebsiteSeo;
+use App\Models\WebsiteBanner;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
@@ -29,13 +30,10 @@ use App\Http\Controllers\WebsiteServiceController;
 |
 */
 
-Route::get('/', function () {
-    $social_link = SocialLink::where('is_active', true)->orderBy('id','desc')->get();
-    $website_seos = WebsiteSeo::where('is_active', true)->orderBy('id','desc')->get();
-    return view('frontend.home' ,compact('social_link','website_seos'));
-});
 
 Route::group(['as' => 'frontend.'], function () {
+   Route::get('/',[FrontendController::class, 'homePage'])->name('homePage');
+   Route::get('/services',[FrontendController::class, 'servicesPage'])->name('servicesPage');
    Route::get('lead-collection',[FrontendController::class, 'leadCollectionPage'])->name('leadCollectionPage');
    Route::post('lead-collection',[FrontendController::class, 'storeLead'])->name('storeLead')->middleware(['permission:store_lead']);
 //   if(get_static_option('is_bulk_import_from_website') == 'yes')
@@ -51,7 +49,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('websiteBanner', WebsiteBannerController::class);
         Route::resource('socialLink', SocialLinkController::class);
         Route::resource('websiteSeo', WebsiteSeoController::class);
-        Route::resource('WebsiteService', WebsiteServiceController::class);
+        Route::resource('websiteService', WebsiteServiceController::class);
+        Route::get('website-counter', [WebsiteServiceController::class, 'websiteCounter'])->name('websiteCounter');
+        Route::post('website-counter-update', [WebsiteServiceController::class, 'websiteCounterUpdate'])->name('websiteCounterUpdate');
+
         Route::post('website-seo-static-option-update', [WebsiteSeoController::class, 'websiteSeoStaticOptionUpdate'])->name('websiteSeoStaticOptionUpdate');
         Route::post('website-service-static-option-update', [WebsiteServiceController::class, 'websiteServiceStaticOptionUpdate'])->name('websiteServiceStaticOptionUpdate');
     });

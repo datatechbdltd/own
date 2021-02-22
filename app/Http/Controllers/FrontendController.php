@@ -8,12 +8,28 @@ use App\Models\LeadCategory;
 use App\Models\LeadDistrict;
 use App\Models\LeadService;
 use App\Models\LeadThana;
+use App\Models\SocialLink;
+use App\Models\WebsiteBanner;
+use App\Models\WebsiteSeo;
+use App\Models\WebsiteService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class FrontendController extends Controller
 {
+    public function homePage(){
+        $social_link = SocialLink::where('is_active', true)->orderBy('id','desc')->get();
+        $webiste_banners = WebsiteBanner::where('is_active', true)->orderBy('serial','asc')->get();
+        $website_seos = WebsiteSeo::where('is_active', true)->orderBy('id','desc')->get();
+        $website_services = WebsiteService::where('is_active', true)->orderBy('id','desc')->limit(6)->get();
+        return view('frontend.home' ,compact('social_link','website_seos','webiste_banners','website_services'));
+    }
+    // all services pages
+    public function servicesPage(){
+        $website_services = WebsiteService::where('is_active', true)->orderBy('id','desc')->get();
+        return view('frontend.services' ,compact('website_services'));
+    }
     public function leadCollectionPage(){
         $lead_categories = LeadCategory::orderBy('id', 'desc')->get();
         $lead_services = LeadService::orderBy('id', 'desc')->get();

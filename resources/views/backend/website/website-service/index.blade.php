@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-4 col-lg-4">
                 <div class="widgetbar">
-                    <a href="{{ route('website.WebsiteService.create') }}" class="btn btn-primary">Create service</a>
+                    <a href="{{ route('website.websiteService.create') }}" class="btn btn-primary">Create service</a>
                 </div>
             </div>
         </div>
@@ -47,23 +47,19 @@
                                 <tr>
                                     <th scope="col">Icon</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Short description</th>
-                                    <th scope="col">Long description</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($website_service as $data)
+                                @foreach($websiteServices as $websiteService)
                                     <tr>
                                         <td>
-                                            <img width="70px;" height="70px;" src="{{ asset($data->icon ?? get_static_option('no_image')) }}" alt="Icon">
+                                            <img width="70px;" height="70px;" src="{{ asset($websiteService->icon ?? get_static_option('no_image')) }}" alt="Icon">
                                         </td>
-                                        <td>{{ $data->name }}</td>
-                                        <td>{{ $data->short_description }}</td>
-                                        <td>{{ $data->long_description }}</td>
+                                        <td>{{ $websiteService->name }}</td>
                                         <td>
-                                            @if($data->is_active == true)
+                                            @if($websiteService->is_active == true)
                                                 <span class="badge badge-success">Active</span>
 
                                             @else
@@ -71,9 +67,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('website.WebsiteService.edit', $data->id) }}" class="btn btn-info mb-2"><i class="fa fa-pencil"></i> Edit</a>
-                                            <button class="text-white btn btn-danger delete-btn" onclick="delete_function(this)" value="{{ route('website.WebsiteService.destroy',$data->id) }}">Delete</button>
-
+                                            <a href="{{ route('website.websiteService.edit', $websiteService->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
+                                            <button class="text-white btn btn-danger " onclick="delete_function(this)" value="{{ route('website.websiteService.destroy', $websiteService) }}">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach

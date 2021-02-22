@@ -23,7 +23,7 @@ class SocialLinkFactory extends Factory
     {
         return [
             'url'    => $this->faker->url,
-//            'icon'   => $this->faker->name,
+            'icon'   => null,
             'name'   => $this->faker->name,
 //            'is_active'  => $this->faker->boolean,
         ];

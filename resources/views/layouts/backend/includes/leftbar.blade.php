@@ -74,9 +74,14 @@
                                <span>Website service</span><i class="feather icon-chevron-right pull-right"></i>
                             </a>
                             <ul class="vertical-submenu">
-                                <li><a href="{{ route('website.WebsiteService.index') }}"><i class="mdi mdi-circle"></i>Service list</a></li>
-                                <li><a href="{{ route('website.WebsiteService.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
+                                <li><a href="{{ route('website.websiteService.index') }}"><i class="mdi mdi-circle"></i>Service list</a></li>
+                                <li><a href="{{ route('website.websiteService.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('website.websiteCounter') }}"><i class="mdi mdi-circle"></i>
+                               <span>Website counter</span>
+                            </a>
                         </li>
                         <li><a href="{{url('/template/panel-vertical/../light-horizontal')}}"><i class="mdi mdi-circle"></i>Light - Horizontal</a></li>
                         <li><a href="#"><i class="mdi mdi-circle"></i>Dark - Vertical</a></li>

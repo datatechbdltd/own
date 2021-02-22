@@ -75,8 +75,7 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group mb-0">
-                                <img width="80px;" height="80px;" src="{{ asset($socialLink->icon ?? get_static_option('no_image')) }}" alt="">
-                                <input accept="image/*" type="file" class="form-control" name="icon" id="Icon" placeholder="Icon">
+                                <input value="{{ $socialLink->icon }}" type="text" class="form-control" name="icon" id="Icon" placeholder="Icon">
                             </div>
                         </div>
                         <button  type="submit" class=" btn btn-success" >Submit</button>

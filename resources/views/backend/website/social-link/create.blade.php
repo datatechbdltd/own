@@ -72,7 +72,7 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group mb-0">
-                                <input accept="image/*" type="file" required class="form-control" name="icon" id="Icon" placeholder="Icon">
+                                <input type="text" required class="form-control" name="icon" id="Icon" placeholder="Icon">
                             </div>
                         </div>
                             <button  type="submit" class=" btn btn-success" >Submit</button>

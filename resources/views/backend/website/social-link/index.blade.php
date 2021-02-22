@@ -45,7 +45,7 @@ Social links
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">Url</th>
+                            <th>Url</th>
                             <th scope="col">Icon</th>
                             <th scope="col">Name</th>
                             <th scope="col">Status</th>
@@ -55,9 +55,9 @@ Social links
                         <tbody>
                             @foreach($social_links as $link)
                                 <tr>
-                                    <th>{{ $link->url }}</th>
+                                    <th><a target="_blank" href="{{ $link->url }}" class="btn btn-primary" > Check </a> </th>
                                     <td>
-                                        <img width="70px;" height="70px;" src="{{ asset($link->icon ?? get_static_option('no_image')) }}" alt="Icon">
+                                       {{ $link->icon }}
 
                                     </td>
                                     <td>{{ $link->name }}</td>

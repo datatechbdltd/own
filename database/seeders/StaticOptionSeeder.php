@@ -38,6 +38,19 @@ producing exceptional SEO for business.');
         set_static_option('seo_image', null);
         set_static_option('favicon', null);
         set_static_option('meta_image', null);
+        set_static_option('real_members', 'REAL NUMBERS');
+        set_static_option('counter_highlight', 'Expect Great Things from Your SEO Agency');
+        set_static_option('counter_image', null);
+        set_static_option('counter_description', 'We know how important customer experience is for a busines and therefore, we trive to make your company excel in this.');
+        set_static_option('active_clients', 'Active Clients');
+        set_static_option('active_clients_number', '330');
+        set_static_option('team_advisors', 'Team Advisors');
+        set_static_option('team_advisors_number', '85');
+        set_static_option('projects_done', 'Projects Done');
+        set_static_option('projects_done_number', '850');
+        set_static_option('glorious_years', 'Glorious Years');
+        set_static_option('glorious_years_number', '15');
+
 
         set_static_option('company_facebook_page_sms_script', '');
 

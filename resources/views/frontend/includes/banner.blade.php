@@ -1,10 +1,8 @@
 <section class="banner-section-three">
     <!-- Social Box -->
     <ul class="social-box">
-        <li><a href="#" class="fa fa-facebook-f"></a></li>
-
         @foreach($social_link as $link)
-            <li><a href="{{ $link->url }}" class="fa fa-facebook-f"></a></li>
+            <li><a target="_blank" href="{{ $link->url }}" @if($link->icon) class="{!! $link->icon !!}" @else class="fa fa-arrow-circle-down" @endif> </a></li>
         @endforeach
     </ul>
 
@@ -12,97 +10,37 @@
     <div class="patern-layer-two" style="background-image: url(images/background/pattern-1.png)"></div>
     <div class="pattern-layer-three" style="background-image: url(images/background/pattern-5.png)"></div>
     <div class="main-slider-carousel owl-carousel owl-theme">
+        @foreach($webiste_banners as $banner)
+            <div class="slide">
+                <div class="auto-container">
+                    <div class="row clearfix">
 
-        <div class="slide">
-            <div class="auto-container">
-                <div class="row clearfix">
-
-                    <!-- Content Column -->
-                    <div class="content-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="title">Change Your View of SEO</div>
-                            <h1>Rank Your Local <br> Business With SEO</h1>
-                            <div class="text">Our approach to SEO is uniquely built around what we <br> know works and what we know doesn’t work.</div>
-                            <div class="btns-box">
-                                <a href="about.html" class="theme-btn btn-style-one"><span class="txt">Start Now</span></a>
-                                <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="fa fa-play"><i class="ripple"></i></span></a>
+                        <!-- Content Column -->
+                        <div class="content-column col-lg-6 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="title">{{ $banner->title }}</div>
+                                <h1>Rank Your Local <br>{{ $banner->highlight }}</h1>
+                                <div class="text">{{ $banner->description }}</div>
+                                <div class="btns-box">
+                                    <a target="_blank" href="{{ $banner->btn_url }}" class="theme-btn btn-style-one"><span class="txt">Start Now</span></a>
+                                    <a target="_blank" href="{{ $banner->video_url }}" class="lightbox-image video-box"><span class="fa fa-play"><i class="ripple"></i></span></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Image Column -->
-                    <div class="image-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="image">
-                                <img src="images/resource/banner-2.png" alt="" />
+                        <!-- Image Column -->
+                        <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="image">
+                                    <img src="{{ asset($banner->image ?? get_static_option('no_image')) }}" alt="" />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="slide">
-            <div class="auto-container">
-                <div class="row clearfix">
-
-                    <!-- Content Column -->
-                    <div class="content-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="title">Change Your View of SEO</div>
-                            <h1>Rank Your Local <br> Business With SEO</h1>
-                            <div class="text">Our approach to SEO is uniquely built around what we <br> know works and what we know doesn’t work.</div>
-                            <div class="btns-box">
-                                <a href="about.html" class="theme-btn btn-style-one"><span class="txt">Start Now</span></a>
-                                <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="fa fa-play"><i class="ripple"></i></span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Image Column -->
-                    <div class="image-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="image">
-                                <img src="images/resource/banner-2.png" alt="" />
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="auto-container">
-                <div class="row clearfix">
-
-                    <!-- Content Column -->
-                    <div class="content-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="title">Change Your View of SEO</div>
-                            <h1>Rank Your Local <br> Business With SEO</h1>
-                            <div class="text">Our approach to SEO is uniquely built around what we <br> know works and what we know doesn’t work.</div>
-                            <div class="btns-box">
-                                <a href="about.html" class="theme-btn btn-style-one"><span class="txt">Start Now</span></a>
-                                <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="fa fa-play"><i class="ripple"></i></span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Image Column -->
-                    <div class="image-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="image">
-                                <img src="images/resource/banner-2.png" alt="" />
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
+        @endforeach
     </div>
     <!--Waves Container-->
     <div>
