@@ -22,6 +22,8 @@ class CreateWebsiteContactsTable extends Migration
             $table->longText('discussion')->nullable();
             $table->boolean('is_process_complete')->default(0);
             $table->foreignId('process_by')->nullable();
+            $table->string('ip_address')->nullable();
+            $table->string('city_location')->nullable();
             $table->timestamps();
         });
     }

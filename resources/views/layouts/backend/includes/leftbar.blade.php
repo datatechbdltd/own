@@ -83,9 +83,6 @@
                                <span>Website counter</span>
                             </a>
                         </li>
-                        <li><a href="{{url('/template/panel-vertical/../light-horizontal')}}"><i class="mdi mdi-circle"></i>Light - Horizontal</a></li>
-                        <li><a href="#"><i class="mdi mdi-circle"></i>Dark - Vertical</a></li>
-                        <li><a href="{{url('/template/panel-vertical/../dark-horizontal')}}"><i class="mdi mdi-circle"></i>Dark - Horizontal</a></li>
                     </ul>
                 </li>
                 <li>
@@ -136,11 +133,14 @@
                         <li><a href="#"><i class="mdi mdi-circle"></i>Permissions</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="{{url('/template/panel-vertical/widgets')}}">
-                        <img src="assets/panel/vertical/images/svg-icon/widgets.svg" class="img-fluid" alt="widgets"><span>Widgets</span><span class="badge badge-danger pull-right">New</span>
-                    </a>
-                </li>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <li class="vertical-header">Components</li>
                 <li>
                     <a href="javaScript:void();">

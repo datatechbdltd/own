@@ -13,20 +13,20 @@
                 <div class="sidebar-info-contents">
                     <div class="content-inner">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo.png" alt="" /></a>
+                            <a href="{{ url('/') }}"><img src="images/logo.png" alt="" /></a>
                         </div>
                         <div class="content-box">
                             <h2>About Us</h2>
-                            <p class="text">The argument in favor of using filler text goes something like this: If you use real content in the Consulting Process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</p>
+                            <p class="text">DataTech BD Ltd. is a Bangladeshi software development company.</p>
                             <a href="#" class="theme-btn btn-style-two"><span class="txt">Consultation</span></a>
                         </div>
                         <div class="contact-info">
                             <h2>Contact Info</h2>
                             <ul class="list-style-one">
-                                <li><span class="icon fa fa-location-arrow"></span>Chicago 12, Melborne City, USA</li>
-                                <li><span class="icon fa fa-phone"></span>(111) 111-111-1111</li>
-                                <li><span class="icon fa fa-envelope"></span>meto@gmail.com</li>
-                                <li><span class="icon fa fa-clock-o"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
+                                <li><span class="icon fa fa-location-arrow"></span>Shawpno Neer, 272/Kha/3/F, West Agargaon, She-E-Bangla Nagar, Dhaka-1207</li>
+                                <li><span class="icon fa fa-phone"></span>+880 1304-734623</li>
+                                <li><span class="icon fa fa-envelope"></span>info@datatechbd.com</li>
+                                <li><span class="icon fa fa-clock-o"></span>24/7 for support</li>
                             </ul>
                         </div>
                         <!-- Social Box -->

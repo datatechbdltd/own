@@ -1,5 +1,5 @@
 @extends('layouts.frontend.app')
-
+@push('title') Home @endpush
 @section('content')
 <!-- Banner Section Three -->
 @include('frontend.includes.banner')

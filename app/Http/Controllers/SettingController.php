@@ -58,6 +58,11 @@ class SettingController extends Controller
                 Image::make($image->getRealPath())->save($folder_path.$image_new_name);
                 update_static_option('website_logo',$folder_path.$image_new_name);
             }
+            //.env App name
+            $env_val['APP_NAME'] = !empty($request->company_name) ? $request->company_name : 'YOUR_APP_NAME';
+            set_env_value([
+                'APP_NAME' => '"'.$env_val['APP_NAME'].'"',
+            ]);
         }catch (\Exception $exception){
             return back()->withErrors( 'Something went wrong !'.$exception->getMessage());
         }

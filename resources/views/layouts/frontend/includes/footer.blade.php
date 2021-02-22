@@ -84,7 +84,7 @@
 
         <!-- Footer Bottom -->
         <div class="footer-bottom">
-            <div class="copyright">Copyright © 2020 Meto by <a href="#">Expert-Themes.</a> All Rights Reserved.</div>
+            <div class="copyright">Copyright © {{ date('Y') }}  <a href="{{ url('/') }}">{{ config('app.name') }}</a> All Rights Reserved.</div>
         </div>
 
     </div>

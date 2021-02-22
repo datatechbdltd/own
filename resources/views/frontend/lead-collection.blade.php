@@ -1,5 +1,5 @@
 @extends('layouts.frontend.app')
-
+@push('title') Lead @endpush
 @section('content')
     <!--Page Title-->
     <section class="page-title">

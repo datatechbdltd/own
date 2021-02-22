@@ -37,15 +37,15 @@
         <i class="fa fa-gear"></i>
     </div>
     <div class="color-palate-head">
-        <h6>Choose Your Color</h6>
+        <h6>DATATECH BD LTD.</h6>
     </div>
 
-	<ul class="rtl-version option-box"> <li class="rtl">RTL Version</li> <li>LTR Version</li> </ul>
+	<ul class="rtl-version option-box"> <li class="rtl">Call: +880 1304-734623</li> </ul>
 
-    <a href="#" class="purchase-btn">Purchase now $17</a>
+    <a href="{{ route('frontend.contactUs') }}" class="purchase-btn">Order Us</a>
 
     <div class="palate-foo">
-        <span>You will find much more options for colors and styling in admin panel. This color picker is used only for demonstation purposes.</span>
+        <span>Shawpno Neer, 272/Kha/3/F, West Agargaon, She-E-Bangla Nagar, Dhaka-1207</span>
     </div>
 
 </div>

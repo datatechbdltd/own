@@ -33,7 +33,7 @@
             <div class="inner-container clearfix">
 
                 <div class="pull-left logo-box">
-                    <div class="logo"><a href="index.html"><img src="images/logo.png" alt="" title=""></a></div>
+                    <div class="logo"><a href="{{ url('/') }}"><img src="{{ asset(get_static_option('website_logo') ?? get_static_option('no_image')) }}" alt="" title=""></a></div>
                 </div>
 
                 <div class="nav-outer clearfix">
@@ -52,20 +52,8 @@
 
                         <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li class="current dropdown"><a href="javascript:0">{{ __('Home') }}</a>
-                                    <ul>
-                                        <li><a href="{{ url('/') }}">Home Page 01</a></li>
-                                        <li><a href="{{ url('/') }}">Home Page 02</a></li>
-                                        <li><a href="{{ url('/') }}">Home Page 03</a></li>
-                                        <li class="dropdown"><a href="#">Header Styles</a>
-                                            <ul>
-                                                <li><a href="index.html">Header Style 01</a></li>
-                                                <li><a href="index-2.html">Header Style 02</a></li>
-                                                <li><a href="index-3.html">Header Style 03</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <li><a href="{{ url('/') }}">{{ __('Home') }}</a></li>
+
                                 <li class="dropdown"><a href="#">About</a>
                                     <ul>
                                         <li><a href="about.html">About Us</a></li>
