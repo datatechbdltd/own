@@ -106,7 +106,7 @@
                                         <li><a href="{{ route('frontend.leadCollectionPage') }}">Data collection</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="{{ route('frontend.contactUs') }}">Contact us</a></li>
                             </ul>
                         </div>
                     </nav>

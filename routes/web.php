@@ -18,6 +18,7 @@ use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\WebsiteSeoController;
 use App\Http\Controllers\WebsiteServiceController;
+use App\Http\Controllers\WebsiteContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,8 @@ Route::group(['as' => 'frontend.'], function () {
    Route::post('lead-collection',[FrontendController::class, 'storeLead'])->name('storeLead')->middleware(['permission:store_lead']);
 //   if(get_static_option('is_bulk_import_from_website') == 'yes')
    Route::post('lead-import',[FrontendController::class, 'importLead'])->name('importLead')->middleware(['permission:import_lead']);
+   Route::get('contact-us',[FrontendController::class, 'contactUs'])->name('contactUs');
+   Route::post('contact-us/store',[FrontendController::class, 'contactUsStore'])->name('contactUsStore');
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -50,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('socialLink', SocialLinkController::class);
         Route::resource('websiteSeo', WebsiteSeoController::class);
         Route::resource('websiteService', WebsiteServiceController::class);
+        Route::resource('websiteContact', WebsiteContactController::class);
         Route::get('website-counter', [WebsiteServiceController::class, 'websiteCounter'])->name('websiteCounter');
         Route::post('website-counter-update', [WebsiteServiceController::class, 'websiteCounterUpdate'])->name('websiteCounterUpdate');
 

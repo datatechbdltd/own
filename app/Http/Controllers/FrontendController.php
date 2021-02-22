@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imports\LeadImport;
+use App\Mail\WebsiteContactUsMail;
 use App\Models\Lead;
 use App\Models\LeadCategory;
 use App\Models\LeadDistrict;
@@ -10,10 +11,12 @@ use App\Models\LeadService;
 use App\Models\LeadThana;
 use App\Models\SocialLink;
 use App\Models\WebsiteBanner;
+use App\Models\WebsiteContact;
 use App\Models\WebsiteSeo;
 use App\Models\WebsiteService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class FrontendController extends Controller
@@ -81,6 +84,43 @@ class FrontendController extends Controller
             return back()->withSuccess('Import completed');
         }catch (\Exception $exception){
             return back()->withErrors('Something going wrong. '. $exception->getMessage());
+        }
+    }
+
+    // contact us page
+    public function contactUs(){
+        return view('frontend.contact-us');
+    }
+
+    // contact us store
+    public function contactUsStore(Request $request){
+        $request->validate([
+            'name' => 'nullable|string',
+            'email' => 'nullable|string',
+            'phone'   => 'required|string',
+            'message'   =>  'required|string',
+        ]);
+        $contact = new WebsiteContact();
+        $contact->name   = $request->name;
+        $contact->email   = $request->email;
+        $contact->phone = $request->phone;
+        $contact->message = $request->message;
+        try {
+            $contact->save();
+            if(get_static_option('is_active_website_contact_submission_mail_to_visitor') == 'yes'){
+                Mail::to($request->email)->send(new WebsiteContactUsMail($contact));
+            }
+            if(get_static_option('is_active_website_contact_submission_sms_to_office') == 'yes'){
+                send_message(get_static_option('reporting_phone'), 'Visitor knocked you, please contact to .'.$contact->phone);
+            }
+            Mail::to(get_static_option('reporting_email'))->send(new WebsiteContactUsMail($contact));
+
+            if(get_static_option('is_active_website_contact_submission_sms_to_visitor') == 'yes'){
+                send_message($request->phone, 'Thank you for message us. You can call us:'.get_static_option('reporting_phone').' DATATECH BD LTD.');
+            }
+            return back()->withSuccess('Thank you for contact us ! Confirmation send to your phone/email.');
+        }catch (\Exception $exception){
+            return back()->withErrors('Something going wrong. '.$exception->getMessage());
         }
     }
 }

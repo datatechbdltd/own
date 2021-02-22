@@ -14,6 +14,8 @@ class StaticOptionSeeder extends Seeder
     public function run()
     {
         set_static_option('reporting_email', 'datatechbdltd@gmail.com');
+        set_static_option('reporting_phone', '01304734623');
+
         set_static_option('company_name', null);
         set_static_option('company_motto', null);
         set_static_option('company_email', '');
@@ -38,6 +40,7 @@ producing exceptional SEO for business.');
         set_static_option('seo_image', null);
         set_static_option('favicon', null);
         set_static_option('meta_image', null);
+
         set_static_option('real_members', 'REAL NUMBERS');
         set_static_option('counter_highlight', 'Expect Great Things from Your SEO Agency');
         set_static_option('counter_image', null);
@@ -50,6 +53,10 @@ producing exceptional SEO for business.');
         set_static_option('projects_done_number', '850');
         set_static_option('glorious_years', 'Glorious Years');
         set_static_option('glorious_years_number', '15');
+
+        set_static_option('is_active_website_contact_submission_mail_to_visitor', 'yes'); //yes or no
+        set_static_option('is_active_website_contact_submission_sms_to_visitor', 'yes'); //yes or no
+        set_static_option('is_active_website_contact_submission_sms_to_office', 'yes'); //yes or no
 
 
         set_static_option('company_facebook_page_sms_script', '');
