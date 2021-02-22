@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-4 col-lg-4">
                 <div class="widgetbar">
-                    <a href="javascript:0" class="btn btn-primary add-btn">{{ __('Create New') }}</a>
+                    <a href="{{ route('lead.lead.create') }}" class="btn btn-primary add-btn">{{ __('Create New') }}</a>
                 </div>
             </div>
         </div>

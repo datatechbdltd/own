@@ -22,6 +22,7 @@ class Lead extends Model
         'company_website',
         'company_facebook_page',
         'description',
+        'category_id',
     ];
     //adder
     public function adder(){

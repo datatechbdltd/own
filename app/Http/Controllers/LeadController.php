@@ -41,7 +41,8 @@ class LeadController extends Controller
      */
     public function create()
     {
-        //
+        $categories = LeadCategory::all();
+        return view('backend.lead.lead-create', compact('categories'));
     }
 
     /**
