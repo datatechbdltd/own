@@ -15,7 +15,7 @@ class LeadCategorySeeder extends Seeder
      */
     public function run()
     {
-        LeadCategory::factory()->count(30)->create();
+        LeadCategory::factory()->count(2)->create();
     }
 
 

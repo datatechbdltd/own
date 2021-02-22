@@ -29,12 +29,11 @@
                 <li class="vertical-header">Main</li>
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Dashboard</span><i class="feather icon-chevron-right pull-right"></i>
+                      <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Communication</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{url('/template/panel-vertical/')}}"><i class="mdi mdi-circle"></i>Social Media</a></li>
-                        <li><a href="{{url('/template/panel-vertical/dashboard-ecommerce')}}"><i class="mdi mdi-circle"></i>eCommerce</a></li>
-                        <li><a href="{{url('/template/panel-vertical/dashboard-analytics')}}"><i class="mdi mdi-circle"></i>Analytics</a></li>
+                        <li><a href="{{ route('communication.getSmsSenderPage') }}"><i class="mdi mdi-circle"></i>SMS</a></li>
+                        <li><a href="{{ route('communication.getEmailSenderPage') }}"><i class="mdi mdi-circle"></i>Email</a></li>
                     </ul>
                 </li>
                 <li>

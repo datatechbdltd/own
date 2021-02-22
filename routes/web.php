@@ -9,6 +9,7 @@ use App\Http\Controllers\LeadDistrictController;
 use App\Http\Controllers\LeadServiceController;
 use App\Http\Controllers\LeadThanaController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SmsAndEmailController;
 use App\Http\Controllers\SmsCampaignController;
 use App\Models\SocialLink;
 use App\Models\WebsiteSeo;
@@ -43,7 +44,7 @@ Route::group(['as' => 'frontend.'], function () {
    Route::post('contact-us/store',[FrontendController::class, 'contactUsStore'])->name('contactUsStore');
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['role:admin']], function () {
     Route::get('dashboard', function () {
         return view('backend.dashboard.index');
     })->name('dashboard');
@@ -88,6 +89,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('get-sms-page', [SettingController::class, 'getSmsPage'])->name('getSmsPage');
         Route::post('gpcmp-sms-update', [SettingController::class, 'gpcmpSmsUpdate'])->name('gpcmpSmsUpdate');
         Route::post('gpcmp-sms-test', [SettingController::class, 'testGpcmpSms'])->name('testGpcmpSms');
+    });
+
+    Route::group(['prefix' => 'communication', 'as' => 'communication.'], function () {
+        Route::get('sms', [SmsAndEmailController::class, 'getSmsPage'])->name('getSmsSenderPage');
+        Route::post('sms', [SmsAndEmailController::class, 'sendSms'])->name('sendSms');
+        Route::get('email', [SmsAndEmailController::class, 'getEmailPage'])->name('getEmailSenderPage');
+        Route::post('email', [SmsAndEmailController::class, 'sendEmail'])->name('sendEmail');
     });
 });
 

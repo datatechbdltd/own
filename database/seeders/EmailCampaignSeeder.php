@@ -14,6 +14,6 @@ class EmailCampaignSeeder extends Seeder
      */
     public function run()
     {
-        emailCampaign::factory()->count(10)->create();
+        emailCampaign::factory()->count(2)->create();
     }
 }
