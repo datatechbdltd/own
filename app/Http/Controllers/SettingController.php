@@ -57,4 +57,43 @@ class SettingController extends Controller
             return back()->withErrors('Something going wrong. '.$exception->getMessage());
         }
     }
+
+    //SMS
+    public function getSMSPage(){
+        return view('backend.setting.sms');
+    }
+
+    public function smsUpdate(Request $request){
+        $request->validate([
+            'gpcmp_username' => 'required',
+            'gpcmp_password' => 'required',
+            'gpcmp_masking' => 'required'
+        ]);
+        try {
+            $env_val['GPCMP_USERNAME'] = !empty($request->host) ? $request->host : 'YOUR_GPCMP_USERNAME';
+            $env_val['GPCMP_PASSWORD'] = !empty($request->port) ? $request->port : 'YOUR_GPCMP_PASSWORD';
+            $env_val['GPCMP_MASKING'] = !empty($request->username) ? $request->username : 'YOUR_GPCMP_MASKING';
+
+            set_env_value([
+                'GPCMP_USERNAME' => '"'.$env_val['GPCMP_USERNAME'].'"',
+                'GPCMP_PASSWORD' =>  '"'.$env_val['GPCMP_PASSWORD'].'"',
+                'GPCMP_MASKING' => '"'.$env_val['GPCMP_MASKING'].'"',
+            ]);
+            return redirect()->back()->withSuccess('Successfully GPCMP SMS configuration updated!');
+        }catch (\Exception $exception){
+            return redirect()->back()->withErrors('Something going wrong. Error:'.$exception->getMessage());
+        }
+    }
+
+    public function testSms(Request $request){
+        $request->validate([
+            'phone' => 'required'
+        ]);
+        try {
+            send_message($request->phone, 'Configuration, SMS working good.');
+            return back()->withSuccess('Successfully SMS sent.');
+        }catch (\Exception $exception){
+            return back()->withErrors('Something going wrong. '.$exception->getMessage());
+        }
+    }
 }

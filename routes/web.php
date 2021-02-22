@@ -78,6 +78,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('get-smtp-page', [SettingController::class, 'getSmtpPage'])->name('getSmtpPage');
         Route::post('smtp-update', [SettingController::class, 'smtpUpdate'])->name('smtpUpdate');
         Route::post('smtp-test', [SettingController::class, 'testSmtp'])->name('testSmtp');
+        Route::get('get-ms-page', [SettingController::class, 'getSmsPage'])->name('getSmsPage');
+        Route::post('ms-update', [SettingController::class, 'smsUpdate'])->name('smsUpdate');
+        Route::post('ms-test', [SettingController::class, 'testSms'])->name('testSms');
     });
 });
 

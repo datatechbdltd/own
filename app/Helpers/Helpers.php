@@ -119,39 +119,27 @@ if (!function_exists('random_code')){
     }
 
     function send_message($number, $message){
-//        $response = Http::post('https://gpcmp.grameenphone.com/ecmapigw/webresources/ecmapigw.v2', [
-//            "username" => "Dataadmin",
-//            "password" => "ebNq5x@cGk438Zj",
-//            "apicode" => "1",
-//            "msisdn" => $number,
-//            "countrycode" => "880",
-//            "cli" => "2222",
-//            "messagetype" => "1",
-//            "message" => $message,
-//            "messageid" => "0"
-//        ]);
-
         $client = new Client();
         $url = "https://gpcmp.grameenphone.com/ecmapigw/webresources/ecmapigw.v2";
         $response = $client->post($url,[
             'headers' => ['Content-type' => 'application/json'],
             'json' => [
-                "username" => "Dataadmin",
-                "password" => "ebNq5x@cGk438Zj",
+                "username" => env('GPCMP_USERNAME'),
+                "password" => env('GPCMP_PASSWORD'),
                 "apicode" => "1",
                 "msisdn" => $number,
                 "countrycode" => "880",
-                "cli" => "New Shapla",
+                "cli" => env('GPCMP_MASKING'),
                 "messagetype" => "3",
                 "message" => $message,
                 "messageid" => "0"
             ],
         ]);
-
-        //return $response->getBody();
-
-
-        dd($response->getBody());
+        if ($response->getStatusCode() == 200){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     //Email sending
