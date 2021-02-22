@@ -34,22 +34,22 @@
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-header">
-                    <h5 class="card-title">SMS Information</h5>
+                    <h5 class="card-title">GPMP SMS Information</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('setting.smsUpdate') }}" method="post" class="row">
+                    <form action="{{ route('setting.gpcmpSmsUpdate') }}" method="post" class="row">
                         @csrf
                         <div class="form-group col-md-6 col-xl-6">
                             <label>GPCMP Username <span class="text-danger">*</span></label>
-                            <input type="text" name="username" required class="form-control"  placeholder="admin" value="{{ env('GPCMP_USERNAME') }}"/>
+                            <input type="text" name="gpcmp_username" required class="form-control"  placeholder="admin" value="{{ env('GPCMP_USERNAME') }}"/>
                         </div>
                         <div class="form-group col-md-6 col-xl-6">
                             <label>GPCMP Password <span class="text-danger">*</span></label>
-                            <input type="text" name="password" required class="form-control"  placeholder="password" value="{{ env('GPCMP_PASSWORD') }}"/>
+                            <input type="text" name="gpcmp_password" required class="form-control"  placeholder="password" value="{{ env('GPCMP_PASSWORD') }}"/>
                         </div>
                         <div class="form-group col-md-6 col-xl-6">
                             <label>GPCMP Masking name<span class="text-danger">*</span></label>
-                            <input type="text" name="masking" required class="form-control"  placeholder="Masking name" value="{{ env('GPCMP_MASKING') }}"/>
+                            <input type="text" name="gpcmp_masking" required class="form-control"  placeholder="Masking name" value="{{ env('GPCMP_MASKING') }}"/>
                         </div>
                         <div class="form-group col-12">
                             <button type="submit" class="btn btn-primary mr-2">Submit GPCMP SMS configuration</button>
@@ -57,12 +57,12 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <form action="{{ route('setting.testSms') }}" method="post">
+                    <form action="{{ route('setting.testGpcmpSms') }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label>Send test sms to make sure that your SMS settings is set correctly.</label>
                             <div class="input-group">
-                                <input type="tel" required name="phone" value="{{ auth()->user()->phone }}" class="form-control" placeholder="Type your phone .. ">
+                                <input type="tel" required name="gpcmp_phone" value="{{ auth()->user()->phone }}" class="form-control" placeholder="Type your phone .. ">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">Test!</button>
                                 </div>

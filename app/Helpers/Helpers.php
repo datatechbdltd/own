@@ -124,12 +124,12 @@ if (!function_exists('random_code')){
         $response = $client->post($url,[
             'headers' => ['Content-type' => 'application/json'],
             'json' => [
-                "username" => env('GPCMP_USERNAME'),
-                "password" => env('GPCMP_PASSWORD'),
+                "username" => '"'.env('GPCMP_USERNAME').'"',
+                "password" => '"'.env('GPCMP_PASSWORD').'"',
                 "apicode" => "1",
                 "msisdn" => $number,
                 "countrycode" => "880",
-                "cli" => env('GPCMP_MASKING'),
+                "cli" => '"'.env('GPCMP_MASKING').'"',
                 "messagetype" => "3",
                 "message" => $message,
                 "messageid" => "0"

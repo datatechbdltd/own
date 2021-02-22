@@ -63,16 +63,16 @@ class SettingController extends Controller
         return view('backend.setting.sms');
     }
 
-    public function smsUpdate(Request $request){
+    public function gpcmpSmsUpdate(Request $request){
         $request->validate([
             'gpcmp_username' => 'required',
             'gpcmp_password' => 'required',
             'gpcmp_masking' => 'required'
         ]);
         try {
-            $env_val['GPCMP_USERNAME'] = !empty($request->host) ? $request->host : 'YOUR_GPCMP_USERNAME';
-            $env_val['GPCMP_PASSWORD'] = !empty($request->port) ? $request->port : 'YOUR_GPCMP_PASSWORD';
-            $env_val['GPCMP_MASKING'] = !empty($request->username) ? $request->username : 'YOUR_GPCMP_MASKING';
+            $env_val['GPCMP_USERNAME'] = !empty($request->gpcmp_username) ? $request->gpcmp_username : 'YOUR_GPCMP_USERNAME';
+            $env_val['GPCMP_PASSWORD'] = !empty($request->gpcmp_password) ? $request->gpcmp_password : 'YOUR_GPCMP_PASSWORD';
+            $env_val['GPCMP_MASKING'] = !empty($request->gpcmp_masking) ? $request->gpcmp_masking : 'YOUR_GPCMP_MASKING';
 
             set_env_value([
                 'GPCMP_USERNAME' => '"'.$env_val['GPCMP_USERNAME'].'"',
@@ -85,9 +85,9 @@ class SettingController extends Controller
         }
     }
 
-    public function testSms(Request $request){
+    public function testGpcmpSms(Request $request){
         $request->validate([
-            'phone' => 'required'
+            'gpcmp_phone' => 'required'
         ]);
         try {
             send_message($request->phone, 'Configuration, SMS working good.');
