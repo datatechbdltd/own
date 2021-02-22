@@ -17,7 +17,7 @@ class LeadImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         if ($row['email'] != null || $row['phone'] != null){
-            if ($row['category_id'] != null){
+            if (auth()->user()->can('import_lead_with_category')){
                 return new Lead([
                     'name'     => $row['name'],
                     'email'     => $row['email'],

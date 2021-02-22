@@ -51,5 +51,10 @@ class RoleAndPermissionSeeder extends Seeder
         //import_lead
         $permission = Permission::create(['name' => 'import_lead']);
         $marketer->givePermissionTo($permission);
+        $admin->givePermissionTo($permission);
+
+        //import_lead_with_category
+        $permission = Permission::create(['name' => 'import_lead_with_category']);
+        $admin->givePermissionTo($permission);
     }
 }
