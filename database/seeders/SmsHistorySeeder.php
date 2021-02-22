@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\smsCampaign;
 use Illuminate\Database\Seeder;
 
-class SmsCampaignSeeder extends Seeder
+class SmsHistorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +13,6 @@ class SmsCampaignSeeder extends Seeder
      */
     public function run()
     {
-    //smsCampaign::factory()->count(10)->create();
+        //
     }
 }

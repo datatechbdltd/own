@@ -25,6 +25,7 @@ class CronJobController extends Controller
             $email_responses[] = send_email_from_campaign($emailCampaign);
         }
 
+        if ($smsCampaigns->count() > 0 || $emailCampaigns->count() > 0)
         Mail::to(get_static_option('reporting_email'))->send(new CampaignReportMail($sms_responses, $email_responses));
     }
 }

@@ -102,7 +102,7 @@ if (!function_exists('random_code')){
         return Cache::has('is-online-'.$user_id);
     }
 
-    //SMS sending
+    //SMS campaign
     function send_sms_from_campaign(smsCampaign $smsCampaign){
         $success = 0;
         $failed= 0;
@@ -118,6 +118,24 @@ if (!function_exists('random_code')){
         return '#campaign ID:'.$smsCampaign->id.' Successfully send:'.$success.' and failed:'.$failed.' out of:'.$smsCampaign->leadCategory->leads->count().' sms';
     }
 
+    //Email campaign
+    function send_email_from_campaign(emailCampaign $emailCampaign){
+        $success = 0;
+        $failed= 0;
+        $error = '';
+        foreach ($emailCampaign->leadCategory->leads as $user){
+            if (send_email($user->email, $emailCampaign) == true){
+                $success ++;
+            }else{
+                $failed++;
+            }
+        }
+        $emailCampaign->repeat++;
+        $emailCampaign->save();
+        return '#campaign ID:'.$emailCampaign->id.' Successfully send:'.$success.' and failed:'.$failed.' out of:'.$emailCampaign->leadCategory->leads->count().' email'. $error;
+    }
+
+    //send message
     function send_message($number, $message){
         $client = new Client();
         $url = "https://gpcmp.grameenphone.com/ecmapigw/webresources/ecmapigw.v2";
@@ -135,33 +153,31 @@ if (!function_exists('random_code')){
                 "messageid" => "0"
             ],
         ]);
+        $sms_history = new \App\Models\SmsHistory();
+        if (auth()->check()){
+            $sms_history->sender_id = auth()->user()->id;
+        }
+        $sms_history->number = $number;
+        $sms_history->message = $message;
         if ($response->getStatusCode() == 200){
+            $sms_history->save();
             return true;
         }else{
             return false;
         }
     }
 
-    //Email sending
-    function send_email_from_campaign(emailCampaign $emailCampaign){
-        $success = 0;
-        $failed= 0;
-        $error = '';
-        foreach ($emailCampaign->leadCategory->leads as $user){
-            if (send_email($user->email, $emailCampaign) == true){
-                $success ++;
-            }else{
-                $failed++;
-            }
-        }
-        $emailCampaign->repeat++;
-        $emailCampaign->save();
-        return '#campaign ID:'.$emailCampaign->id.' Successfully send:'.$success.' and failed:'.$failed.' out of:'.$emailCampaign->leadCategory->leads->count().' email'. $error;
-    }
-
+    //send email
     function send_email($email, $emailCampaign){
+        $email_history = new \App\Models\EmailHistory();
+        if (auth()->check()){
+            $email_history->sender_id = auth()->user()->id;
+        }
+        $email_history->email = $email;
+        $email_history->message = $emailCampaign->message;
         try {
             Mail::to($email)->send(new EmailCampaignMail($emailCampaign));
+            $email_history->save();
             return true;
         }catch (\Exception $exception){
             return false;
@@ -171,6 +187,4 @@ if (!function_exists('random_code')){
     function lead_categories(){
        return \App\Models\LeadCategory::all();
     }
-
-
 }
