@@ -147,7 +147,7 @@ class SettingController extends Controller
             'gpcmp_phone' => 'required'
         ]);
         try {
-            send_message($request->phone, 'Configuration, SMS working good.');
+            send_message($request->gpcmp_phone, 'Configuration, SMS working good.');
             return back()->withSuccess('Successfully SMS sent.');
         }catch (\Exception $exception){
             return back()->withErrors('Something going wrong. '.$exception->getMessage());
