@@ -124,7 +124,7 @@
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{ route('setting.getSmtpPage') }}"><i class="mdi mdi-circle"></i>SMTP</a></li>
-                        <li><a href="{{ route('setting.getSmspPage') }}"><i class="mdi mdi-circle"></i>Sms</a></li>
+                        <li><a href="{{ route('setting.getSmsPage') }}"><i class="mdi mdi-circle"></i>Sms</a></li>
                         <li><a href="#"><i class="mdi mdi-circle"></i>Identity</a></li>
                         <li><a href="#"><i class="mdi mdi-circle"></i>Seo</a></li>
                         <li><a href="#"><i class="mdi mdi-circle"></i>Permissions</a></li>
