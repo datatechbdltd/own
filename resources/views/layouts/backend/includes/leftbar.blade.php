@@ -128,6 +128,7 @@
                       <img src="assets/panel/vertical/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>SETTING</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
+                        <li><a href="{{ route('setting.getGeneralPage') }}"><i class="mdi mdi-circle"></i>General</a></li>
                         <li><a href="{{ route('setting.getSmtpPage') }}"><i class="mdi mdi-circle"></i>SMTP</a></li>
                         <li><a href="{{ route('setting.getSmsPage') }}"><i class="mdi mdi-circle"></i>Sms</a></li>
                         <li><a href="#"><i class="mdi mdi-circle"></i>Identity</a></li>

@@ -74,17 +74,17 @@
                         <ul class="info-list">
                             <li>
                                 <span class="icon flaticon-placeholder-4"></span>
-                                <strong>FL 33401, USA</strong>
-                                576d University St, Seattle, UK
+                                <strong>{{ get_static_option('company_address_district_country') }}</strong>
+                                {{ get_static_option('company_address') }}
                             </li>
                             <li>
                                 <span class="icon flaticon-phone-call"></span>
-                                <strong>009-215-5596</strong>
+                                <strong>{{ get_static_option('company_phone') }}</strong>
                                 Give us a call
                             </li>
                             <li>
                                 <span class="icon flaticon-stopwatch"></span>
-                                <strong>meto@mail.com</strong>
+                                <strong>{{ get_static_option('company_email') }}</strong>
                                 Get in Touch
                             </li>
                         </ul>

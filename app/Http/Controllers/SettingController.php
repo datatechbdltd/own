@@ -5,11 +5,63 @@ namespace App\Http\Controllers;
 use App\Mail\TestSmtp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class SettingController extends Controller
 {
     public function getSmtpPage(){
         return view('backend.setting.smtp');
+    }
+
+    public function getGeneralPage(){
+        return view('backend.setting.general');
+    }
+
+    public function generalUpdate(Request $request){
+        $request->validate([
+            'reporting_email' => 'nullable|min:3',
+            'reporting_phone' => 'nullable|min:3',
+            'company_name' => 'nullable|min:3',
+            'company_motto' => 'nullable|min:3',
+            'company_email' => 'nullable|min:3',
+            'company_phone' => 'nullable|min:3',
+            'company_address' => 'nullable|min:3',
+            'company_address_district_country' => 'nullable|min:3',
+            'company_website_address' => 'nullable|min:3',
+            'website_footer_credit' => 'nullable|min:3',
+            'website_logo' => 'nullable|image',
+        ]);
+        try {
+            update_static_option('reporting_email', $request->reporting_email);
+            update_static_option('reporting_phone', $request->reporting_phone);
+
+            update_static_option('company_name', $request->company_name);
+            update_static_option('company_motto', $request->company_motto);
+            update_static_option('company_email', $request->company_email);
+            update_static_option('company_phone', $request->company_phone);
+            update_static_option('company_address', $request->company_address);
+            update_static_option('company_address_district_country', $request->company_address_district_country);
+            update_static_option('company_website_address', $request->company_website_address);
+            update_static_option('website_footer_credit', $request->website_footer_credit);
+
+            update_static_option('website_logo', $request->website_logo);
+
+            if($request->hasFile('website_logo')){
+                if (get_static_option('website_logo') != null)
+                    File::delete(public_path(get_static_option('website_logo'))); //Old image delete
+                $image             = $request->file('website_logo');
+                $folder_path       = 'uploads/images/website/';
+                $image_new_name    = Str::random(20).'-'.now()->timestamp.'.'.$image->getClientOriginalExtension();
+                //resize and save to server
+                Image::make($image->getRealPath())->save($folder_path.$image_new_name);
+                update_static_option('website_logo',$folder_path.$image_new_name);
+            }
+        }catch (\Exception $exception){
+            return back()->withErrors( 'Something went wrong !'.$exception->getMessage());
+        }
+        return back()->withToastSuccess( 'Updated successfully');
     }
 
     public function smtpUpdate(Request $request){

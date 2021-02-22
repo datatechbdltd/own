@@ -16,13 +16,11 @@
 
                 <!-- Top Right -->
                 <div class="top-right pull-right">
-
                     <!-- Info List -->
                     <ul class="info-list">
-                        <li><span class="icon flaticon-maps-and-flags"></span> 576d University St, Seattle, UK</li>
-                        <li><span class="icon flaticon-email-4"></span><a href="mailto:meto_company@mail.com"> UK meto_company@mail.com</a></li>
+                        <li><span class="icon flaticon-maps-and-flags"></span> {{ get_static_option('company_address') }}, {{ get_static_option('company_address_district_country') }}</li>
+                        <li><span class="icon flaticon-email-4"></span><a href="mailto:{{ get_static_option('company_email') }}"> {{ get_static_option('company_email') }}</a></li>
                     </ul>
-
                 </div>
 
             </div>

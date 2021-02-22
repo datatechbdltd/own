@@ -16,15 +16,17 @@ class StaticOptionSeeder extends Seeder
         set_static_option('reporting_email', 'datatechbdltd@gmail.com');
         set_static_option('reporting_phone', '01304734623');
 
-        set_static_option('company_name', null);
-        set_static_option('company_motto', null);
-        set_static_option('company_email', '');
-        set_static_option('company_phone', null);
-        set_static_option('company_address', null);
-        set_static_option('company_website_address', null);
-        set_static_option('website_footer_credit', null);
+        set_static_option('company_name', 'DataTech Bd');
+        set_static_option('company_motto', 'We make your desired');
+        set_static_option('company_email', 'info@datatechbd.com');
+        set_static_option('company_phone', '01234567890');
+        set_static_option('company_address', 'address');
+        set_static_option('company_address_district_country', 'Dhaka,Bangladesh');
+        set_static_option('company_website_address', 'datatechbd.com');
+        set_static_option('website_footer_credit', 'DataTech bd');
 
         set_static_option('website_logo', null);
+
         set_static_option('level_title', 'Take a Business to Next Level!');
         set_static_option('level_video_link', 'https://www.youtube.com/watch?v=kxPCFljwJws');
         set_static_option('level_image', null);
