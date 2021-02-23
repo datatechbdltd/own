@@ -103,6 +103,15 @@
                                 <li><a href="{{ route('website.websiteTeam.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="javaScript:void();">
+                                <span>Website product</span><i class="feather icon-chevron-right pull-right"></i>
+                            </a>
+                            <ul class="vertical-submenu">
+                                <li><a href="{{ route('website.websiteProduct.index') }}"><i class="mdi mdi-circle"></i>Product list</a></li>
+                                <li><a href="{{ route('website.websiteProduct.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>

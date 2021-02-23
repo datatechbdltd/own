@@ -22,6 +22,7 @@ use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\WebsiteSeoController;
 use App\Http\Controllers\WebsiteServiceController;
 use App\Http\Controllers\WebsiteTeamController;
+use App\Http\Controllers\WebsiteProductController;
 use App\Http\Controllers\WebsiteContactController;
 
 /*
@@ -64,6 +65,7 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('websiteSeo', WebsiteSeoController::class);
         Route::resource('websiteService', WebsiteServiceController::class);
         Route::resource('websiteTeam', WebsiteTeamController::class);
+        Route::resource('websiteProduct', WebsiteProductController::class);
         Route::resource('websiteContact', WebsiteContactController::class);
         Route::resource('customPage', CustomPageController::class);
         Route::get('website-counter', [WebsiteServiceController::class, 'websiteCounter'])->name('websiteCounter');
