@@ -30,10 +30,12 @@ class StaticOptionSeeder extends Seeder
         set_static_option('level_title', 'Take a Business to Next Level!');
         set_static_option('level_video_link', 'https://www.youtube.com/watch?v=kxPCFljwJws');
         set_static_option('level_image', null);
+
         set_static_option('who_we_are', 'WHO WE ARE');
         set_static_option('seo_highlight', 'Our Mission is to change
 Your View for SEO');
         set_static_option('seo_description', 'Smratseo is a brand of digital agency. Competen novate synergstic vortas through forward strategic theme areas Compelling extend super was that Proactive myocardinate vertical strategic');
+
         set_static_option('our_service', 'Our Services');
         set_static_option('service_highlight', 'You Take Growth For Business');
         set_static_option('service_description', 'Our strategy includes consistently evolving, to ensure we’re
@@ -56,16 +58,24 @@ producing exceptional SEO for business.');
         set_static_option('glorious_years', 'Glorious Years');
         set_static_option('glorious_years_number', '15');
 
+
+        set_static_option('team_title', 'Profectional Team');
+        set_static_option('team_highlight', 'Meet Our Leadership Team');
+        set_static_option('team_description', 'If we had a ‘secret sauce’ it would be our awesome people.We have only professional team!');
+
+
+
+        set_static_option('custom_website_head_script', '');
+        set_static_option('custom_website_foot_script', '');
+        set_static_option('is_bulk_import_from_website', 'yes');// yes | no
         set_static_option('is_active_website_contact_submission_mail_to_visitor', 'yes'); //yes or no
         set_static_option('is_active_website_contact_submission_sms_to_visitor', 'yes'); //yes or no
         set_static_option('is_active_website_contact_submission_sms_to_office', 'yes'); //yes or no
 
-
-        set_static_option('company_facebook_page_sms_script', '');
-
         set_static_option('no_image', 'uploads/images/setting/no-image.png');
         set_static_option('sample_leads', 'uploads/samples/sample-leads-of-datatech-bd-ltd.xlsx');
         set_static_option('sample_leads_with_category', 'uploads/samples/sample-leads-with-category-of-datatech-bd-ltd.xlsx');
-        set_static_option('is_bulk_import_from_website', 'yes');// yes | no
+
+
     }
 }

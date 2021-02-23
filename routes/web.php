@@ -16,10 +16,12 @@ use App\Models\SocialLink;
 use App\Models\WebsiteSeo;
 use App\Models\WebsiteBanner;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\WebsiteSeoController;
 use App\Http\Controllers\WebsiteServiceController;
+use App\Http\Controllers\WebsiteTeamController;
 use App\Http\Controllers\WebsiteContactController;
 
 /*
@@ -46,6 +48,9 @@ Route::group(['as' => 'frontend.'], function () {
    Route::get('contact-us',[FrontendController::class, 'contactUs'])->name('contactUs');
    Route::post('contact-us/store',[FrontendController::class, 'contactUsStore'])->name('contactUsStore');
 });
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('profile', [ProfileController::class, 'profile'])->name('profile');
+});
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::get('dashboard', function () {
@@ -57,6 +62,7 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('socialLink', SocialLinkController::class);
         Route::resource('websiteSeo', WebsiteSeoController::class);
         Route::resource('websiteService', WebsiteServiceController::class);
+        Route::resource('websiteTeam', WebsiteTeamController::class);
         Route::resource('websiteContact', WebsiteContactController::class);
         Route::resource('customPage', CustomPageController::class);
         Route::get('website-counter', [WebsiteServiceController::class, 'websiteCounter'])->name('websiteCounter');
@@ -64,6 +70,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
         Route::post('website-seo-static-option-update', [WebsiteSeoController::class, 'websiteSeoStaticOptionUpdate'])->name('websiteSeoStaticOptionUpdate');
         Route::post('website-service-static-option-update', [WebsiteServiceController::class, 'websiteServiceStaticOptionUpdate'])->name('websiteServiceStaticOptionUpdate');
+        Route::post('website-team-static-option-update', [WebsiteTeamController::class, 'websiteTeamStaticOptionUpdate'])->name('websiteTeamStaticOptionUpdate');
     });
 
     Route::group(['prefix' => 'lead', 'as' => 'lead.'], function () {
@@ -103,6 +110,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     });
 });
 
+
 Route::group(['prefix' => 'cron', 'as' => 'cron.'], function () {
     Route::get('auto-job', [CronJobController::class, 'auto_job'])->name('auto_job');
 });
@@ -112,6 +120,7 @@ Route::group(['prefix' => 'test'], function () {
        send_message('01304734623', 'Hello message');
    });
 });
+
 
 
 

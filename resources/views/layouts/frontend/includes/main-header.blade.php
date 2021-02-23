@@ -33,7 +33,7 @@
             <div class="inner-container clearfix">
 
                 <div class="pull-left logo-box">
-                    <div class="logo"><a href="{{ url('/') }}"><img src="{{ asset(get_static_option('website_logo') ?? get_static_option('no_image')) }}" alt="" title=""></a></div>
+                    <div class="logo"><a href="{{ url('/') }}"><img src="{{ asset(get_static_option('website_logo') ) }}" alt="" title=""></a></div>
                 </div>
 
                 <div class="nav-outer clearfix">
@@ -156,7 +156,7 @@
         <div class="auto-container clearfix">
             <!--Logo-->
             <div class="logo pull-left">
-                <a href="{{ url('/') }}" title=""><img src="{{ asset(get_static_option('website_logo') ?? get_static_option('no_image')) }}" alt="" title=""></a>
+                <a href="{{ url('/') }}" title=""><img src="{{ asset(get_static_option('website_logo')) }}" alt="" title=""></a>
             </div>
             <!--Right Col-->
             <div class="pull-right">

@@ -31,13 +31,22 @@ class SettingController extends Controller
             'company_address_district_country' => 'nullable|min:3',
             'company_website_address' => 'nullable|min:3',
             'website_footer_credit' => 'nullable|min:3',
+
+            'custom_website_head_script' => 'nullable|min:3',
+            'custom_website_foot_script' => 'nullable|min:3',
+            'is_bulk_import_from_website' => 'nullable|min:3',
+            'is_active_website_contact_submission_mail_to_visitor' => 'nullable|min:3',
+            'is_active_website_contact_submission_sms_to_visitor' => 'nullable|min:3',
+            'is_active_website_contact_submission_sms_to_office' => 'nullable|min:3',
+
             'website_logo' => 'nullable|image',
         ]);
         try {
+
             update_static_option('reporting_email', $request->reporting_email);
             update_static_option('reporting_phone', $request->reporting_phone);
 
-            update_static_option('company_name', $request->company_name);
+//            update_static_option('company_name', $request->company_name);
             update_static_option('company_motto', $request->company_motto);
             update_static_option('company_email', $request->company_email);
             update_static_option('company_phone', $request->company_phone);
@@ -46,7 +55,13 @@ class SettingController extends Controller
             update_static_option('company_website_address', $request->company_website_address);
             update_static_option('website_footer_credit', $request->website_footer_credit);
 
-            update_static_option('website_logo', $request->website_logo);
+            update_static_option('custom_website_head_script', $request->custom_website_head_script);
+            update_static_option('custom_website_foot_script', $request->custom_website_foot_script);
+            update_static_option('is_bulk_import_from_website', $request->is_bulk_import_from_website);
+            update_static_option('is_active_website_contact_submission_mail_to_visitor', $request->is_active_website_contact_submission_mail_to_visitor);
+            update_static_option('is_active_website_contact_submission_sms_to_visitor', $request->is_active_website_contact_submission_sms_to_visitor);
+            update_static_option('is_active_website_contact_submission_sms_to_office', $request->is_active_website_contact_submission_sms_to_office);
+
 
             if($request->hasFile('website_logo')){
                 if (get_static_option('website_logo') != null)

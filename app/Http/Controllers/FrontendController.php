@@ -15,6 +15,7 @@ use App\Models\WebsiteBanner;
 use App\Models\WebsiteContact;
 use App\Models\WebsiteSeo;
 use App\Models\WebsiteService;
+use App\Models\WebsiteTeam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -27,7 +28,9 @@ class FrontendController extends Controller
         $webiste_banners = WebsiteBanner::where('is_active', true)->orderBy('serial','asc')->get();
         $website_seos = WebsiteSeo::where('is_active', true)->orderBy('id','desc')->get();
         $website_services = WebsiteService::where('is_active', true)->orderBy('id','desc')->limit(6)->get();
-        return view('frontend.home' ,compact('social_link','website_seos','webiste_banners','website_services'));
+        $website_teams = WebsiteTeam::where('status', true)->orderBy('serial','asc')->get();
+
+        return view('frontend.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams'));
     }
     // all services pages
     public function servicesPage(){

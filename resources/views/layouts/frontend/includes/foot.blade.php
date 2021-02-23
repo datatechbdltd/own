@@ -15,5 +15,7 @@
 <script src="{{ asset('assets/frontend/js/script.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/color-settings.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+{!! get_static_option('custom_website_foot_script') !!}
 @include('sweetalert::alert')
 @stack('script')
+

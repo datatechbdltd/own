@@ -16,7 +16,7 @@
             </div>
             <div class="userbox">
                 <ul class="list-inline mb-0">
-                    <li class="list-inline-item"><a href="#" class="profile-icon"><img src="assets/panel/vertical/images/svg-icon/user.svg" class="img-fluid" alt="user"></a></li>
+                    <li class="list-inline-item"><a href="{{ route('profile') }}" class="profile-icon"><img src="assets/panel/vertical/images/svg-icon/user.svg" class="img-fluid" alt="user"></a></li>
                     <li class="list-inline-item"><a href="#" class="profile-icon"><img src="assets/panel/vertical/images/svg-icon/email.svg" class="img-fluid" alt="email"></a></li>
                     <li class="list-inline-item logout-btn" onclick="logout()"><a href="javascript:0" class="profile-icon"><img src="assets/panel/vertical/images/svg-icon/logout.svg" class="img-fluid" alt="logout"></a></li>
                 </ul>
@@ -93,6 +93,15 @@
                             <a href="{{ route('website.websiteCounter') }}"><i class="mdi mdi-circle"></i>
                                <span>Website counter</span>
                             </a>
+                        </li>
+                        <li>
+                            <a href="javaScript:void();">
+                                <span>Website team</span><i class="feather icon-chevron-right pull-right"></i>
+                            </a>
+                            <ul class="vertical-submenu">
+                                <li><a href="{{ route('website.websiteTeam.index') }}"><i class="mdi mdi-circle"></i>Team list</a></li>
+                                <li><a href="{{ route('website.websiteTeam.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
