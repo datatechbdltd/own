@@ -17,6 +17,7 @@ use App\Models\WebsiteSeo;
 use App\Models\WebsiteBanner;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\WebsiteSeoController;
@@ -58,7 +59,9 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('dashboard', function () {
         return view('backend.dashboard.index');
     })->name('dashboard');
-
+    Route::get('user-to-admin-contact-list', [ContactController::class, 'userToAdminContactList'])->name('userToAdminContactList');
+    Route::get('user-to-admin-contact-list/{id}', [ContactController::class, 'userToAdminContactListDetails'])->name('userToAdminContactListDetails');
+    Route::post('user-to-admin-contact-list-update}', [ContactController::class, 'userToAdminContactListDetailsUpdate'])->name('userToAdminContactListDetailsUpdate');
     Route::group(['prefix' => 'website', 'as' => 'website.'], function () {
         Route::resource('websiteBanner', WebsiteBannerController::class);
         Route::resource('socialLink', SocialLinkController::class);
