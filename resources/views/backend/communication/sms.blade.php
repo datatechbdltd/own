@@ -75,6 +75,7 @@
                         <table id="datatable" class="display table table-striped table-bordered">
                             <thead>
                             <tr>
+                                <th>Sender</th>
                                 <th>Message</th>
                                 <th>number</th>
                             </tr>
@@ -84,6 +85,7 @@
                             </tbody>
                             <tfoot>
                             <tr>
+                                <th>Sender</th>
                                 <th>Message</th>
                                 <th>number</th>
                             </tr>
@@ -106,6 +108,9 @@
                 serverSide: true,
                 ajax: '{!! route('communication.getSmsSenderPage') !!}',
                 columns: [
+                    @if(auth()->user()->hasRole('admin'))
+                    { data: 'sender', name: 'sender' },
+                    @endif
                     { data: 'message', name: 'message' },
                     { data: 'number', name: 'number' },
                 ], initComplete: function () {

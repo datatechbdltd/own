@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SmsHistory;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -9,8 +10,18 @@ class CommunicationController extends Controller
 {
     public function getSmsPage(Request $request){
         if ($request->ajax()){
-            $data = auth()->user()->allMessages;
-            return DataTables::of($data)->make(true);
+            if (auth()->user()->hasRole('admin')) {
+                $data = SmsHistory::orderBy('id', 'desc');
+                return DataTables::of($data)
+                    ->addColumn('sender', function($data) {
+                        return $data->sender->name ?? '***';
+                    })
+                    ->rawColumns(['sender'])
+                    ->make(true);
+            }else{
+                $data = auth()->user()->allMessages;
+                return DataTables::of($data)->make(true);
+            }
         }else{
             return view('backend.communication.sms');
         }
