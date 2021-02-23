@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
-class SmsAndEmailController extends Controller
+class CommunicationController extends Controller
 {
-    public function getSmsPage(){
-        return view('backend.communication.sms');
+    public function getSmsPage(Request $request){
+        if ($request->ajax()){
+            $data = auth()->user()->allMessages;
+            return DataTables::of($data)->make(true);
+        }else{
+            return view('backend.communication.sms');
+        }
+
     }
     public function sendSms(Request $request){
         $request->validate([

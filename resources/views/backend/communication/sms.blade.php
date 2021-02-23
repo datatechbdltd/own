@@ -9,7 +9,7 @@
 
 @endpush
 @push('style')
-
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
 @endpush
 
 @section('content')
@@ -64,10 +64,64 @@
                 </div>
             </div>
         </div>
+        <!-- Start col -->
+        <div class="col-lg-12">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <h5 class="card-title">Message history</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="datatable" class="display table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Message</th>
+                                <th>number</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Message</th>
+                                <th>number</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End col -->
     </div>
     <!-- End Contentbar -->
 @endsection
 @push('script')
-
+    <script>
+        $(function() {
+            $('#datatable').DataTable({
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('communication.getSmsSenderPage') !!}',
+                columns: [
+                    { data: 'message', name: 'message' },
+                    { data: 'number', name: 'number' },
+                ], initComplete: function () {
+                    this.api().columns().every(function () {
+                        var column = this;
+                        var input = document.createElement("input");
+                        $(input).appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                                column.search($(this).val(), false, false, true).draw();
+                            });
+                    });
+                }
+            });
+        });
+    </script>
+    <!-- DataTables -->
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>>
 @endpush
 

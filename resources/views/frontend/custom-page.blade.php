@@ -25,7 +25,7 @@
     <!-- Call To Action Section -->
     @include('frontend.includes.call-to-action')
     <!-- End Call To Action Section -->
-    
+
     <!-- Contact Info Section -->
     @include('frontend.includes.contact')
     <!-- End Contact Info Section -->
