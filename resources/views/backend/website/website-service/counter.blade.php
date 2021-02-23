@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="form-group">
-                                <img width="70px;" height="70px;" src="{{ asset(get_static_option('counter_image') ?? get_static_option('no_image')) }}">
+                                <img width="70px;" height="70px;" class="rounded-circle" src="{{ asset(get_static_option('counter_image') ?? get_static_option('no_image')) }}">
                                 <label for="level_title">Counter image</label>
                                 <input  accept="image/*"   name="counter_image"  type="file" class="form-control" id="counter_image">
                             </div>

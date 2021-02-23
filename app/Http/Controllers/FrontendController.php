@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\LeadImport;
 use App\Mail\WebsiteContactUsMail;
+use App\Models\CustomPage;
 use App\Models\Lead;
 use App\Models\LeadCategory;
 use App\Models\LeadDistrict;
@@ -122,5 +123,10 @@ class FrontendController extends Controller
         }catch (\Exception $exception){
             return back()->withErrors('Something going wrong. '.$exception->getMessage());
         }
+    }
+
+    public function customPage($slug){
+        $customPage = CustomPage::where('slug', $slug)->first();
+        return view('frontend.custom-page', compact('customPage'));
     }
 }

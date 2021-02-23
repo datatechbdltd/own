@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CronJobController;
+use App\Http\Controllers\CustomPageController;
 use App\Http\Controllers\EmailCampaignController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LeadCategoryController;
@@ -36,10 +37,12 @@ use App\Http\Controllers\WebsiteContactController;
 Route::group(['as' => 'frontend.'], function () {
    Route::get('/',[FrontendController::class, 'homePage'])->name('homePage');
    Route::get('/services',[FrontendController::class, 'servicesPage'])->name('servicesPage');
+    Route::get('page/{slug}',[FrontendController::class, 'customPage'])->name('customPage');
    Route::get('lead-collection',[FrontendController::class, 'leadCollectionPage'])->name('leadCollectionPage');
    Route::post('lead-collection',[FrontendController::class, 'storeLead'])->name('storeLead')->middleware(['permission:store_lead']);
 //   if(get_static_option('is_bulk_import_from_website') == 'yes')
    Route::post('lead-import',[FrontendController::class, 'importLead'])->name('importLead')->middleware(['permission:import_lead']);
+
    Route::get('contact-us',[FrontendController::class, 'contactUs'])->name('contactUs');
    Route::post('contact-us/store',[FrontendController::class, 'contactUsStore'])->name('contactUsStore');
 });
@@ -55,6 +58,7 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('websiteSeo', WebsiteSeoController::class);
         Route::resource('websiteService', WebsiteServiceController::class);
         Route::resource('websiteContact', WebsiteContactController::class);
+        Route::resource('customPage', CustomPageController::class);
         Route::get('website-counter', [WebsiteServiceController::class, 'websiteCounter'])->name('websiteCounter');
         Route::post('website-counter-update', [WebsiteServiceController::class, 'websiteCounterUpdate'])->name('websiteCounterUpdate');
 

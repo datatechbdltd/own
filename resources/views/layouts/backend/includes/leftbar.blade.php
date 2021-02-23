@@ -78,6 +78,18 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="javaScript:void();">
+                                <span>Website pages</span><i class="feather icon-chevron-right pull-right"></i>
+                            </a>
+                            <ul class="vertical-submenu">
+                                <li><a href="{{ route('website.customPage.create') }}"><i class="mdi mdi-circle"></i>Create new page</a></li>
+                                @foreach(custom_pages() as $page)
+                                <li><a href="{{ route('website.customPage.edit', $page) }}"><i class="mdi mdi-circle"></i>{{ $page->name }}</a></li>
+                                @endforeach
+
+                            </ul>
+                        </li>
+                        <li>
                             <a href="{{ route('website.websiteCounter') }}"><i class="mdi mdi-circle"></i>
                                <span>Website counter</span>
                             </a>

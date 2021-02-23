@@ -187,4 +187,12 @@ if (!function_exists('random_code')){
     function lead_categories(){
        return \App\Models\LeadCategory::all();
     }
+
+    function custom_pages(){
+       return \App\Models\CustomPage::all();
+    }
+
+    function active_custom_pages(){
+       return \App\Models\CustomPage::where('status', true)->orderBy('serial', 'asc')->get();
+    }
 }

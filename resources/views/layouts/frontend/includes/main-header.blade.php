@@ -56,12 +56,9 @@
 
                                 <li class="dropdown"><a href="#">About</a>
                                     <ul>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="faq.html">Faq</a></li>
-                                        <li><a href="price.html">Price</a></li>
-                                        <li><a href="team.html">Team</a></li>
-                                        <li><a href="testimonial.html">Testimonial</a></li>
-                                        <li><a href="comming-soon.html">Comming Soon</a></li>
+                                        @foreach(active_custom_pages() as $page)
+                                        <li> <a href="{{ route('frontend.customPage', $page->slug) }}"> {{ $page->name }} </a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Services</a>
@@ -159,7 +156,7 @@
         <div class="auto-container clearfix">
             <!--Logo-->
             <div class="logo pull-left">
-                <a href="index.html" title=""><img src="images/logo-small.png" alt="" title=""></a>
+                <a href="{{ url('/') }}" title=""><img src="{{ asset(get_static_option('website_logo') ?? get_static_option('no_image')) }}" alt="" title=""></a>
             </div>
             <!--Right Col-->
             <div class="pull-right">
