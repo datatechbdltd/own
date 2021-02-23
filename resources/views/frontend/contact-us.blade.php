@@ -29,7 +29,6 @@
                             <div class="title">GET IN TOUCH</div>
                             <h2>Ready to Get Started?</h2>
                         </div>
-
                         <!-- Default Form -->
                         <div class="default-form contact-form">
                             <form method="post" action=" {{ route('frontend.contactUsStore') }} ">
@@ -47,7 +46,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <textarea name="message" placeholder="Message">{{ old('message') }}</textarea>
+                                    <textarea name="message" placeholder="I need a website for my company ...." required>{{ old('message') }}</textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -56,7 +55,6 @@
 
                             </form>
                         </div>
-
                     </div>
                 </div>
 

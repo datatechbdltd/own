@@ -9,8 +9,13 @@
                 <div class="top-left pull-left">
                     <!-- Page Nav -->
                     <ul class="page-nav">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        @guest
+                            <li><a href="javascript:0"  data-toggle="modal" data-target="#login-modal">{{ __('Login') }}</a></li>
+                            <li><a href="javascript:0"  data-toggle="modal" data-target="#register-modal">{{ __('Register') }}</a></li>
+                        @else
+                            <li><a href="{{ route('login') }}">{{ auth()->user()->name }}</a></li>
+                            <li class="logout-btn"><a href="javascript:0">Logout</a></li>
+                        @endif
                     </ul>
                 </div>
 
@@ -61,6 +66,7 @@
                                         @endforeach
                                     </ul>
                                 </li>
+
                                 <li class="dropdown"><a href="#">Services</a>
                                     <ul>
                                         <li><a href="services.html">Services</a></li>
@@ -75,6 +81,7 @@
                                 </li>
                                 <li class="dropdown"><a href="#">Shop</a>
                                     <ul>
+                                        <li><a href="shop.html">Our Products</a></li>
                                         <li><a href="shop.html">Our Products</a></li>
                                         <li><a href="shop-single.html">Product Single</a></li>
                                         <li><a href="shopping-cart.html">Shopping Cart</a></li>
@@ -134,12 +141,7 @@
 
                         <!-- Quote Btn -->
                         <div class="btn-box">
-                            @guest
-                                <a href="{{ route('login') }}" class="quote-btn btn-style-four"><span class="txt">{{ __('Login') }}</span></a>
-                                @else
-                                <a href="{{ route('dashboard') }}" class="quote-btn btn-style-four"><span class="txt">{{ __('Your Panel') }}</span></a>
-                            @endguest
-
+                           <a href="javascript:0" class="quote-btn btn-style-four" data-toggle="modal" data-target="#order-modal"><span class="txt">{{ __('Order Now') }}</span></a>
                         </div>
 
                     </div>
@@ -226,3 +228,99 @@
     </div><!-- End Mobile Menu -->
 
 </header>
+
+<!-- Order modal -->
+<div class="modal fade" id="order-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="default-form contact-form">
+                    <form method="post" action=" {{ route('frontend.contactUsStore') }} ">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" name="name" value="{{ old('name') }}" placeholder="Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea name="message" placeholder="I need a website for my company ...." required>{{ old('message') }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="theme-btn btn-style-four"><span class="txt">Send Message</span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Login modal -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="default-form contact-form">
+                    <form method="post" action=" {{ route('login') }} ">
+                        @csrf
+                        <div class="form-group">
+                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" required>
+                            @error('email')
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="theme-btn btn-style-four"><span class="txt">Send Message</span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Register modal -->
+<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="default-form contact-form">
+                    <form novalidate="novalidate" action="{{ route('register') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" name="name" value="{{ old('name') }}" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="email" value="{{ old('email') }}" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="password" value="{{ old('password') }}" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="theme-btn btn-style-four"><span class="txt">Register and earn</span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
