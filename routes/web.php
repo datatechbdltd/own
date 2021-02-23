@@ -50,6 +50,7 @@ Route::group(['as' => 'frontend.'], function () {
 });
 Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::post('profile-password-update', [ProfileController::class, 'profilePasswordUpdate'])->name('profilePasswordUpdate');
 });
 
 Route::group(['middleware' => ['role:admin']], function () {

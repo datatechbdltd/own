@@ -458,5 +458,5 @@
 <script src="{{ asset('assets/panel/vertical/plugins/peity/jquery.peity.min.js') }}"></script>
 <!-- Dashboard js -->
 <script src="{{ asset('assets/panel/vertical/js/custom/custom-dashboard-analytics.js') }}"></script>
-@endpush('script')
+@endpush
 
