@@ -104,5 +104,7 @@
         </div>
     </section>
     <!-- End Map Section -->
-
+    <!-- Contact Info Section -->
+    @include('frontend.includes.contact')
+    <!-- End Contact Info Section -->
 @endsection

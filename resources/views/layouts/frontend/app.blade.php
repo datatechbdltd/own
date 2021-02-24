@@ -37,15 +37,21 @@
         <i class="fa fa-gear"></i>
     </div>
     <div class="color-palate-head">
-        <h6>DATATECH BD LTD.</h6>
+        <h6>{{ config('app.name') }}</h6>
     </div>
 
-	<ul class="rtl-version option-box"> <li class="rtl">Call: +880 1304-734623</li> </ul>
-
-    <a href="{{ route('frontend.contactUs') }}" class="purchase-btn">Order Us</a>
+	<ul class="">
+        <li class="">
+            <!-- Quote Btn -->
+            <div class="btn-box mt-4">
+               <a href="javascript:0" class="quote-btn btn-style-three" data-toggle="modal" data-target="#order-modal"><span class="txt">{{ __('Send Message') }}</span></a>
+            </div>
+        </li>
+    </ul>
 
     <div class="palate-foo">
-        <span>Shawpno Neer, 272/Kha/3/F, West Agargaon, She-E-Bangla Nagar, Dhaka-1207</span>
+        <span><a href="tel:{{ get_static_option('company_phone') }}">{{ get_static_option('company_phone') }}</a></span>
+        <span><a href="mailto:{{ get_static_option('company_email') }}">{{ get_static_option('company_email') }}</a></span>
     </div>
 
 </div>

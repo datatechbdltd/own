@@ -67,27 +67,9 @@
                                     </ul>
                                 </li>
 
-                                <li class="dropdown"><a href="#">Services</a>
-                                    <ul>
-                                        <li><a href="services.html">Services</a></li>
-                                        <li><a href="services-detail.html">Services Detail</a></li>
-                                    </ul>
+                                <li><a href="{{ route('frontend.servicesPage') }}">Services</a>
                                 </li>
-                                <li class="dropdown"><a href="#">Projects</a>
-                                    <ul>
-                                        <li><a href="projects.html">Projects</a></li>
-                                        <li><a href="projects-detail.html">Projects Detail</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">Shop</a>
-                                    <ul>
-                                        <li><a href="shop.html">Our Products</a></li>
-                                        <li><a href="shop.html">Our Products</a></li>
-                                        <li><a href="shop-single.html">Product Single</a></li>
-                                        <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="account.html">Account</a></li>
-                                    </ul>
+                                <li><a href="{{ route('frontend.products') }}">Products</a>
                                 </li>
                                 <li class="dropdown"><a href="#">Career</a>
                                     <ul>
@@ -102,48 +84,12 @@
                     </nav>
                     <!-- Main Menu End-->
                     <div class="outer-box clearfix">
-                        <!-- Cart Box -->
-                        <div class="cart-box">
-                            <div class="dropdown">
-                                <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flaticon-shopping-bag-1"></span><span class="total-cart">2</span></button>
-                                <div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu3">
-
-                                    <div class="cart-product">
-                                        <div class="inner">
-                                            <div class="cross-icon"><span class="icon fa fa-remove"></span></div>
-                                            <div class="image"><img src="images/resource/post-thumb-1.jpg" alt="" /></div>
-                                            <h3><a href="shop-single.html">Flying Ninja</a></h3>
-                                            <div class="quantity-text">Quantity 1</div>
-                                            <div class="price">$99.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="cart-product">
-                                        <div class="inner">
-                                            <div class="cross-icon"><span class="icon fa fa-remove"></span></div>
-                                            <div class="image"><img src="images/resource/post-thumb-2.jpg" alt="" /></div>
-                                            <h3><a href="shop-single.html">Patient Ninja</a></h3>
-                                            <div class="quantity-text">Quantity 1</div>
-                                            <div class="price">$99.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="cart-total">Sub Total: <span>$198</span></div>
-                                    <ul class="btns-boxed">
-                                        <li><a href="shoping-cart.html">View Cart</a></li>
-                                        <li><a href="checkout.html">CheckOut</a></li>
-                                    </ul>
-
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Search Btn -->
                         <div class="search-box-btn search-box-outer"><span class="icon fa fa-search"></span></div>
-
                         <!-- Quote Btn -->
                         <div class="btn-box">
-                           <a href="javascript:0" class="quote-btn btn-style-four" data-toggle="modal" data-target="#order-modal"><span class="txt">{{ __('Order Now') }}</span></a>
+                           <a href="javascript:0" class="quote-btn btn-style-four" data-toggle="modal" data-target="#order-modal"><span class="txt">{{ __('Contact Now') }}</span></a>
                         </div>
-
                     </div>
                 </div>
 

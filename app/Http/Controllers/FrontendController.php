@@ -12,6 +12,7 @@ use App\Models\LeadService;
 use App\Models\LeadThana;
 use App\Models\SocialLink;
 use App\Models\WebsiteBanner;
+use App\Models\WebsiteProduct;
 use App\Models\WebsiteContact;
 use App\Models\WebsiteSeo;
 use App\Models\WebsiteService;
@@ -94,6 +95,11 @@ class FrontendController extends Controller
     // contact us page
     public function contactUs(){
         return view('frontend.contact-us');
+    }
+    // products page
+    public function products(){
+        $website_products = WebsiteProduct::where('status', true)->get();
+        return view('frontend.products', compact('website_products'));
     }
 
     // contact us store

@@ -48,6 +48,7 @@ Route::group(['as' => 'frontend.'], function () {
    Route::post('lead-import',[FrontendController::class, 'importLead'])->name('importLead')->middleware(['permission:import_lead']);
 
    Route::get('contact-us',[FrontendController::class, 'contactUs'])->name('contactUs');
+   Route::get('products',[FrontendController::class, 'products'])->name('products');
    Route::post('contact-us/store',[FrontendController::class, 'contactUsStore'])->name('contactUsStore');
 });
 Route::group(['middleware' => ['auth']], function () {

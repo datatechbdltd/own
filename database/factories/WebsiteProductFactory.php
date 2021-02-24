@@ -26,6 +26,8 @@ class WebsiteProductFactory extends Factory
             'slug' => $this->faker->slug,
             'serial'  => $this->faker->numberBetween(1, 10),
             'price'  => $this->faker->numberBetween(1, 1000),
+            'short_description'  => $this->faker->text(),
+            'status'  => true,
         ];
     }
 }
