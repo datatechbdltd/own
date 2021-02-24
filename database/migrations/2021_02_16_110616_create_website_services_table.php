@@ -20,7 +20,8 @@ class CreateWebsiteServicesTable extends Migration
             $table->boolean('is_active')->default(1);
             $table->text('short_description');
             $table->longText('long_description');
-            $table->string('url');
+            $table->string('url')->nullable();
+            $table->string('slug')->nullable();
             $table->longText('agreement');
             $table->timestamps();
         });

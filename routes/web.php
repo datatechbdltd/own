@@ -41,6 +41,8 @@ use App\Http\Controllers\WebsiteContactController;
 Route::group(['as' => 'frontend.'], function () {
    Route::get('/',[FrontendController::class, 'homePage'])->name('homePage');
    Route::get('/services',[FrontendController::class, 'servicesPage'])->name('servicesPage');
+   Route::get('/services/{slug}',[FrontendController::class, 'servicesDetailsPage'])->name('servicesDetailsPage');
+   Route::post('/subscribe/store',[FrontendController::class, 'subscribeStore'])->name('subscribeStore');
     Route::get('page/{slug}',[FrontendController::class, 'customPage'])->name('customPage');
    Route::get('lead-collection',[FrontendController::class, 'leadCollectionPage'])->name('leadCollectionPage');
    Route::post('lead-collection',[FrontendController::class, 'storeLead'])->name('storeLead')->middleware(['permission:store_lead']);

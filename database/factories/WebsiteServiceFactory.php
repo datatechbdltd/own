@@ -23,9 +23,10 @@ class WebsiteServiceFactory extends Factory
     {
         return [
             'name'              => $this->faker->name,
+//            'slug'              => $this->faker->slug,
             'short_description' => $this->faker->text,
             'long_description'  => $this->faker->text,
-            'url'               => $this->faker->url,
+//            'url'               => $this->faker->url,
             'agreement'         => $this->faker->text,
         ];
     }

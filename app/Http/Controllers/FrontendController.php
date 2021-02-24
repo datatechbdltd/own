@@ -38,6 +38,11 @@ class FrontendController extends Controller
         $website_services = WebsiteService::where('is_active', true)->orderBy('id','desc')->get();
         return view('frontend.services' ,compact('website_services'));
     }
+    // all services Details Page
+    public function servicesDetailsPage($slug){
+        $service = WebsiteService::where('is_active', true)->where('slug',$slug)->first();
+        return view('frontend.service-details' ,compact('service'));
+    }
     public function leadCollectionPage(){
         $lead_categories = LeadCategory::orderBy('id', 'desc')->get();
         $lead_services = LeadService::orderBy('id', 'desc')->get();
@@ -137,5 +142,27 @@ class FrontendController extends Controller
     public function customPage($slug){
         $customPage = CustomPage::where('slug', $slug)->first();
         return view('frontend.custom-page', compact('customPage'));
+    }
+
+    // store subscribers
+    public function subscribeStore(Request $request){
+        $request->validate([
+            'email'=> 'required|email|unique:leads,email'
+        ]);
+
+        $lead = new Lead();
+        $lead->email = $request->email;
+        try {
+            $lead->save();
+            return response()->json([
+                'type' => 'success',
+                'message' => 'Successfully Subscribed !.',
+            ]);
+        }catch (\Exception $exception){
+            return response()->json([
+                'type' => 'error',
+                'message' => 'Something going wrong. ',
+            ]);
+        }
     }
 }

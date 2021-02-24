@@ -44,7 +44,7 @@
         <li class="">
             <!-- Quote Btn -->
             <div class="btn-box mt-4">
-               <a href="javascript:0" class="quote-btn btn-style-three" data-toggle="modal" data-target="#order-modal"><span class="txt">{{ __('Send Message') }}</span></a>
+               <a href="javascript:0" class="quote-btn btn-style-three send-message-button" ><span class="txt">{{ __('Send Message') }}</span></a>
             </div>
         </li>
     </ul>
@@ -76,6 +76,7 @@
     @csrf
 </form>
 @endif
+@include('layouts.frontend.includes.modal')
 @include('layouts.frontend.includes.foot')
 </body>
 

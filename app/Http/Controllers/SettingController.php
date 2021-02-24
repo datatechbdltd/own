@@ -32,19 +32,40 @@ class SettingController extends Controller
             'company_website_address' => 'nullable|min:3',
             'website_footer_credit' => 'nullable|min:3',
 
+            'footer_text' => 'nullable|min:3',
+            'subscribe_text' => 'nullable|min:3',
+
+            'company_facebook_link' => 'nullable|min:3',
+            'company_linkedin_link' => 'nullable|min:3',
+            'company_twitter_link' => 'nullable|min:3',
+            'company_github_link' => 'nullable|min:3',
+            'company_instagram_link' => 'nullable|min:3',
+            'company_whatsapp_link' => 'nullable|min:3',
+
             'custom_website_head_script' => 'nullable|min:3',
             'custom_website_foot_script' => 'nullable|min:3',
-            'is_bulk_import_from_website' => 'nullable|min:3',
-            'is_active_website_contact_submission_mail_to_visitor' => 'nullable|min:3',
-            'is_active_website_contact_submission_sms_to_visitor' => 'nullable|min:3',
-            'is_active_website_contact_submission_sms_to_office' => 'nullable|min:3',
+
+            'is_bulk_import_from_website' => 'nullable',
+            'is_active_website_contact_submission_mail_to_visitor' => 'nullable',
+            'is_active_website_contact_submission_sms_to_visitor' => 'nullable',
+            'is_active_website_contact_submission_sms_to_office' => 'nullable',
 
             'website_logo' => 'nullable|image',
+            'website_favicon' => 'nullable|image',
         ]);
         try {
 
             update_static_option('reporting_email', $request->reporting_email);
             update_static_option('reporting_phone', $request->reporting_phone);
+            update_static_option('footer_text', $request->footer_text);
+            update_static_option('subscribe_text', $request->subscribe_text);
+
+            update_static_option('company_facebook_link', $request->company_facebook_link);
+            update_static_option('company_linkedin_link', $request->company_linkedin_link);
+            update_static_option('company_twitter_link', $request->company_twitter_link);
+            update_static_option('company_github_link', $request->company_github_link);
+            update_static_option('company_instagram_link', $request->company_instagram_link);
+            update_static_option('company_whatsapp_link', $request->company_whatsapp_link);
 
 //            update_static_option('company_name', $request->company_name);
             update_static_option('company_motto', $request->company_motto);
@@ -54,6 +75,8 @@ class SettingController extends Controller
             update_static_option('company_address_district_country', $request->company_address_district_country);
             update_static_option('company_website_address', $request->company_website_address);
             update_static_option('website_footer_credit', $request->website_footer_credit);
+            update_static_option('call_to_action', $request->call_to_action);
+            update_static_option('call_to_action_highlight', $request->call_to_action_highlight);
 
             update_static_option('custom_website_head_script', $request->custom_website_head_script);
             update_static_option('custom_website_foot_script', $request->custom_website_foot_script);
@@ -72,6 +95,16 @@ class SettingController extends Controller
                 //resize and save to server
                 Image::make($image->getRealPath())->save($folder_path.$image_new_name);
                 update_static_option('website_logo',$folder_path.$image_new_name);
+            }
+            if($request->hasFile('website_favicon')){
+                if (get_static_option('website_favicon') != null)
+                    File::delete(public_path(get_static_option('website_favicon'))); //Old image delete
+                $image             = $request->file('website_favicon');
+                $folder_path       = 'uploads/images/website/';
+                $image_new_name    = Str::random(20).'-'.now()->timestamp.'.'.$image->getClientOriginalExtension();
+                //resize and save to server
+                Image::make($image->getRealPath())->save($folder_path.$image_new_name);
+                update_static_option('website_favicon',$folder_path.$image_new_name);
             }
             //.env App name
             $env_val['APP_NAME'] = !empty($request->company_name) ? $request->company_name : 'YOUR_APP_NAME';

@@ -13,7 +13,7 @@
 
         <div class="row clearfix">
             @foreach($website_services as $service)
-                <div class="service-block-five col-lg-4 col-md-6 col-sm-12">
+                <div class="service-block-five col-lg-4 col-md-6 col-sm-12 ">
                     <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                         <div class="icon-box">
                             <span class="icon flaticon-statistics"></span>
@@ -25,7 +25,7 @@
                         <div class="lower-content">
                             <div class="left-pattern"></div>
                             <div class="right-pattern"></div>
-                            <h4><a href="services-detail.html">{{ $service->name }}</a></h4>
+                            <h4 class="service-name"><a href="{{ $service->url ?? 'javascript:0' }}">{{ $service->name }}</a></h4>
                             <div class="text">{{ $service->short_description }}</div>
                         </div>
                     </div>
@@ -44,3 +44,11 @@
 
     </div>
 </section>
+
+<script>
+    $('.service-name').click(function (){
+        $('#order-modal').modal('show');
+        $('#message-body').val("I need "+$(this).text()+" service. Please contact me.");
+    });
+</script>
+

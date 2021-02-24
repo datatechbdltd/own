@@ -9,8 +9,7 @@
 <!-- Color Switcher Mockup -->
 <link href="{{ asset('assets/frontend/css/color-switcher-design.css') }}" rel="stylesheet">
 
-<link rel="shortcut icon" href="{{ asset('assets/frontend/images/favicon.png') }}" type="image/x-icon">
-<link rel="icon" href="{{ asset('assets/frontend/images/favicon.png') }}" type="image/x-icon">
+<link rel="icon" href="{{ asset(get_static_option('website_favicon') ?? get_static_option('no_image')) }}" type="image/x-icon">
 
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

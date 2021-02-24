@@ -45,10 +45,10 @@
                                             <img class="card-img-top" src="{{ asset($website_product->image ?? get_static_option('no_image') ) }}" alt="Card image cap">
                                             </div>
                                             <div class="card-body">
-                                            <h5 class="card-title">{{  $website_product->name }}</h5>
+                                            <h5 class="card-title product-name">{{  $website_product->name }}</h5>
                                             <p class="card-text">{{  $website_product->short_description }}</p>
                                             <div class="text-center">
-                                                <a href="#" class="text-center btn btn-primary">Go somewhere</a>
+                                                <a href="javascript:0" class="text-center  btn-style-three order-btn">Order</a>
                                             </div>
                                         </div>
                                     </div>
@@ -58,17 +58,17 @@
                             </div>
                         </div>
                        <!-- Post Share Options -->
-						<div class="styled-pagination text-center">
-							<ul class="clearfix">
-								<li class="prev"><a href="#"><span class="fa fa-angle-left"></span> </a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li class="active"><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li class="next"><a href="#"><span class="fa fa-angle-right"></span> </a></li>
-							</ul>
-						</div>
+{{--						<div class="styled-pagination text-center">--}}
+{{--							<ul class="clearfix">--}}
+{{--								<li class="prev"><a href="#"><span class="fa fa-angle-left"></span> </a></li>--}}
+{{--								<li><a href="#">1</a></li>--}}
+{{--								<li><a href="#">2</a></li>--}}
+{{--								<li class="active"><a href="#">3</a></li>--}}
+{{--								<li><a href="#">4</a></li>--}}
+{{--								<li><a href="#">5</a></li>--}}
+{{--								<li class="next"><a href="#"><span class="fa fa-angle-right"></span> </a></li>--}}
+{{--							</ul>--}}
+{{--						</div>--}}
 
                     </div>
                 </div>
@@ -76,6 +76,12 @@
 		</div>
 	</div>
 
+    <script>
+        $('.order-btn').click(function (){
+            $('#order-modal').modal('show');
+            $('#message-body').val("I need "+$(this).parentsUntil('.inner-box').find('.product-name').text()+" product. Please contact me.");
+        });
+    </script>
 
     <!-- End Contact Page Section -->
     <!-- Contact Info Section -->

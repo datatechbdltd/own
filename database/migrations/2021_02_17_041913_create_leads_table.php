@@ -33,6 +33,7 @@ class CreateLeadsTable extends Migration
             $table->string('company_website')->nullable();
             $table->string('company_facebook_page')->nullable();
             $table->longText('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

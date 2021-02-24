@@ -1,14 +1,17 @@
 <section class="banner-section-three">
     <!-- Social Box -->
     <ul class="social-box">
-        @foreach($social_link as $link)
-            <li><a target="_blank" href="{{ $link->url }}" @if($link->icon) class="{!! $link->icon !!}" @else class="fa fa-arrow-circle-down" @endif> </a></li>
-        @endforeach
+            <li><a target="_blank" href="{{ get_static_option('company_facebook_link') }}" class="fa fa-facebook-f"></a></li>
+            <li><a target="_blank" href="{{ get_static_option('company_linkedin_link') }}" class="fa fa-linkedin"></a></li>
+            <li><a target="_blank" href="{{ get_static_option('company_twitter_link') }}" class="fa fa-twitter"></a></li>
+            <li><a target="_blank" href="{{ get_static_option('company_github_link') }}" class="fa fa-github"></a></li>
+            <li><a target="_blank" href="{{ get_static_option('company_instagram_link') }}" class="fa fa-instagram"></a></li>
+            <li><a target="_blank" href="{{ get_static_option('company_whatsapp_link') }}" class="fa fa-whatsapp"></a></li>
     </ul>
 
-    <div class="pattern-layer-one" style="background-image: url(images/icons/pattern-1.png)"></div>
-    <div class="patern-layer-two" style="background-image: url(images/background/pattern-1.png)"></div>
-    <div class="pattern-layer-three" style="background-image: url(images/background/pattern-5.png)"></div>
+    <div class="pattern-layer-one" style="background-image: url({{ asset('assets/frontend/images/icons/pattern-1.png') }})"></div>
+    <div class="patern-layer-two" style="background-image: url({{ asset('assets/frontend/images/background/pattern-1.png') }})"></div>
+    <div class="pattern-layer-three" style="background-image: url({{ asset('assets/frontend/images/background/pattern-5.png') }})"></div>
     <div class="main-slider-carousel owl-carousel owl-theme">
         @foreach($webiste_banners as $banner)
             <div class="slide">

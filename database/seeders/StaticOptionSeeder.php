@@ -16,6 +16,16 @@ class StaticOptionSeeder extends Seeder
         set_static_option('reporting_email', 'datatechbdltd@gmail.com');
         set_static_option('reporting_phone', '01304734623');
 
+        set_static_option('company_facebook_link', 'facebook.com');
+        set_static_option('company_linkedin_link', 'linkedin.com');
+        set_static_option('company_twitter_link', 'twitter.com');
+        set_static_option('company_github_link', 'github.com');
+        set_static_option('company_instagram_link', 'instagram.com');
+        set_static_option('company_whatsapp_link', 'whatsapp.com');
+
+        set_static_option('call_to_action', 'MORE WITH US');
+        set_static_option('call_to_action_highlight', 'You Want to Showcase Your Busniess');
+
         set_static_option('company_name', 'DataTech Bd');
         set_static_option('company_motto', 'We make your desired');
         set_static_option('company_email', 'info@datatechbd.com');
@@ -26,6 +36,7 @@ class StaticOptionSeeder extends Seeder
         set_static_option('website_footer_credit', 'DataTech bd');
 
         set_static_option('website_logo', null);
+        set_static_option('website_favicon', null);
 
         set_static_option('level_title', 'Take a Business to Next Level!');
         set_static_option('level_video_link', 'https://www.youtube.com/watch?v=kxPCFljwJws');
@@ -64,6 +75,9 @@ producing exceptional SEO for business.');
         set_static_option('team_description', 'If we had a ‘secret sauce’ it would be our awesome people.We have only professional team!');
 
 
+
+        set_static_option('footer_text', 'Our approach to SEO is uniquely built around');
+        set_static_option('subscribe_text', 'Gur future updates! Get Subscribed now!');
 
         set_static_option('custom_website_head_script', '');
         set_static_option('custom_website_foot_script', '');

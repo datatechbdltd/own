@@ -7,8 +7,8 @@
     <div class="icon-layer-four" style="background-image: url({{ asset('assets/frontend/images/icons/icon-1.png') }})"></div>
 
     <div class="auto-container">
-        <div class="title">MORE WITH US</div>
-        <h2>You Want to Showcase Your Busniess <br> in Top Join With Us</h2>
-        <a href="about.html" class="theme-btn btn-style-three"><span class="txt">Join Us</span></a>
+        <div class="title">{{ get_static_option('call_to_action') }}</div>
+        <h2>{{ get_static_option('call_to_action_highlight') }}</h2>
+        <a href="{{ route('frontend.contactUs') }}" class="theme-btn btn-style-three"><span class="txt">Join Us</span></a>
     </div>
 </section>

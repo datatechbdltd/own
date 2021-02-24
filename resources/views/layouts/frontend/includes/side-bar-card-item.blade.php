@@ -17,25 +17,25 @@
                         </div>
                         <div class="content-box">
                             <h2>About Us</h2>
-                            <p class="text">DataTech BD Ltd. is a Bangladeshi software development company.</p>
-                            <a href="#" class="theme-btn btn-style-two"><span class="txt">Consultation</span></a>
+                            <p class="text">{{ get_static_option('footer_text') }}</p>
+                            <a href="{{ route('frontend.contactUs') }}" class="theme-btn btn-style-two"><span class="txt">Contact us</span></a>
                         </div>
                         <div class="contact-info">
                             <h2>Contact Info</h2>
                             <ul class="list-style-one">
-                                <li><span class="icon fa fa-location-arrow"></span>Shawpno Neer, 272/Kha/3/F, West Agargaon, She-E-Bangla Nagar, Dhaka-1207</li>
-                                <li><span class="icon fa fa-phone"></span>+880 1304-734623</li>
-                                <li><span class="icon fa fa-envelope"></span>info@datatechbd.com</li>
+                                <li><span class="icon fa fa-location-arrow"></span>{{ get_static_option('company_address') }}</li>
+                                <li><span class="icon fa fa-phone"></span>{{ get_static_option('company_phone') }}</li>
+                                <li><span class="icon fa fa-envelope"></span>{{ get_static_option('company_email') }}</li>
                                 <li><span class="icon fa fa-clock-o"></span>24/7 for support</li>
                             </ul>
                         </div>
                         <!-- Social Box -->
                         <ul class="social-box">
-                            <li class="facebook"><a href="#" class="fa fa-facebook-f"></a></li>
-                            <li class="twitter"><a href="#" class="fa fa-twitter"></a></li>
-                            <li class="linkedin"><a href="#" class="fa fa-linkedin"></a></li>
-                            <li class="instagram"><a href="#" class="fa fa-instagram"></a></li>
-                            <li class="youtube"><a href="#" class="fa fa-youtube"></a></li>
+                            <li class="facebook"><a target="_blank" href="{{ get_static_option('company_facebook_link') }}" class="fa fa-facebook-f"></a></li>
+                            <li class="linkedin"><a target="_blank" href="{{ get_static_option('company_linkedin_link') }}" class="fa fa-linkedin"></a></li>
+                            <li class="twitter"><a target="_blank" href="{{ get_static_option('company_twitter_link') }}" class="fa fa-twitter"></a></li>
+                            <li class="github"><a target="_blank" href="{{ get_static_option('company_github_link') }}" class="fa fa-github"></a></li>
+                            <li class="whatsapp"><a target="_blank" href="{{ get_static_option('company_whatsapp_link') }}" class="fa fa-whatsapp"></a></li>
                         </ul>
                     </div>
                 </div>
