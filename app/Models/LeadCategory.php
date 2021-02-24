@@ -17,4 +17,14 @@ class LeadCategory extends Model
     public function leads(){
         return $this->hasMany(Lead::class, 'category_id','id');
     }
+
+    //smsLeads
+    public function smsLeads(){
+        return $this->hasMany(Lead::class, 'category_id','id')->where('phone', '!=', null);
+    }
+
+    //emailLeads
+    public function emailLeads(){
+        return $this->hasMany(Lead::class, 'category_id','id')->where('email', '!=', null);
+    }
 }
