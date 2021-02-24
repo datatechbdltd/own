@@ -19,8 +19,13 @@ class EmailCampaignController extends Controller
         if ($request->ajax()){
             $data = emailCampaign::orderBy('id', 'desc')->get();
             return DataTables::of($data)
+                // ->addColumn('category', function($data) {
+                //     return $data->leadCategory->name ?? '-';
+                // })
                 ->addColumn('category', function($data) {
-                    return $data->leadCategory->name ?? '-';
+                    $text =  $data->leadCategory->name ?? '-';
+                   $text .=  '('.$data->leadCategory->emailLeads->count().')' ?? '-';
+                    return $text;
                 })
                 ->addColumn('auto_run_at', function($data) {
                     return $data->auto_run_at ?? '-';

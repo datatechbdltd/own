@@ -22,12 +22,16 @@ class LeadController extends Controller
                 ->addColumn('category', function($data) {
                     return $data->category->name ?? '-';
                 })
+                ->addColumn('All', function($data) {
+                    $html = '<input type="checkbox" class="transaction-check-box filled-in chk-col-danger demo-checkbox" name="id[]" id="id-'.$data->id.'" value="'.$data->id.'"><span class="badge badge-pill badge-success shadow-warning m-1">'. $data->id.'</span>';
+                    return $html;
+                })
                 ->addColumn('action', function($data) {
                     return '<a href="'.route('lead.lead.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
                            <button class="btn btn-info" onclick="change_category(this)" value="'.$data->id.'">Category</button>
                             <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('lead.lead.destroy', $data).'">DELETE</button>';
                 })
-                ->rawColumns(['action', 'category'])
+                ->rawColumns(['All','action', 'category'])
                 ->make(true);
         }else{
             return view('backend.lead.index');
@@ -179,5 +183,28 @@ class LeadController extends Controller
         }
 
 
+    }
+
+    // lead Category Update
+    public function leadCategoryUpdate(Request $request){
+        if (!$request->input(['leads'])){
+            return response()->json(['message'=>'Please select Lead.', 'type'=>'warning']);
+        }
+        $is_lead_any_one =null;
+        foreach($request->input(['leads']) as $item){
+            //Database
+            $lead = Lead::find($item);
+            if ($lead){
+                $lead->category_id = $request->category_id;
+                $lead->save();
+                $is_lead_any_one = 'Yes';
+            }else{
+                continue;
+            }
+        }
+        if ($is_lead_any_one != null)
+            return response()->json(['message'=>'Successfully updated.', 'type'=>'success']);
+        else
+            return response()->json(['message'=>'Please select Lead.', 'type'=>'warning']);
     }
 }

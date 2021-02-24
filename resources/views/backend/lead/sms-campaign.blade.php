@@ -59,7 +59,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                        {{-- impored by ajax --}}
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -133,12 +133,58 @@
             $('#modal').modal('show');
         });
 
-        function edit(sms_campaign_id){
-            alert($(this).val())
-            $('.submit-btn').val('update');
-            //$('#auto_run_at').val(auto_run_at)
-            $('#hidden-id').val(sms_campaign_id)
-            $('#modal').modal('show');
+        // send function
+        function send_function(sms_campaign_id){
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, send !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        method: 'GET',
+                        url: "/campaign/run-sms-campaign/"+sms_campaign_id,
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+
+                        dataType: 'JSON',
+                        beforeSend: function (){
+                            $(".selected-lead-category-change").prop("disabled",true);
+                        },
+                        complete: function (){
+                            $(".selected-lead-category-change").prop("disabled",false);
+                        },
+                        success: function (response) {
+                            Swal.fire(
+                                'Campaign Report !',
+                                response.message,
+                                'success'
+                            )
+                        },
+                        error: function (xhr) {
+                            var errorMessage = '<div class="card bg-danger">\n' +
+                                '                        <div class="card-body text-center p-5">\n' +
+                                '                            <span class="text-white">';
+                            $.each(xhr.responseJSON.errors, function(key,value) {
+                                errorMessage +=(''+value+'<br>');
+                            });
+                            errorMessage +='</span>\n' +
+                                '                        </div>\n' +
+                                '                    </div>';
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                footer: errorMessage
+                            })
+                        },
+                    })
+                }
+            })
         };
 
         function sendMessage(sms_campaign_id){

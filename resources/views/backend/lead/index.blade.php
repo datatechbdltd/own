@@ -49,7 +49,7 @@
                             <table id="datatable" class="display table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>All</th>
                                     <th>Category</th>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -59,11 +59,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                    {{-- data imported by ajax --}}
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>#</th>
+                                    <th>All</th>
                                     <th>Category</th>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -77,6 +77,12 @@
                 </div>
             </div>
             <!-- End col -->
+                @foreach (lead_categories() as $category)
+                <div class="col-lg-4">
+                    <button type="button" class="btn btn-warning btn-lg btn-block selected-lead-category-change" value="{{  $category->id }}">{{  $category->name }}</button>
+                </div>
+                @endforeach
+
         </div>
         <!-- End row -->
     </div>
@@ -109,6 +115,75 @@
 @endsection
 @push('script')
     <script>
+        $('.selected-lead-category-change').click(function (){
+            var category_id = $(this).val();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, change category !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var ids = []
+                    var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+                    for (var i = 0; i < checkboxes.length; i++) {
+                        if (checkboxes[i].value != 'null'){
+                            ids.push(checkboxes[i].value)
+                        }
+                    }
+                    $.ajax({
+                        method: 'POST',
+                        url: "{{ route('lead.leadCategoryUpdate') }}",
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        data: { leads: ids, category_id :category_id},
+                        dataType: 'JSON',
+                        beforeSend: function (){
+                            $(".selected-lead-category-change").prop("disabled",true);
+                        },
+                        complete: function (){
+                            $(".selected-lead-category-change").prop("disabled",false);
+                        },
+                        success: function (response) {
+                            if (response.type == 'success'){
+                                Swal.fire(
+                                    'Updated!',
+                                    'Your file has been updated.',
+                                    'success'
+                                ), setTimeout(function() {
+                                    //your code to be executed after 1 second
+                                    location.reload();
+                                }, 500); //1 second
+                            }else{
+                                Swal.fire(
+                                    'Updated!',
+                                    response.message,
+                                    response.type
+                                )
+                            }
+                        },
+                        error: function (xhr) {
+                            var errorMessage = '<div class="card bg-danger">\n' +
+                                '                        <div class="card-body text-center p-5">\n' +
+                                '                            <span class="text-white">';
+                            $.each(xhr.responseJSON.errors, function(key,value) {
+                                errorMessage +=(''+value+'<br>');
+                            });
+                            errorMessage +='</span>\n' +
+                                '                        </div>\n' +
+                                '                    </div>';
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                footer: errorMessage
+                            })
+                        },
+                    })
+                }
+            })
+        });
         $('.submit-btn').click(function() {
             $.ajax({
                 url: 'lead/lead/category/change',
@@ -178,7 +253,7 @@
                 ajax: '/lead/getByCategory/{!! $lead_category_id !!}',
                 @endif
                 columns: [
-                    { data: 'id', name: 'id' },
+                    { data: 'All', name: 'All' },
                     { data: 'category', name: 'category' },
                     { data: 'name', name: 'name' },
                     { data: 'email', name: 'email' },

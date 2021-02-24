@@ -229,7 +229,7 @@
                             <input type="text" name="password" placeholder="Password" required>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="theme-btn btn-style-four"><span class="txt">Send Message</span></button>
+                            <button type="submit" class="theme-btn btn-style-four"><span class="txt">Login</span></button>
                         </div>
                     </form>
                 </div>

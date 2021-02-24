@@ -20,12 +20,14 @@ class SmsCampaignController extends Controller
             $data = smsCampaign::orderBy('id', 'desc')->get();
             return DataTables::of($data)
                 ->addColumn('category', function($data) {
-                    return $data->leadCategory->name ?? '-';
+                    $text =  $data->leadCategory->name ?? '-';
+                    $text .=  '('.$data->leadCategory->smsLeads->count().')' ?? '-';
+                    return $text;
                 })
                 ->addColumn('auto_run_at', function($data) {
                     return $data->auto_run_at ?? '-';
                 }) ->addColumn('action', function($data) {
-                    return '<a href="'.route('campaign.runSmsCampaign', $data).'" class="btn btn-success mce-btn-small">SEND</a>
+                    return '<button onclick="send_function('.$data->id.')"  class="btn btn-success ">SEND</button>
                             <a href="'.route('campaign.smsCampaign.edit', $data).'" class="btn btn-warning mce-btn-small">EDIT</a>
                             <button class="btn btn-danger mce-btn-small" onclick="delete_function(this)" value="'.route('campaign.smsCampaign.destroy', $data).'">DELETE</button>';
                 })
@@ -158,6 +160,9 @@ class SmsCampaignController extends Controller
     }
 
     public function runSmsCampaign($sms_campaign_id){
-        return back()->withSuccess(send_sms_from_campaign(smsCampaign::find($sms_campaign_id)));
+       $message = send_sms_from_campaign(smsCampaign::find($sms_campaign_id));
+       return response()->json([
+        'message' => $message ?? 'Some wrong',
+    ]);
     }
 }
