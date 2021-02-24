@@ -22,7 +22,7 @@
                         <div class="content-column col-lg-6 col-md-12 col-sm-12">
                             <div class="inner-column">
                                 <div class="title">{{ $banner->title }}</div>
-                                <h1>Rank Your Local <br>{{ $banner->highlight }}</h1>
+                                <h1>{{ $banner->highlight }}</h1>
                                 <div class="text">{{ $banner->description }}</div>
                                 <div class="btns-box">
                                     <a target="_blank" href="{{ $banner->btn_url }}" class="theme-btn btn-style-one"><span class="txt">Start Now</span></a>
