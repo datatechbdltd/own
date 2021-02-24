@@ -111,11 +111,11 @@
                         </div>
                         <div class="form-group col-12">
                             <label>Long Description <span class="text-danger">*</span></label>
-                            <textarea id="tinymce-example" name="long_description">{{ $websiteProduct->long_description }}</textarea>
+                            <textarea id="tinymce-example" name="long_description">{!! $websiteProduct->long_description !!}</textarea>
                         </div>
                         <div class="form-group col-12">
                             <label>Agreement</label>
-                            <textarea id="tinymce-example" name="agreement">{{ $websiteProduct->agreement }}</textarea>
+                            <textarea id="tinymce-example" name="agreement">{!! $websiteProduct->agreement !!}</textarea>
                         </div>
                         <div class="form-group col-12">
                             <button type="submit" class="btn btn-success mr-1 col-12">Update now</button>

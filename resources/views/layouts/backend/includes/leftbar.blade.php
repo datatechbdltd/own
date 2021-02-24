@@ -37,6 +37,11 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="{{ route('userToAdminContactList') }}">
+                      <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Website contact</span>
+                    </a>
+                </li>
+                <li>
                     <a href="javaScript:void();">
                         <img src="assets/panel/vertical/images/svg-icon/layouts.svg" class="img-fluid" alt="layouts"><span>Website</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
