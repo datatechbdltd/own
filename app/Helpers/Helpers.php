@@ -106,7 +106,7 @@ if (!function_exists('random_code')){
     function send_sms_from_campaign(smsCampaign $smsCampaign){
         $success = 0;
         $failed= 0;
-        foreach ($smsCampaign->leadCategory->leads as $user){
+        foreach ($smsCampaign->leadCategory->smsLeads as $user){
             if (send_message($user->phone, $smsCampaign->message)){
                 $success ++;
             }else{
@@ -123,7 +123,7 @@ if (!function_exists('random_code')){
         $success = 0;
         $failed= 0;
         $error = '';
-        foreach ($emailCampaign->leadCategory->leads as $user){
+        foreach ($emailCampaign->leadCategory->emailLeads as $user){
             if (send_email($user->email, $emailCampaign) == true){
                 $success ++;
             }else{
