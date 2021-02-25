@@ -122,8 +122,11 @@ if (!function_exists('random_code')){
                  "messageid"=> "0",
             ],
         ]);
-        $smsCampaign->repeat++;
-        $smsCampaign->save();
+
+        if ($response->getStatusCode() === "200"){
+            $smsCampaign->repeat++;
+            $smsCampaign->save();
+        }
         return '#campaign ID:'.$smsCampaign->id.' Response: '.$response->getBody();
     }
 
