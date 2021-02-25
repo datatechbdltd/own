@@ -21,17 +21,17 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-
-        //Page speed
-        \RenatoMarinho\LaravelPageSpeed\Middleware\InlineCss::class,
-        \RenatoMarinho\LaravelPageSpeed\Middleware\ElideAttributes::class,
-        \RenatoMarinho\LaravelPageSpeed\Middleware\InsertDNSPrefetch::class,
-        \RenatoMarinho\LaravelPageSpeed\Middleware\RemoveComments::class,
-        //\RenatoMarinho\LaravelPageSpeed\Middleware\TrimUrls::class,
-        //\RenatoMarinho\LaravelPageSpeed\Middleware\RemoveQuotes::class,
-        \RenatoMarinho\LaravelPageSpeed\Middleware\CollapseWhitespace::class, // Note: This middleware invokes "RemoveComments::class" before it runs.
-        \RenatoMarinho\LaravelPageSpeed\Middleware\DeferJavascript::class,
-        //end page speed
+//
+//        //Page speed
+//        \RenatoMarinho\LaravelPageSpeed\Middleware\InlineCss::class,
+//        \RenatoMarinho\LaravelPageSpeed\Middleware\ElideAttributes::class,
+//        \RenatoMarinho\LaravelPageSpeed\Middleware\InsertDNSPrefetch::class,
+//        \RenatoMarinho\LaravelPageSpeed\Middleware\RemoveComments::class,
+//        //\RenatoMarinho\LaravelPageSpeed\Middleware\TrimUrls::class,
+//        //\RenatoMarinho\LaravelPageSpeed\Middleware\RemoveQuotes::class,
+//        \RenatoMarinho\LaravelPageSpeed\Middleware\CollapseWhitespace::class, // Note: This middleware invokes "RemoveComments::class" before it runs.
+//        \RenatoMarinho\LaravelPageSpeed\Middleware\DeferJavascript::class,
+//        //end page speed
     ];
 
     /**
