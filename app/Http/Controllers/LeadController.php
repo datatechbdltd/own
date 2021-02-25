@@ -23,7 +23,7 @@ class LeadController extends Controller
                     return $data->category->name ?? '-';
                 })
                 ->addColumn('All', function($data) {
-                    $html = '<input type="checkbox" class="filled-in chk-col-danger demo-checkbox" name="check" id="id-'.$data->id.'" value="'.$data->id.'"><span class="badge badge-pill badge-success shadow-warning m-1">'. $data->id.'</span>';
+                    $html = '<input type="checkbox" class="filled-in chk-col-danger demo-checkbox" name="check" id="id-'.$data->id.'" value="'.$data->id.'"><label class="badge badge-pill badge-success shadow-warning m-1" for="id-'.$data->id.'">Select #'. $data->id.'</lecel>';
                     return $html;
                 })
                 ->addColumn('action', function($data) {
@@ -168,6 +168,10 @@ class LeadController extends Controller
 //            $data = Lead::orderBy('id', 'desc')->get();
             $data = LeadCategory::find($lead_category_id)->leads;
             return DataTables::of($data)
+                ->addColumn('All', function($data) {
+                    $html = '<input type="checkbox" class="filled-in chk-col-danger demo-checkbox" name="check" id="id-'.$data->id.'" value="'.$data->id.'"><label class="badge badge-pill badge-success shadow-warning m-1" for="id-'.$data->id.'">Select #'. $data->id.'</lecel>';
+                    return $html;
+                })
                 ->addColumn('category', function($data) {
                     return $data->category->name ?? '-';
                 })
@@ -176,7 +180,7 @@ class LeadController extends Controller
                            <button class="btn btn-info" onclick="change_category(this)" value="'.$data->id.'">Category</button>
                             <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('lead.lead.destroy', $data).'">DELETE</button>';
                 })
-                ->rawColumns(['action', 'category'])
+                ->rawColumns(['All', 'action', 'category'])
                 ->make(true);
         }else{
             return view('backend.lead.index', compact('lead_category_id'));

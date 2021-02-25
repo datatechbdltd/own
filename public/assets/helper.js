@@ -111,7 +111,7 @@
             checkbox.checked = true;
         }
     });
-    
+
     $('.un-select-all').click(function(event) {
         var checkboxes = document.querySelectorAll('input[type="checkbox"]');
         for (var checkbox of checkboxes) {
