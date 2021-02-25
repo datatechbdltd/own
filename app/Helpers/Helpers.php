@@ -102,20 +102,29 @@ if (!function_exists('random_code')){
         return Cache::has('is-online-'.$user_id);
     }
 
+
     //SMS campaign
     function send_sms_from_campaign(smsCampaign $smsCampaign){
-        $success = 0;
-        $failed= 0;
-        foreach ($smsCampaign->leadCategory->smsLeads as $user){
-            if (send_message($user->phone, $smsCampaign->message)){
-                $success ++;
-            }else{
-                $failed++;
-            }
-        }
+//        dd($smsCampaign->leadCategory->smsLeads->pluck('phone'));
+        $client = new Client(); //Http client
+        $url = "https://gpcmp.grameenphone.com/ecmapigw/webresources/ecmapigw.v2";
+        $response = $client->post($url,[
+            'headers' => ['Content-type' => 'application/json'],
+            'json' => [
+                 "username" => env('GPCMP_USERNAME'),
+                 "password" => env('GPCMP_PASSWORD'),
+                 "apicode"=> "6",
+                 "msisdn"=> $smsCampaign->leadCategory->smsLeads->pluck('phone'),
+                 "countrycode"=> "880",
+                 "cli" => env('GPCMP_MASKING'),
+                 "messagetype"=> "1",
+                 "message" => "$smsCampaign->message",
+                 "messageid"=> "0",
+            ],
+        ]);
         $smsCampaign->repeat++;
         $smsCampaign->save();
-        return '#campaign ID:'.$smsCampaign->id.' Successfully send:'.$success.' and failed:'.$failed.' out of:'.$smsCampaign->leadCategory->leads->count().' sms';
+        return '#campaign ID:'.$smsCampaign->id.' Response: '.$response->getBody();
     }
 
     //Email campaign
@@ -137,7 +146,7 @@ if (!function_exists('random_code')){
 
     //send message
     function send_message($number, $message){
-        $client = new Client();
+        $client = new Client(); //Http client
         $url = "https://gpcmp.grameenphone.com/ecmapigw/webresources/ecmapigw.v2";
         $response = $client->post($url,[
             'headers' => ['Content-type' => 'application/json'],
@@ -159,11 +168,12 @@ if (!function_exists('random_code')){
         }
         $sms_history->number = $number;
         $sms_history->message = $message;
-        if ($response->getStatusCode() == 200){
+        if ($response->getStatusCode() === "200"){
             $sms_history->save();
             return true;
         }else{
-            return false;
+            return $response->getBody();
+
         }
     }
 

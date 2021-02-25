@@ -21,13 +21,14 @@ class SmsCampaignController extends Controller
             return DataTables::of($data)
                 ->addColumn('category', function($data) {
                     $text =  $data->leadCategory->name ?? '-';
-                    $text .=  '('.$data->leadCategory->smsLeads->count().')' ?? '-';
+                    if ($data->leadCategory) // error remover, if category is not exists
+                    $text .=  '<b class="text-danger">('.$data->leadCategory->smsLeads->count().')</b>' ?? '-';
                     return $text;
                 })
                 ->addColumn('auto_run_at', function($data) {
                     return $data->auto_run_at ?? '-';
                 }) ->addColumn('action', function($data) {
-                    return '<button onclick="send_function('.$data->id.')"  class="btn btn-success ">SEND</button>
+                    return '<button onclick="send_function('.$data->id.',this)"  class="btn btn-success ">SEND</button>
                             <a href="'.route('campaign.smsCampaign.edit', $data).'" class="btn btn-warning mce-btn-small">EDIT</a>
                             <button class="btn btn-danger mce-btn-small" onclick="delete_function(this)" value="'.route('campaign.smsCampaign.destroy', $data).'">DELETE</button>';
                 })

@@ -134,8 +134,7 @@
         });
 
         // send function
-        function send_function(sms_campaign_id){
-
+        function send_function(sms_campaign_id, btn_obj){
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -146,18 +145,16 @@
                 confirmButtonText: 'Yes, send !'
             }).then((result) => {
                 if (result.isConfirmed) {
-
                     $.ajax({
                         method: 'GET',
                         url: "/campaign/run-sms-campaign/"+sms_campaign_id,
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-
                         dataType: 'JSON',
                         beforeSend: function (){
-                            $(".selected-lead-category-change").prop("disabled",true);
+                            btn_obj.disabled = true
                         },
                         complete: function (){
-                            $(".selected-lead-category-change").prop("disabled",false);
+                            btn_obj.disabled = false
                         },
                         success: function (response) {
                             Swal.fire(

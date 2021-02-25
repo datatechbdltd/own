@@ -79,10 +79,9 @@
             <!-- End col -->
                 @foreach (lead_categories() as $category)
                 <div class="col-lg-4">
-                    <button type="button" class="btn btn-warning btn-lg btn-block selected-lead-category-change" value="{{  $category->id }}">{{  $category->name }}</button>
+                    <button type="button" class="btn btn-warning btn-lg btn-block selected-lead-category-change" value="{{  $category->id }}">{{  $category->name }} <b class="text-danger">({{  $category->leads->count() }})</b></button>
                 </div>
                 @endforeach
-
         </div>
         <!-- End row -->
     </div>
