@@ -13,6 +13,8 @@ class StaticOptionSeeder extends Seeder
      */
     public function run()
     {
+        set_static_option('frontend_style', 'Second Style');// Default Style | Second Style
+
         set_static_option('reporting_email', 'datatechbdltd@gmail.com');
         set_static_option('reporting_phone', '01304734623');
 

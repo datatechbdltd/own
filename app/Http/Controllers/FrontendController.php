@@ -30,8 +30,11 @@ class FrontendController extends Controller
         $website_seos = WebsiteSeo::where('is_active', true)->orderBy('id','desc')->get();
         $website_services = WebsiteService::where('is_active', true)->orderBy('id','desc')->limit(6)->get();
         $website_teams = WebsiteTeam::where('status', true)->orderBy('serial','asc')->get();
-
-        return view('frontend.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams'));
+        if (get_static_option('frontend_style') == 'Second Style'){
+            return view('frontend2.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams'));
+        }else{
+            return view('frontend.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams'));
+        }
     }
     // all services pages
     public function servicesPage(){
