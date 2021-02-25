@@ -24,7 +24,7 @@ class EmailCampaignController extends Controller
                 // })
                 ->addColumn('category', function($data) {
                     $text =  $data->leadCategory->name ?? '-';
-                    if ($data->leadCategory)  if ($data->leadCategory) // error remover, if category is not exists 
+                    if ($data->leadCategory)  if ($data->leadCategory) // error remover, if category is not exists
                     $text .=  '<b class="text-danger"> ('.$data->leadCategory->emailLeads->count().')</b>' ?? '-';
                     return $text;
                 })

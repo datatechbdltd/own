@@ -102,8 +102,20 @@
                 });
             },
         });
-
-
-
     }
+
+    // Listen for click on toggle checkbox
+    $('.select-all').click(function(event) {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        for (var checkbox of checkboxes) {
+            checkbox.checked = true;
+        }
+    });
+    
+    $('.un-select-all').click(function(event) {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        for (var checkbox of checkboxes) {
+            checkbox.checked = false;
+        }
+    });
 

@@ -23,7 +23,7 @@ class LeadController extends Controller
                     return $data->category->name ?? '-';
                 })
                 ->addColumn('All', function($data) {
-                    $html = '<input type="checkbox" class="transaction-check-box filled-in chk-col-danger demo-checkbox" name="id[]" id="id-'.$data->id.'" value="'.$data->id.'"><span class="badge badge-pill badge-success shadow-warning m-1">'. $data->id.'</span>';
+                    $html = '<input type="checkbox" class="filled-in chk-col-danger demo-checkbox" name="check" id="id-'.$data->id.'" value="'.$data->id.'"><span class="badge badge-pill badge-success shadow-warning m-1">'. $data->id.'</span>';
                     return $html;
                 })
                 ->addColumn('action', function($data) {

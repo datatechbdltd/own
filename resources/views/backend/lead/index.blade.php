@@ -40,11 +40,19 @@
         <div class="row">
             <!-- Start col -->
             <div class="col-lg-12">
-                <div class="card m-b-30 bg-info">
+                <div class="card m-b-30 bg-danger">
                     <div class="card-header">
                         <h5 class="card-title">Leads Table</h5>
                     </div>
                     <div class="card-body card-primary">
+                        <div class="row m-4">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-info btn-lg btn-block select-all" value="">Select all</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" class="btn btn-danger btn-lg btn-block un-select-all" value="">Un select all</button>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table id="datatable" class="display table table-striped table-bordered">
                                 <thead>
