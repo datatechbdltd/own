@@ -28,7 +28,6 @@ class LeadController extends Controller
                 })
                 ->addColumn('action', function($data) {
                     return '<a href="'.route('lead.lead.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
-                           <button class="btn btn-info" onclick="change_category(this)" value="'.$data->id.'">Category</button>
                             <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('lead.lead.destroy', $data).'">DELETE</button>';
                 })
                 ->rawColumns(['All','action', 'category'])
@@ -177,7 +176,6 @@ class LeadController extends Controller
                 })
                 ->addColumn('action', function($data) {
                     return '<a href="'.route('lead.lead.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
-                           <button class="btn btn-info" onclick="change_category(this)" value="'.$data->id.'">Category</button>
                             <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('lead.lead.destroy', $data).'">DELETE</button>';
                 })
                 ->rawColumns(['All', 'action', 'category'])
@@ -191,6 +189,9 @@ class LeadController extends Controller
 
     // lead Category Update
     public function leadCategoryUpdate(Request $request){
+        $request->validate([
+            'category_id' => 'required|exits:lead_categories,id',
+        ]);
         if (!$request->input(['leads'])){
             return response()->json(['message'=>'Please select Lead.', 'type'=>'warning']);
         }
@@ -210,5 +211,31 @@ class LeadController extends Controller
             return response()->json(['message'=>'Successfully updated.', 'type'=>'success']);
         else
             return response()->json(['message'=>'Please select Lead.', 'type'=>'warning']);
+    }
+
+    // lead Category add with leads
+    public function leadCategoryAddWithLeads(Request $request){
+        $request->validate([
+           'category' => 'required|string|unique:lead_categories,name',
+        ]);
+       $category = new LeadCategory();
+        $category->name = $request->category;
+        $category->save();
+        $is_lead_any_one =null;
+        foreach($request->input(['leads']) as $item){
+            //Database
+            $lead = Lead::find($item);
+            if ($lead){
+                $lead->category_id = $category->id;
+                $lead->save();
+                $is_lead_any_one = 'Yes';
+            }else{
+                continue;
+            }
+        }
+        if ($is_lead_any_one != null)
+            return response()->json(['message'=>'Successfully create and updated.', 'type'=>'success']);
+        else
+            return response()->json(['message'=>'Category created without lead.', 'type'=>'warning']);
     }
 }

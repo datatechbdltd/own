@@ -66,7 +66,6 @@
                                     <th>Repeat</th>
                                     <th>Category</th>
                                     <th>Auto run at</th>
-
                                 </tr>
                                 </tfoot>
                             </table>
