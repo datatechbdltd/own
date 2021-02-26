@@ -13,7 +13,7 @@
                         <div class="footer-column col-lg-7 col-md-6 col-sm-12">
                             <div class="footer-widget logo-widget">
                                 <div class="logo">
-                                    <a href="{{ url('/') }}"><img src="{{ get_static_option('webiste_logo') }}" alt="Logo" /></a>
+                                    <a href="{{ url('/') }}"><img src="{{ get_static_option('website_logo') }}" alt="Logo" /></a>
                                 </div>
                                 <div class="text">{{ get_static_option('footer_text') }}</div>
                                 <!-- Social Box -->
