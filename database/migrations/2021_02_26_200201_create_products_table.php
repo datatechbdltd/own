@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOfflinePaymentMethodsTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateOfflinePaymentMethodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('offline_payment_methods', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->text('short_description')->nullable();
+            $table->longText('long_description')->nullable();
+            $table->longText('agreement')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateOfflinePaymentMethodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offline_payment_methods');
+        Schema::dropIfExists('products');
     }
 }

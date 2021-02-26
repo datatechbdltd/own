@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExpenceCategoriesTable extends Migration
+class CreateServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateExpenceCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('expence_categories', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_active')->default(1);
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->text('short_description')->nullable();
+            $table->longText('long_description')->nullable();
+            $table->longText('agreement')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateExpenceCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expence_categories');
+        Schema::dropIfExists('services');
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expence;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
-class ExpenceController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ExpenceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Expence  $expence
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Expence $expence)
+    public function show(Service $service)
     {
         //
     }
@@ -52,10 +52,10 @@ class ExpenceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Expence  $expence
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Expence $expence)
+    public function edit(Service $service)
     {
         //
     }
@@ -64,10 +64,10 @@ class ExpenceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Expence  $expence
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expence $expence)
+    public function update(Request $request, Service $service)
     {
         //
     }
@@ -75,10 +75,10 @@ class ExpenceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Expence  $expence
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Expence $expence)
+    public function destroy(Service $service)
     {
         //
     }

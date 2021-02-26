@@ -3,7 +3,11 @@
 use App\Http\Controllers\CronJobController;
 use App\Http\Controllers\CustomPageController;
 use App\Http\Controllers\EmailCampaignController;
+use App\Http\Controllers\ExpenseCategoryController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\IncomeCategoryController;
+use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\LeadCategoryController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LeadDistrictController;
@@ -118,6 +122,12 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::post('sms', [CommunicationController::class, 'sendSms'])->name('sendSms');
         Route::get('email', [CommunicationController::class, 'getEmailPage'])->name('getEmailSenderPage');
         Route::post('email', [CommunicationController::class, 'sendEmail'])->name('sendEmail');
+    });
+    Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
+        Route::resource('incomeCategory', IncomeCategoryController::class);
+        Route::resource('income', IncomeController::class);
+        Route::resource('expenseCategory', ExpenseCategoryController::class);
+        Route::resource('expense', ExpenseController::class);
     });
 });
 

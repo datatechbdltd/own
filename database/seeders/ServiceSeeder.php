@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\OfflinePaymentMethod;
+use App\Models\Service;
 use Illuminate\Database\Seeder;
 
-class OfflinePaymentMethodSeeder extends Seeder
+class ServiceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class OfflinePaymentMethodSeeder extends Seeder
      */
     public function run()
     {
-        OfflinePaymentMethod::factory()->count(3)->create();
+        Service::factory()->count(3)->create();
     }
 }

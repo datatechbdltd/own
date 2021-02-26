@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\OfflinePaymentMethod;
+use App\Models\Expense;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class OfflinePaymentMethodFactory extends Factory
+class ExpenseFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = OfflinePaymentMethod::class;
+    protected $model = Expense::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class OfflinePaymentMethodFactory extends Factory
     public function definition()
     {
         return [
-            'name'     =>  $this->faker->name(),
+            //
         ];
     }
 }

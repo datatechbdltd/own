@@ -27,19 +27,31 @@
         <div class="navigationbar">
             <ul class="vertical-menu">
                 <li class="vertical-header">Main</li>
+                {{--Website message--}}
+                <li>
+                    <a href="{{ route('userToAdminContactList') }}">
+                      <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Website contact</span>
+                    </a>
+                </li>
+                {{--Communication--}}
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Communication</span><i class="feather icon-chevron-right pull-right"></i>
+                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Communication</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{ route('communication.getSmsSenderPage') }}"><i class="mdi mdi-circle"></i>SMS</a></li>
                         <li><a href="{{ route('communication.getEmailSenderPage') }}"><i class="mdi mdi-circle"></i>Email</a></li>
                     </ul>
                 </li>
+                {{--Account--}}
                 <li>
-                    <a href="{{ route('userToAdminContactList') }}">
-                      <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Website contact</span>
+                    <a href="javaScript:void();">
+                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Account</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('account.income.index') }}"><i class="mdi mdi-circle"></i>Income</a></li>
+                        <li><a href="{{ route('account.expense.index') }}"><i class="mdi mdi-circle"></i>Expense</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="javaScript:void();">

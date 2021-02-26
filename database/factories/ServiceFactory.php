@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\ExpenceCategory;
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ExpenceCategoryFactory extends Factory
+class ServiceFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = ExpenceCategory::class;
+    protected $model = Service::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class ExpenceCategoryFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'     =>  $this->faker->name(),
         ];
     }
 }
