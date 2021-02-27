@@ -108,13 +108,12 @@
                 <table>
                     <tr>
                         <td class="title">
-                            <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:300px;">
+                            <img src="{{ get_static_option('website_logo') }}" style="width:100%; max-width:300px;">
                         </td>
 
                         <td>
-                            Invoice #: 123<br>
-                            Created: January 1, 2015<br>
-                            Due: February 1, 2015
+                            Invoice #: {{ $income->id }}<br>
+                            Created: {{ $income->created_at->format('d/M/Y') }}<br>
                         </td>
                     </tr>
                 </table>
@@ -126,15 +125,18 @@
                 <table>
                     <tr>
                         <td>
-                            Sparksuite, Inc.<br>
-                            12345 Sunny Road<br>
-                            Sunnyville, CA 12345
+                            {{ config('app.name') }}<br>
+                            {{ get_static_option('company_phone') }}<br>
+                            {{ get_static_option('company_email') }}<br>
+                            {{ get_static_option('company_address') }}<br>
+                            {{ get_static_option('company_address_district_country') }}
                         </td>
 
                         <td>
-                            Acme Corp.<br>
-                            John Doe<br>
-                            john@example.com
+                            {{ $income->customer->name }}<br>
+                            {{ $income->customer->email }}<br>
+                            {{ $income->customer->phone }}<br>
+
                         </td>
                     </tr>
                 </table>
@@ -149,8 +151,8 @@
     </table>
 
     <table>
-        <tr>
-            <td>
+        <tr >
+            <td style="height: 420px;">
                 {!! $income->description !!}
             </td>
         </tr>
@@ -160,7 +162,7 @@
     <table>
         <tr class="heading">
             <td>
-                Item
+                #
             </td>
 
             <td>
@@ -170,31 +172,31 @@
 
         <tr class="item">
             <td>
-                Website design
+                Total
             </td>
 
             <td>
-                $300.00
+                {{ $income->price }}
             </td>
         </tr>
 
         <tr class="item">
             <td>
-                Hosting (3 months)
+               Paid amount
             </td>
 
             <td>
-                $75.00
+                {{ $income->payments->sum('amount') }}
             </td>
         </tr>
 
         <tr class="item last">
             <td>
-                Domain name (1 year)
+                Due amount
             </td>
 
             <td>
-                $10.00
+                {{ $income->price - $income->payments->sum('amount') }}
             </td>
         </tr>
 
@@ -202,7 +204,11 @@
             <td></td>
 
             <td>
-                Total: $385.00
+                @if($income->price - $income->payments->sum('amount') > 0)
+                DUE
+                @else
+                PAID
+                @endif
             </td>
         </tr>
     </table>
