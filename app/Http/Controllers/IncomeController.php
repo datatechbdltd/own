@@ -38,7 +38,7 @@ class IncomeController extends Controller
                 })->addColumn('create', function($data) {
                     return $data->created_at->format('d/M/Y');
                 })->addColumn('create', function($data) {
-                    return 'Action';
+                    return '<a href="'.route('pdf.incomeStream', $data).'" class="btn btn-primary" target="_blank">Stream</a>';
                 })
                 ->rawColumns(['payment','customer', 'service_product', 'create', 'action'])
                 ->make(true);

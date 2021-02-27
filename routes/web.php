@@ -13,6 +13,7 @@ use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LeadDistrictController;
 use App\Http\Controllers\LeadServiceController;
 use App\Http\Controllers\LeadThanaController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CommunicationController;
 use App\Http\Controllers\SmsCampaignController;
@@ -128,6 +129,10 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('income', IncomeController::class);
         Route::resource('expenseCategory', ExpenseCategoryController::class);
         Route::resource('expense', ExpenseController::class);
+    });
+    Route::group(['prefix' => 'pdf', 'as' => 'pdf.'], function () {
+        Route::get('income-download/{income}', [PdfController::class,'incomeDownload']);
+        Route::get('income-stream/{income}', [PdfController::class,'incomeStream'])->name('incomeStream');
     });
 });
 
