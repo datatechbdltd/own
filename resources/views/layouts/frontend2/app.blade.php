@@ -15,8 +15,8 @@
 <!-- search Popup -->
 @include('layouts.frontend2.includes.search-popup')
 <!-- //. search Popup -->
-<!-- Signin Popup -->
-@include('layouts.frontend2.includes.signin-popup')
+<!-- Popup -->
+@include('layouts.frontend2.includes.popup')
 <!-- sen-user-modal -->
 <!-- //.End  Signin Popup -->
 <!-- navbar start -->

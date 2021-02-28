@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call(StaticOptionSeeder::class);
+        $this->call(RoleAndPermissionSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(WebsiteBannerSeeder::class);
         $this->call(SocialLinkSeeder::class);
@@ -24,10 +25,12 @@ class DatabaseSeeder extends Seeder
         $this->call(LeadDistrictSeeder::class);
         $this->call(LeadServiceSeeder::class);
         $this->call(LeadSeeder::class);
-        $this->call(RoleAndPermissionSeeder::class);
         $this->call(SmsCampaignSeeder::class);
-        $this->call(EmailCampaignSeeder::class);
+//        $this->call(EmailCampaignSeeder::class);
         $this->call(WebsiteTeamSeeder::class);
         $this->call(WebsiteProductSeeder::class);
+        $this->call(ServiceSeeder::class);
+        $this->call(ProductSeeder::class);
+        $this->call(OfflinePaymentMethodSeeder::class);
     }
 }

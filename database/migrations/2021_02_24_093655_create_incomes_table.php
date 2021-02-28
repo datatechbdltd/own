@@ -15,14 +15,13 @@ class CreateIncomesTable extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id');
-            $table->foreignId('payment_method_id');
-            $table->double('amount');
-            $table->text('description')->nullable();
-            $table->foreignId('customer_id')->nullable();
+            $table->foreignId('category_id')->nullable();;
+            $table->foreignId('customer_id')->nullable();;
+            $table->double('price');
+            $table->longText('description')->nullable();
             $table->foreignId('product_id')->nullable();
-            $table->foreignId('project_id')->nullable();
-            $table->foreignId('customer_group_id')->nullable();
+            $table->foreignId('service_id')->nullable();
+            $table->double('vat')->default(0)->comment('in %');
             $table->timestamps();
         });
     }

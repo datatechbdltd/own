@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
         $user->phone = '01304734623';
         $user->password = Hash::make('password');
         $user->save();
+        $user->assignRole('admin');
 
         $user = new User();
         $user->name = 'Mr. Employee';
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
         $user->phone = '01304734624';
         $user->password = Hash::make('password');
         $user->save();
+        $user->assignRole('employee');
 
         $user = new User();
         $user->name = 'Mr. Marketer';
@@ -35,6 +37,7 @@ class UserSeeder extends Seeder
         $user->phone = '01304734625';
         $user->password = Hash::make('password');
         $user->save();
+        $user->assignRole('marketer');
 
         $user = new User();
         $user->name = 'Mr. Marketer';
@@ -42,5 +45,6 @@ class UserSeeder extends Seeder
         $user->phone = '01304734626';
         $user->password = Hash::make('password');
         $user->save();
+        $user->assignRole('customer');
     }
 }

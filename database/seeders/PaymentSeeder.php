@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Payment;
 use Illuminate\Database\Seeder;
 
-class ExpenceSeeder extends Seeder
+class PaymentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +14,6 @@ class ExpenceSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Payment::factory()->count(3)->create();
     }
 }

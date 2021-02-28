@@ -184,10 +184,6 @@
             })
         };
 
-        function sendMessage(sms_campaign_id){
-           alert(sms_campaign_id);
-        };
-
         $('.submit-btn').click(function() {
             var url, type = "";
             if ($(this).val() == 'add'){
@@ -255,6 +251,7 @@
                 },
             });
         });
+
         $(function() {
             $('#datatable').DataTable({
                 responsive: true,

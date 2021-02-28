@@ -3,12 +3,17 @@
 use App\Http\Controllers\CronJobController;
 use App\Http\Controllers\CustomPageController;
 use App\Http\Controllers\EmailCampaignController;
+use App\Http\Controllers\ExpenseCategoryController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\IncomeCategoryController;
+use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\LeadCategoryController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LeadDistrictController;
 use App\Http\Controllers\LeadServiceController;
 use App\Http\Controllers\LeadThanaController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CommunicationController;
 use App\Http\Controllers\SmsCampaignController;
@@ -90,6 +95,7 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('lead', LeadController::class);
         Route::post('lead/change-phone', [LeadController::class, 'leadChangePhone'])->name('leadChangePhone');
         Route::post('lead/category/update', [LeadController::class, 'leadCategoryUpdate'])->name('leadCategoryUpdate');
+        Route::post('lead/category/add-with-lead', [LeadController::class, 'leadCategoryAddWithLeads'])->name('leadCategoryAddWithLeads');
         Route::get('getByCategory/{lead_category_id}', [LeadController::class, 'getByCategory'])->name('getByCategory');
         Route::post('lead/get/category', [LeadController::class, 'category']);
         Route::post('lead/category/change', [LeadController::class, 'categoryChange']);
@@ -118,6 +124,16 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::post('sms', [CommunicationController::class, 'sendSms'])->name('sendSms');
         Route::get('email', [CommunicationController::class, 'getEmailPage'])->name('getEmailSenderPage');
         Route::post('email', [CommunicationController::class, 'sendEmail'])->name('sendEmail');
+    });
+    Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
+        Route::resource('incomeCategory', IncomeCategoryController::class);
+        Route::resource('income', IncomeController::class);
+        Route::resource('expenseCategory', ExpenseCategoryController::class);
+        Route::resource('expense', ExpenseController::class);
+    });
+    Route::group(['prefix' => 'pdf', 'as' => 'pdf.'], function () {
+        Route::get('income-download/{income}', [PdfController::class,'incomeDownload']);
+        Route::get('income-stream/{income}', [PdfController::class,'incomeStream'])->name('incomeStream');
     });
 });
 

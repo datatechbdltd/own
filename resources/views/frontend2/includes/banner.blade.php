@@ -14,8 +14,8 @@
                                 <h2>{{ $banner->highlight }}</h2>
                                 <div class="text">{{ $banner->description }}</div>
                                 <div class="btn-wrapper animated fadeInUpBig text-left">
-                                    <a href="{!! $banner->btn_url !!}" class="btn btn-basic">Click Me</a>
-                                    <a href="{!! $banner->video_url !!}" class="video-popup mfp-iframe play-icon-pulse"><i class="fa fa-play"></i></a>
+                                    <a target="_blank" href="{!! $banner->btn_url !!}" class="btn btn-basic">Click Me</a>
+                                    <a target="_blank" href="{!! $banner->video_url !!}" class="video-popup mfp-iframe play-icon-pulse"><i class="fa fa-play"></i></a>
 
                                 </div>
                             </div>
