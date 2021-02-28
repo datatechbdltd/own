@@ -158,6 +158,7 @@
 </div>
 
 <!-- subscribe area start -->
+@include('layouts.frontend2.includes.message')
 @include('layouts.frontend2.includes.subscrible')
 <!-- subscribe area end -->
 
@@ -170,7 +171,6 @@
     <span class="back-top"><i class="fa fa-angle-up"></i></span>
 </div>
 <!-- back to top area end -->
-
 @include('layouts.frontend2.includes.foot')
 
 </body>

@@ -72,7 +72,7 @@
                         <a href="{{ route('frontend.contactUs') }}">Contact us</a>
                     </li>
                     <li>
-                        <a href="javascript:0" class="send-message-button">Send Message</a>
+                        <a href="#message-section">Send Message</a>
                     </li>
                 </ul>
             </div>

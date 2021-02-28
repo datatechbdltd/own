@@ -23,6 +23,7 @@
     $('.send-message-button').click(function (){
         $('#order-modal').modal('show');
         $('#send-message-form').trigger('reset');
+        $('#message-body').val("I need "+$(this).text()+" service. Please contact me.");
     });
 </script>
 

@@ -1,3 +1,13 @@
+<script>
+    $('.message-body').summernote({
+        placeholder: 'I need a website for my company ....',
+        tabsize: 2,
+        height: 220,
+        toolbar: [
+
+        ]
+    });
+</script>
 <!-- vendor js here -->
 <script src="{{ asset('assets/frontend2/js/vendor.js') }}"></script>
 <!--signin -->
@@ -16,13 +26,23 @@
 <script src="{{ asset('assets/frontend2/js/main.js') }}"></script>
 
 <script src="{{ asset('assets/helper.js') }}"></script>
+
 {!! get_static_option('custom_website_foot_script') !!}
 @include('sweetalert::alert')
 @stack('script')
+
+
 <script>
     $('.send-message-button').click(function (){
         $('#order-modal').modal('show');
         $('#send-message-form').trigger('reset');
+        $('.message-area').val("I need "+$(this).text()+" service. Please contact me.");
+    });
+
+    $('.send-message-button-plus').click(function (){
+        $('#order-modal').modal('show');
+        $('#send-message-form').trigger('reset');
+        $('.message-area').val("I need "+$(this).parent().find('.send-message-button').text()+" service. Please contact me.");
     });
 </script>
 
@@ -42,7 +62,8 @@
         js = d.createElement(s); js.id = id;
         js.src = 'https://connect.facebook.net/bn_IN/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 <!-- Your Chat Plugin code -->
 <div class="fb-customerchat"
@@ -50,3 +71,6 @@
      page_id="1124225807788567"
      theme_color="#7646ff">
 </div>
+
+
+

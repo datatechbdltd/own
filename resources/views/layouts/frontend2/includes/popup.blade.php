@@ -103,31 +103,32 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="default-form contact-form">
-                    <form method="post" id="send-message-form" action=" {{ route('frontend.contactUsStore') }} ">
-                        @csrf
-                        <div class="form-group">
-                            <input type="text" name="name" value="{{ old('name') }}" placeholder="Name" required>
-                        </div>
+                <form class="sen-form"  method="post" id="send-message-form" action=" {{ route('frontend.contactUsStore') }}">
+                    @csrf
+                    <p class="fieldset">
+                        <label class="image-replace" for="name">Name</label>
+                        <input class="full-width has-padding has-border" type="text" name="name" value="{{ old('name') }}" placeholder="Name" required>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace sen-email" for="email">E-mail</label>
+                        <input class="full-width has-padding has-border" type="email" name="email" value="{{ old('email') }}" placeholder="Email" required>
+                    </p>
+<p class="fieldset">
+                    <p class="fieldset">
+                        <label class="image-replace sen-phone" for="email">Phone</label>
+                        <input class="full-width has-padding has-border" type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone" required>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace" for="message">Message</label>
+                        <textarea class="full-width has-padding has-border message-area col-12" rows="7" name="message" id="" placeholder="I need a website for my company ...." required>{{ old('message') }}</textarea>
+                    </p>
 
-                        <div class="form-group">
-                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone" required>
-                        </div>
-
-                        <div class="form-group">
-                            <textarea name="message" id="message-body" placeholder="I need a website for my company ...." required>{{ old('message') }}</textarea>
-                        </div>
-
-                        <div class="form-group text-center">
-                            <button type="submit" class="theme-btn btn-style-four"><span class="txt">Send Message</span></button>
-                        </div>
-                    </form>
-                </div>
+                    <p class="fieldset">
+                        <input class="full-width has-padding" type="submit" value="Send Message">
+                    </p>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
