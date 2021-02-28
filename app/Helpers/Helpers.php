@@ -123,7 +123,7 @@ if (!function_exists('random_code')){
             ],
         ]);
 
-        if ($response->getStatusCode() === "200"){
+        if ($response->getStatusCode() == "200"){
             $smsCampaign->repeat++;
             $smsCampaign->save();
         }
@@ -171,12 +171,11 @@ if (!function_exists('random_code')){
         }
         $sms_history->number = $number;
         $sms_history->message = $message;
-        if ($response->getStatusCode() === "200"){
+        if ($response->getStatusCode() == "200"){
             $sms_history->save();
-            return true;
+            return $response->getBody();
         }else{
             return $response->getBody();
-
         }
     }
 
