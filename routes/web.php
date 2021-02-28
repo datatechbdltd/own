@@ -88,6 +88,7 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('leadService', LeadServiceController::class);
         Route::resource('leadThana', LeadThanaController::class);
         Route::resource('lead', LeadController::class);
+        Route::post('lead/change-phone', [LeadController::class, 'leadChangePhone'])->name('leadChangePhone');
         Route::post('lead/category/update', [LeadController::class, 'leadCategoryUpdate'])->name('leadCategoryUpdate');
         Route::get('getByCategory/{lead_category_id}', [LeadController::class, 'getByCategory'])->name('getByCategory');
         Route::post('lead/get/category', [LeadController::class, 'category']);

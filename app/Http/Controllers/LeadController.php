@@ -31,7 +31,10 @@ class LeadController extends Controller
                            <button class="btn btn-info" onclick="change_category(this)" value="'.$data->id.'">Category</button>
                             <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('lead.lead.destroy', $data).'">DELETE</button>';
                 })
-                ->rawColumns(['All','action', 'category'])
+                ->addColumn('phone', function($data) {
+                    return '<p onclick="SetPhone(\''.$data->id.'\',\''.$data->phone.'\')" >'.$data->phone.'</p>';
+                })
+                ->rawColumns(['All','action', 'category', 'phone'])
                 ->make(true);
         }else{
             return view('backend.lead.index');
@@ -210,5 +213,30 @@ class LeadController extends Controller
             return response()->json(['message'=>'Successfully updated.', 'type'=>'success']);
         else
             return response()->json(['message'=>'Please select Lead.', 'type'=>'warning']);
+    }
+
+    //lead Change Phone
+    public function leadChangePhone(Request $request)
+    {
+        $request->validate([
+            'phone' => 'required|string',
+            'lead' => 'required',
+        ]);
+
+        $lead = Lead::findOrFail($request->lead);
+        $lead->phone = $request->phone;
+
+        try {
+            $lead->save();
+            return response()->json([
+                'type' => 'success',
+                'message' => 'Successfully Updated !.',
+            ]);
+        }catch (\Exception $exception){
+            return response()->json([
+                'type' => 'error',
+                'message' => 'Something going wrong. ',
+            ]);
+        }
     }
 }

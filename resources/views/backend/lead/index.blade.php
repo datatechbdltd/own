@@ -119,6 +119,33 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="PhoneNumberChangeModal" tabindex="-1" role="dialog" aria-labelledby="varying-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="m-title">Change category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="phone-modal-form">
+                        <input type="hidden" id="lead_id">
+                        <div class="form-group mt-3">
+                            <label for="phone" >Phone</label>
+                            <input type="hidden" id="lead_id" name="lead_id"  class="form-control" />
+                            <input type="text" id="phone" required name="phone"  class="form-control" />
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-danger phone-submit-btn form-control">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('script')
     <script>
@@ -249,6 +276,70 @@
             });
         });
 
+        function SetPhone(lead,old_phone){
+            $('#PhoneNumberChangeModal').modal('show')
+            $('#m-title').text('Change Phone')
+            $('#phone').val(old_phone)
+            $('#lead_id').val(lead)
+        }
+
+        $('.phone-submit-btn').click(function() {
+            $.ajax({
+                url: 'lead/lead/change-phone',
+                type: 'post',
+                cache: false,
+                data:{
+                    _token:'{{ csrf_token() }}',
+                    phone: $('#phone').val(),
+                    lead:  $('#lead_id').val()
+                },
+                beforeSend: function (){
+                    $('.phone-submit-btn').prop("disabled",true);
+                },
+                complete: function (){
+                    $('.phone-submit-btn').prop("disabled",false);
+                },
+                success: function (data) {
+                    if (data.type == 'success'){
+                        $('#PhoneNumberChangeModal').modal('hide');
+                        $('#phone-modal-form').trigger("reset");
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: data.type,
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(function() {
+                            location.reload();
+                        }, 800);//
+                    }else{
+                        Swal.fire({
+                            icon: data.type,
+                            title: 'Oops...',
+                            text: data.message,
+                            footer: 'Something went wrong!'
+                        });
+                    }
+                },
+                error: function (xhr) {
+                    var errorMessage = '<div class="card bg-danger">\n' +
+                        '                        <div class="card-body text-center p-5">\n' +
+                        '                            <span class="text-white">';
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        errorMessage +=(''+value+'<br>');
+                    });
+                    errorMessage +='</span>\n' +
+                        '                        </div>\n' +
+                        '                    </div>';
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        footer: errorMessage
+                    });
+                },
+            });
+        });
         $(function() {
             $('#datatable').DataTable({
                 responsive: true,
