@@ -216,7 +216,6 @@ class LeadController extends Controller
             return response()->json(['message'=>'Please select Lead.', 'type'=>'warning']);
     }
 
-<<<<<<< HEAD
     //lead Change Phone
     public function leadChangePhone(Request $request)
     {
@@ -234,13 +233,13 @@ class LeadController extends Controller
                 'type' => 'success',
                 'message' => 'Successfully Updated !.',
             ]);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return response()->json([
                 'type' => 'error',
                 'message' => 'Something going wrong. ',
             ]);
         }
-=======
+    }
     // lead Category add with leads
     public function leadCategoryAddWithLeads(Request $request){
         $request->validate([
@@ -265,6 +264,5 @@ class LeadController extends Controller
             return response()->json(['message'=>'Successfully create and updated.', 'type'=>'success']);
         else
             return response()->json(['message'=>'Category created without lead.', 'type'=>'warning']);
->>>>>>> 0e4146198af4c621985bf4e87979c59c953075c1
     }
 }

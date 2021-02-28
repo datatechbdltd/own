@@ -109,7 +109,7 @@
         <!-- End row -->
     </div>
     <!-- End Contentbar -->
-<<<<<<< HEAD
+
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="varying-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -162,8 +162,6 @@
             </div>
         </div>
     </div>
-=======
->>>>>>> 0e4146198af4c621985bf4e87979c59c953075c1
 @endsection
 @push('script')
     <script>
