@@ -40,6 +40,13 @@
                     <form action="{{ route('setting.generalUpdate') }}" enctype="multipart/form-data" method="post" class="row">
                         @csrf
                         <div class="form-group col-md-6 col-xl-6 mt-4 border border-danger">
+                            <label>Frontend style</label>
+                            <select class="form-control"   name="frontend_style" id="frontend_style">
+                                <option @if(get_static_option('frontend_style') == 'Second Style') selected @endif value="Second Style">Second Style</option>
+                                <option @if(get_static_option('frontend_style') == 'Default Style') selected @endif value="Default Style">Default Style</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6 col-xl-6 mt-4 border border-danger">
                             <label>Reporting email <span class="text-danger">*</span></label>
                             <input type="text" name="reporting_email"  class="form-control"  value="{{ get_static_option('reporting_email') }}"/>
                         </div>

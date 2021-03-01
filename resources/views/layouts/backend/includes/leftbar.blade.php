@@ -190,6 +190,7 @@
                     </a>
                     <ul class="vertical-submenu">
                         <li><a href="{{ route('setting.getGeneralPage') }}"><i class="mdi mdi-circle"></i>General</a></li>
+                        <li><a href="{{ route('setting.getContactSettingPage') }}"><i class="mdi mdi-circle"></i>Coontact page info</a></li>
                         <li><a href="{{ route('setting.getSmtpPage') }}"><i class="mdi mdi-circle"></i>SMTP</a></li>
                         <li><a href="{{ route('setting.getSmsPage') }}"><i class="mdi mdi-circle"></i>Sms</a></li>
                         <li><a href="#"><i class="mdi mdi-circle"></i>Identity</a></li>

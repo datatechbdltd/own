@@ -21,6 +21,7 @@ class SettingController extends Controller
 
     public function generalUpdate(Request $request){
         $request->validate([
+            'frontend_style' => 'required',
             'reporting_email' => 'nullable|min:3',
             'reporting_phone' => 'nullable|min:3',
             'company_name' => 'nullable|min:3',
@@ -55,6 +56,7 @@ class SettingController extends Controller
         ]);
         try {
 
+            update_static_option('frontend_style', $request->frontend_style);
             update_static_option('reporting_email', $request->reporting_email);
             update_static_option('reporting_phone', $request->reporting_phone);
             update_static_option('footer_text', $request->footer_text);
@@ -200,5 +202,25 @@ class SettingController extends Controller
         }catch (\Exception $exception){
             return back()->withErrors('Something going wrong. '.$exception->getMessage());
         }
+    }
+
+    public function getContactSettingPage(){
+        return view('backend.setting.contact');
+    }
+
+    public function contactPageInfoUpdate(Request $request){
+        $request->validate([
+            'contact_heading' => 'nullable|min:3',
+            'contact_highlight' => 'nullable|min:3',
+            'contact_description' => 'nullable|min:3',
+        ]);
+        try {
+            update_static_option('contact_heading', $request->contact_heading);
+            update_static_option('contact_highlight', $request->contact_highlight);
+            update_static_option('contact_description', $request->contact_description);
+        }catch (\Exception $exception){
+            return back()->withErrors( 'Something went wrong !'.$exception->getMessage());
+        }
+        return back()->withToastSuccess( 'Updated successfully');
     }
 }

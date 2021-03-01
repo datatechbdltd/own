@@ -26,8 +26,8 @@
                     <div class="inner-column">
                         <!-- Sec Title -->
                         <div class="sec-title">
-                            <div class="title">GET IN TOUCH</div>
-                            <h2>Ready to Get Started?</h2>
+                            <div class="title">{{ get_static_option('contact_heading') }}</div>
+                            <h2>{{ get_static_option('contact_highlight') }}</h2>
                         </div>
                         <!-- Default Form -->
                         <div class="default-form contact-form">
@@ -63,9 +63,9 @@
                     <div class="inner-column">
                         <!-- Sec Title -->
                         <div class="sec-title">
-                            <div class="title">GET IN TOUCH</div>
-                            <h2>Ready to Get Started?</h2>
-                            <div class="text">Give us a call or drop by anytime, we endeavour to  answer all enquiries within 24 hours on business days. We will be happy to answer your questions.</div>
+                            <div class="title">{{ get_static_option('contact_heading') }}</div>
+                            <h2>{{ get_static_option('contact_highlight') }}</h2>
+                            <div class="text">{{ get_static_option('contact_description') }}</div>
                         </div>
 
                         <!-- Info List -->

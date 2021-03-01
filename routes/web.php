@@ -115,6 +115,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
         Route::get('get-smtp-page', [SettingController::class, 'getSmtpPage'])->name('getSmtpPage');
         Route::get('get-general-page', [SettingController::class, 'getGeneralPage'])->name('getGeneralPage');
+        Route::get('get-contact-setting-page', [SettingController::class, 'getContactSettingPage'])->name('getContactSettingPage');
+        Route::post('contact-page-info-update', [SettingController::class, 'contactPageInfoUpdate'])->name('contactPageInfoUpdate');
         Route::post('smtp-update', [SettingController::class, 'smtpUpdate'])->name('smtpUpdate');
         Route::post('general-update', [SettingController::class, 'generalUpdate'])->name('generalUpdate');
         Route::post('smtp-test', [SettingController::class, 'testSmtp'])->name('testSmtp');

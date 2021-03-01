@@ -113,12 +113,21 @@ class FrontendController extends Controller
 
     // contact us page
     public function contactUs(){
-        return view('frontend.contact-us');
+        if (get_static_option('frontend_style') == 'Second Style'){
+            return view('frontend2.contact-us');
+        }else{
+            return view('frontend.contact-us');
+        }
     }
     // products page
     public function products(){
         $website_products = WebsiteProduct::where('status', true)->get();
-        return view('frontend.products', compact('website_products'));
+        if (get_static_option('frontend_style') == 'Second Style'){
+            return view('frontend2.products', compact('website_products'));
+        }else{
+            return view('frontend.products', compact('website_products'));
+        }
+
     }
 
     // contact us store

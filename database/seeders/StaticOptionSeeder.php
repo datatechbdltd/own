@@ -15,6 +15,10 @@ class StaticOptionSeeder extends Seeder
     {
         set_static_option('frontend_style', 'Second Style');// Default Style | Second Style
 
+        set_static_option('contact_heading', 'GET IN TOUCH');
+        set_static_option('contact_highlight', 'Ready to Get Started?');
+        set_static_option('contact_description', 'Give us a call or drop by anytime, we endeavour to  answer all enquiries within 24 hours on business days');
+
         set_static_option('reporting_email', 'datatechbdltd@gmail.com');
         set_static_option('reporting_phone', '01304734623');
 
