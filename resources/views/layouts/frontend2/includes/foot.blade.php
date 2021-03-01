@@ -26,6 +26,7 @@
 <script src="{{ asset('assets/frontend2/js/main.js') }}"></script>
 
 <script src="{{ asset('assets/helper.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 {!! get_static_option('custom_website_foot_script') !!}
 @include('sweetalert::alert')
@@ -38,11 +39,22 @@
         $('#send-message-form').trigger('reset');
         $('.message-area').val("I need "+$(this).text()+" service. Please contact me.");
     });
+    $('.send-message-button-product').click(function (){
+        $('#order-modal').modal('show');
+        $('#send-message-form').trigger('reset');
+        $('.message-area').val("I need "+$(this).text()+" product. Please contact me.");
+    });
 
     $('.send-message-button-plus').click(function (){
         $('#order-modal').modal('show');
         $('#send-message-form').trigger('reset');
         $('.message-area').val("I need "+$(this).parent().find('.send-message-button').text()+" service. Please contact me.");
+    });
+
+    $('.send-message-product-button-plus').click(function (){
+        $('#order-modal').modal('show');
+        $('#send-message-form').trigger('reset');
+        $('.message-area').val("I need "+$(this).parent().find('.send-message-button-product').text()+" product. Please contact me.");
     });
 </script>
 

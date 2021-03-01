@@ -1,6 +1,9 @@
 <div id="message-section" class="subscribe-area bg-gray common-pd-subscribe text-center text-sm-left">
     <div class="container">
         <div class="row">
+            <div class="col-lg-5 align-self-center">
+                <h3 class="title"><i class="fa fa-comment-o"></i>Message us</h3>
+            </div>
             <div class="col-lg-12 align-self-center">
                 <form class="sen-form"  method="post" id="send-message-form" action=" {{ route('frontend.contactUsStore') }}">
                     @csrf

@@ -22,6 +22,58 @@
                 }
             })
         });
+        // subscribe now
+        $('.subscribe-now-btn').click(function (){
+            $.ajax({
+                method: 'POST',
+                url: "/subscribe/store",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: { email:  $('#subscribe-email').val()},
+                dataType: 'JSON',
+                beforeSend: function (){
+                    $(".subscribe-now-btn").prop("disabled",true);
+                },
+                complete: function (){
+                    $(".subscribe-now-btn").prop("disabled",false);
+                },
+                success: function (response) {
+                    if (response.type == 'success'){
+                        $('#subscribe-email').val("");
+                        Swal.fire(
+                            'Thank you !',
+                            response.message,
+                            'success'
+                        )
+
+                    }else{
+                        Swal.fire(
+                            'Sorry !',
+                            response.message,
+                            response.type
+                        )
+                    }
+                },
+                error: function (xhr) {
+                    var errorMessage = '<div class="card bg-danger">\n' +
+                        '                        <div class="card-body text-center p-5">\n' +
+                        '                            <span class="text-white">';
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        errorMessage +=(''+value+'<br>');
+                    });
+                    errorMessage +='</span>\n' +
+                        '                        </div>\n' +
+                        '                    </div>';
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        footer: errorMessage
+                    })
+                },
+            })
+
+        });
+
+
     });
 
     function delete_function(objButton){

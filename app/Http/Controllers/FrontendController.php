@@ -33,7 +33,8 @@ class FrontendController extends Controller
         $website_teams = WebsiteTeam::where('status', true)->orderBy('serial','asc')->get();
         if (get_static_option('frontend_style') == 'Second Style'){
             $website_counters = WebsiteCounter::where('status',true)->orderBy('serial','asc')->get();
-            return view('frontend2.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams','website_counters'));
+            $website_products = WebsiteProduct::where('status',true)->orderBy('serial','asc')->limit('6')->get();
+            return view('frontend2.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams','website_counters','website_products'));
         }else{
             return view('frontend.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams'));
         }
@@ -152,8 +153,15 @@ class FrontendController extends Controller
     // store subscribers
     public function subscribeStore(Request $request){
         $request->validate([
-            'email'=> 'required|email|unique:leads,email'
+            'email'=> 'required|email'
         ]);
+
+        if(Lead::where('email',$request->email)->exists()){
+            return response()->json([
+                'type' => 'success',
+                'message' => 'Already Subscribed !',
+            ]);
+        }
 
         $lead = new Lead();
         $lead->email = $request->email;
