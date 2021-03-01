@@ -12,6 +12,7 @@ use App\Models\LeadService;
 use App\Models\LeadThana;
 use App\Models\SocialLink;
 use App\Models\WebsiteBanner;
+use App\Models\WebsiteCounter;
 use App\Models\WebsiteProduct;
 use App\Models\WebsiteContact;
 use App\Models\WebsiteSeo;
@@ -31,7 +32,8 @@ class FrontendController extends Controller
         $website_services = WebsiteService::where('is_active', true)->orderBy('id','desc')->limit(6)->get();
         $website_teams = WebsiteTeam::where('status', true)->orderBy('serial','asc')->get();
         if (get_static_option('frontend_style') == 'Second Style'){
-            return view('frontend2.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams'));
+            $website_counters = WebsiteCounter::where('status',true)->orderBy('serial','asc')->get();
+            return view('frontend2.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams','website_counters'));
         }else{
             return view('frontend.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams'));
         }

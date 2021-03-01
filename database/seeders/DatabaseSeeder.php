@@ -32,5 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceSeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(OfflinePaymentMethodSeeder::class);
+        $this->call(WebsiteCounterSeeder::class);
     }
 }

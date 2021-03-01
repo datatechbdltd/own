@@ -129,6 +129,15 @@
                                 <li><a href="{{ route('website.websiteProduct.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="javaScript:void();">
+                                <span>Website counter</span><i class="feather icon-chevron-right pull-right"></i>
+                            </a>
+                            <ul class="vertical-submenu">
+                                <li><a href="{{ route('website.websiteCounter.index') }}"><i class="mdi mdi-circle"></i>Counter list</a></li>
+                                <li><a href="{{ route('website.websiteCounter.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>

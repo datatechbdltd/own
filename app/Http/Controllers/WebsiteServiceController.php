@@ -66,7 +66,7 @@ class WebsiteServiceController extends Controller
         }
         try {
             $service->save();
-            return redirect()->route('website.WebsiteService.index')->withToastSuccess('Successfully Saved');
+            return redirect()->route('website.websiteService.index')->withToastSuccess('Successfully Saved');
         }catch (\Exception $exception){
             return back()->withErrors('Something going wrong. '.$exception->getMessage());
         }
