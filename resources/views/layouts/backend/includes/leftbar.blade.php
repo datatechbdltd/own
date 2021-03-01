@@ -138,6 +138,15 @@
                                 <li><a href="{{ route('website.websiteCounter.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="javaScript:void();">
+                                <span>Website client</span><i class="feather icon-chevron-right pull-right"></i>
+                            </a>
+                            <ul class="vertical-submenu">
+                                <li><a href="{{ route('website.websiteClient.index') }}"><i class="mdi mdi-circle"></i>Client list</a></li>
+                                <li><a href="{{ route('website.websiteClient.create') }}"><i class="mdi mdi-circle"></i>Create</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>

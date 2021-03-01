@@ -191,7 +191,7 @@
             bodyOvrelay.addClass('active');
         });
 
-        // sidebar menu 
+        // sidebar menu
         $(document).on('click', '.sidebar-menu-close', function(e) {
             e.preventDefault();
             bodyOvrelay.removeClass('active');
@@ -276,7 +276,7 @@
         }
     });
     /* -------------------------------------------------
-            Magnific JS 
+            Magnific JS
     ------------------------------------------------- */
     $('.video-play-btn').magnificPopup({
         type: 'iframe',
@@ -295,7 +295,7 @@
         }
     });
     /* -------------------------------------------------
-            news-slider JS 
+            news-slider JS
     ------------------------------------------------- */
     $('.news-slider').owlCarousel({
             loop: true,
@@ -316,7 +316,7 @@
             }
         })
         /* -------------------------------------------------
-            testimonial-slider JS 
+            testimonial-slider JS
         ------------------------------------------------- */
     $('.testimonial-main-slider').slick({
         slidesToShow: 1,
@@ -337,7 +337,7 @@
     });
 
     /* -------------------------------------------------
-        partner-slider JS 
+        partner-slider JS
     ------------------------------------------------- */
     $('.partner-slider').owlCarousel({
         loop: true,

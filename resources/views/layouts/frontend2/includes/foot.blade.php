@@ -84,5 +84,18 @@
      theme_color="#7646ff">
 </div>
 
+<script>
+    $('.testimonial-main-slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: true,
+        fade: true,
+        prevArrow: '<span class="slick-prev"><img src="{{ asset('assets/frontend2/img/icon/left.png') }}" alt="img" /></span>',
+        nextArrow: '<span class="slick-next"><img src="{{ asset('assets/frontend2/img/icon/right.png') }}" alt="img" /></span>',
+        asNavFor: '.testimonial-thumb-slider'
+    });
+</script>
+
 
 

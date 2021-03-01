@@ -275,4 +275,8 @@
     @include('frontend2.includes.message')
 <!-- message--area end -->
 
+    @include('frontend2.includes.testimonial')
+    @include('frontend2.includes.client')
+
+
 @endsection

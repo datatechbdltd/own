@@ -12,6 +12,7 @@ use App\Models\LeadService;
 use App\Models\LeadThana;
 use App\Models\SocialLink;
 use App\Models\WebsiteBanner;
+use App\Models\WebsiteClient;
 use App\Models\WebsiteCounter;
 use App\Models\WebsiteProduct;
 use App\Models\WebsiteContact;
@@ -34,7 +35,9 @@ class FrontendController extends Controller
         if (get_static_option('frontend_style') == 'Second Style'){
             $website_counters = WebsiteCounter::where('status',true)->orderBy('serial','asc')->get();
             $website_products = WebsiteProduct::where('status',true)->orderBy('serial','asc')->limit('6')->get();
-            return view('frontend2.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams','website_counters','website_products'));
+            $website_clients = WebsiteClient::where('is_active',true)->orderBy('serial','asc')->limit('4')->get();
+            $websiteAllClients = WebsiteClient::where('is_active',true)->orderBy('serial','asc')->get();
+            return view('frontend2.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams','website_counters','website_products','website_clients','websiteAllClients'));
         }else{
             return view('frontend.home' ,compact('social_link','website_seos','webiste_banners','website_services','website_teams'));
         }
@@ -42,7 +45,12 @@ class FrontendController extends Controller
     // all services pages
     public function servicesPage(){
         $website_services = WebsiteService::where('is_active', true)->orderBy('id','desc')->get();
-        return view('frontend.services' ,compact('website_services'));
+
+        if (get_static_option('frontend_style') == 'Second Style'){
+            return view('frontend2.services' ,compact('website_services'));
+        }else{
+            return view('frontend.services' ,compact('website_services'));
+        }
     }
     // all services Details Page
     public function servicesDetailsPage($slug){
@@ -155,7 +163,6 @@ class FrontendController extends Controller
         $request->validate([
             'email'=> 'required|email'
         ]);
-
         if(Lead::where('email',$request->email)->exists()){
             return response()->json([
                 'type' => 'success',

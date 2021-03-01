@@ -191,7 +191,7 @@
             bodyOvrelay.addClass('active');
         });
 
-        // sidebar menu 
+        // sidebar menu
         $(document).on('click', '.sidebar-menu-close', function(e) {
             e.preventDefault();
             bodyOvrelay.removeClass('active');
@@ -276,7 +276,7 @@
         }
     });
     /* -------------------------------------------------
-            Magnific JS 
+            Magnific JS
     ------------------------------------------------- */
     $('.video-play-btn').magnificPopup({
         type: 'iframe',
@@ -295,7 +295,7 @@
         }
     });
     /* -------------------------------------------------
-            news-slider JS 
+            news-slider JS
     ------------------------------------------------- */
     $('.news-slider').owlCarousel({
             loop: true,
@@ -316,18 +316,9 @@
             }
         })
         /* -------------------------------------------------
-            testimonial-slider JS 
+            testimonial-slider JS
         ------------------------------------------------- */
-    $('.testimonial-main-slider').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: true,
-        fade: true,
-        prevArrow: '<span class="slick-prev"><img src="assets/img/icon/arrow-left-blue.png" alt="img" /></span>',
-        nextArrow: '<span class="slick-next"><img src="assets/img/icon/arrow-right-pink.png" alt="img" /></span>',
-        asNavFor: '.testimonial-thumb-slider'
-    });
+
     $('.testimonial-thumb-slider').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -337,7 +328,7 @@
     });
 
     /* -------------------------------------------------
-        partner-slider JS 
+        partner-slider JS
     ------------------------------------------------- */
     $('.partner-slider').owlCarousel({
         loop: true,
