@@ -7,11 +7,21 @@
                     <h3 class="title">{{ get_static_option('seo_highlight') }}</h3>
                     <p>{{ get_static_option('seo_description') }}</p>
                 </div>
-                @foreach($website_seos as $seo)
-                    <div class="single-input-wrap m-3">
-                        <input class="single-input" value="{{ $seo->text }}" readonly>
+
+                    <div class="single-input-wrap">
+
+
+                            @foreach($website_seos as $seo)
+                            <div class="single-facility media">
+                                <span class="number">{{ $loop->iteration  }}</span>
+                                <div class="facility-details media-body">
+                                    <p>{{ $seo->text }}</p>
+                                </div>
+                            </div>
+                            @endforeach
+
                     </div>
-                @endforeach
+
             </div>
             <div class="col-lg-5 col-6 align-self-center banner-thumb-wrap">
                 <div class="thumb item-bounce">
