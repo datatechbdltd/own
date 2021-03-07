@@ -14,8 +14,9 @@
                 @endforeach
                 <div class="col-lg-12 mb-5 mb-mg-0">
                     <div class="single-input-wrap text-center text-lg-right">
-                        <input placeholder="Open an account - enter you email" type="text" class="single-input">
-                        <a class="btn btn-basic" href="#">GO ON</a>
+                        @if(!Route::is('frontend.servicesPage'))
+                        <a class="btn btn-basic" href="{{ route('frontend.servicesPage') }}">More services</a>
+                        @endif
                     </div>
                 </div>
             </div>

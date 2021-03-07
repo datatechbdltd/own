@@ -34,9 +34,7 @@
             <!-- Service Block Five -->
 
         </div>
-        @if(Route::is('frontend.servicesPage'))
-
-        @else
+        @if(!Route::is('frontend.servicesPage'))
             <div class="btn-box centered">
                 <a href="{{ route('frontend.servicesPage') }}" class="theme-btn btn-style-three"><span class="txt">View Service</span></a>
             </div>
