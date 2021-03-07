@@ -73,8 +73,8 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6 col-xl-6">
-                            <label for="url">Url <span class="text-danger">*</span></label>
-                            <input type="text" name="url" required class="form-control" id="url" >
+                            <label for="url">Url</label>
+                            <input type="text" name="url" class="form-control" id="url" >
                             @error('url')
                                 <small id="url" class="form-text text-muted text-danger">{{ $message }}</small>
                             @enderror
