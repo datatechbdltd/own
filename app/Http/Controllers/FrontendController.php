@@ -171,7 +171,12 @@ class FrontendController extends Controller
 
     public function customPage($slug){
         $customPage = CustomPage::where('slug', $slug)->first();
-        return view('frontend.custom-page', compact('customPage'));
+        if (get_static_option('frontend_style') == 'Second Style'){
+            return view('frontend2.custom-page', compact('customPage'));
+        }else{
+            return view('frontend.custom-page', compact('customPage'));
+        }
+
     }
 
     // store subscribers
