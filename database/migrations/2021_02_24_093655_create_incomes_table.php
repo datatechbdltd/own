@@ -15,8 +15,8 @@ class CreateIncomesTable extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->nullable();;
-            $table->foreignId('customer_id')->nullable();;
+            $table->foreignId('category_id')->nullable();
+            $table->foreignId('customer_id')->nullable();
             $table->double('price');
             $table->longText('description')->nullable();
             $table->foreignId('product_id')->nullable();

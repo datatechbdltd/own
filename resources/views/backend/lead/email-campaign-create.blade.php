@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group col-12">
                             <label>Message <span class="text-danger">*</span></label>
-                            <textarea id="tinymce-example" name="message">{{ old('message') }}</textarea>
+                            <textarea class="summernote-description"  name="message">{{ old('message') }}</textarea>
                         </div>
                         <div class="form-group col-12">
                             <button type="submit" class="btn btn-success mr-1 col-12">Create now</button>

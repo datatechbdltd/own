@@ -93,7 +93,7 @@
                         </div>
                         <div class="form-group col-12">
                             <label>Message body <span class="text-danger">*</span></label>
-                            <textarea id="tinymce-example" name="description">{{ old('description') }}</textarea>
+                            <textarea class="summernote-description" id="description" name="description">{{ old('description') }}</textarea>
                             @error('description')
                             <div class="alert alert-danger" role="alert">
                                 {{ $message }}

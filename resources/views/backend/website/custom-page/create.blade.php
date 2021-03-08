@@ -84,7 +84,7 @@
 
                         <div class="form-group col-12">
                             <label>Description <span class="text-danger">*</span></label>
-                            <textarea id="tinymce-example" name="description">{{ old('description') }}</textarea>
+                            <textarea  class="summernote-description" name="description">{{ old('description') }}</textarea>
                             @error('description')
                             <small id="image" class="form-text text-muted text-danger">{{ $message }}</small>
                             @enderror

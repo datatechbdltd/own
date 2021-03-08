@@ -43,7 +43,7 @@ Theta - Form Editors
                 </div>
                 <div class="card-body">
                     <form method="post">
-                        <textarea id="tinymce-example" name="area">Hello, Good Morning Tinymce</textarea>
+                        <textarea  class="summernote-description" name="area">Hello, Good Morning Tinymce</textarea>
                     </form>
                 </div>
             </div>

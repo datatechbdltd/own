@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group col-12">
                             <label>Message <span class="text-danger">*</span></label>
-                            <textarea id="tinymce-example" name="message">{{ $emailCampaign->message }}</textarea>
+                            <textarea class="summernote-description" name="message">{{ $emailCampaign->message }}</textarea>
                         </div>
                         <div class="form-group col-12">
                             <button type="submit" class="btn btn-warning mr-1 col-12">Update now</button>

@@ -89,11 +89,11 @@
 
                         <div class="form-group col-12">
                             <label>Long Description <span class="text-danger">*</span></label>
-                            <textarea id="tinymce-example" name="long_description">{{ old('long_description') }}</textarea>
+                            <textarea class="summernote-description" name="long_description">{{ old('long_description') }}</textarea>
                         </div>
                         <div class="form-group col-12">
                             <label>Agreement <span class="text-danger">*</span></label>
-                            <textarea id="tinymce-example" name="agreement">{{ old('agreement') }}</textarea>
+                            <textarea class="summernote-description" name="agreement">{{ old('agreement') }}</textarea>
                         </div>
                         <div class="form-group col-12">
                             <button type="submit" class="btn btn-success mr-1 col-12">Create now</button>
