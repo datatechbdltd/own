@@ -25,10 +25,10 @@ class IncomeController extends Controller
             return DataTables::of($data)
                 ->addColumn('payment', function($data) {
                     return 'Price: '.$data->price.' Paid: '.$data->payments->sum('amount').' Due: '.($data->price - $data->payments->sum('amount'));
-                }) ->addColumn('customer', function($data) {
+                })->addColumn('customer', function($data) {
                     if ($data->customer)
                     return $data->customer->name;
-                }) ->addColumn('service_product', function($data) {
+                })->addColumn('service_product', function($data) {
                     $html = "";
                     if ($data->service)
                         $html .= $data->service->name;
@@ -70,15 +70,17 @@ class IncomeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'customer' => 'nullable|exists:users,id',
-            'service' => 'nullable|exists:services,id',
-            'product' => 'nullable|exists:products,id',
+            // 'customer' => 'nullable|exists:users,id',
+            // 'service' => 'nullable|exists:services,id',
+            // 'product' => 'nullable|exists:products,id',
             'description' => 'required',
             'price' => 'required|numeric',
             'paid_amount' => 'required|numeric',
             'payment_method' => 'nullable|exists:offline_payment_methods,id',
             'vat' => 'nullable|numeric',
         ]);
+
+
         $income = new Income();
         $income->category_id    =   $request->category;
         $income->customer_id    =   $request->customer;

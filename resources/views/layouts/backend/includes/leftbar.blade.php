@@ -53,6 +53,20 @@
                         <li><a href="{{ route('account.expense.index') }}"><i class="mdi mdi-circle"></i>Expense</a></li>
                     </ul>
                 </li>
+                {{--Sales--}}
+                <li>
+                    <a href="javaScript:void();">
+                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Sales</span><i class="feather icon-chevron-right pull-right"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('sales.proposal.create') }}"><i class="mdi mdi-circle"></i>Create proposal</a></li>
+                        <li><a href="{{ route('sales.proposal.index') }}"><i class="mdi mdi-circle"></i>Proposal  list</a></li>
+
+
+                        <li><a href="{{ route('account.income.index') }}"><i class="mdi mdi-circle"></i>Create invoice</a></li>
+                        <li><a href="{{ route('account.expense.index') }}"><i class="mdi mdi-circle"></i>Invoice  list</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="javaScript:void();">
                         <img src="assets/panel/vertical/images/svg-icon/layouts.svg" class="img-fluid" alt="layouts"><span>Website</span><i class="feather icon-chevron-right pull-right"></i>

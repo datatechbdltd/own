@@ -13,10 +13,11 @@
 <!-- Core JS -->
 <script src="{{ asset('assets/panel/vertical/js/core.js') }}"></script>
 <!-- End JS -->
-
+<!-- Summernote JS -->
+<script src="{{ asset('assets/panel/vertical/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script>
     $('.summernote-description').summernote({
-        placeholder: 'Hello stand alone ui',
+        placeholder: 'Description...',
         tabsize: 2,
         height: 120,
         toolbar: [

@@ -23,6 +23,7 @@ use App\Models\WebsiteBanner;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\WebsiteSeoController;
@@ -137,9 +138,13 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('expenseCategory', ExpenseCategoryController::class);
         Route::resource('expense', ExpenseController::class);
     });
+    Route::group(['prefix' => 'sales', 'as' => 'sales.'], function () {
+        Route::resource('proposal', ProposalController::class);
+    });
     Route::group(['prefix' => 'pdf', 'as' => 'pdf.'], function () {
         Route::get('income-download/{income}', [PdfController::class,'incomeDownload']);
         Route::get('income-stream/{income}', [PdfController::class,'incomeStream'])->name('incomeStream');
+        Route::get('proposal-stream/{income}', [PdfController::class,'proposalStream'])->name('proposalStream');
     });
 });
 

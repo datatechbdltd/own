@@ -52,7 +52,7 @@
                         <div class="form-group col-xl-4 col-md-4">
                             <label>Customer </label>
                             <select class="select2-single form-control select2-hidden-accessible" name="customer" id="customer" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                <option >Select</option>
+                                <option value="">Select</option>
                                 @foreach($customers as $customer)
                                     <option @if(old('customer') == $customer->id) selected @endif value="{{ $customer->id }}">{{ $customer->name }}</option>
                                 @endforeach
@@ -66,7 +66,7 @@
                         <div class="form-group col-xl-4 col-md-4">
                             <label> Service</label>
                             <select class="select2-single form-control select2-hidden-accessible" name="service" id="service" data-select2-id="2" tabindex="-2" aria-hidden="true">
-                                <option>Select</option>
+                                <option value="">Select</option>
                                 @foreach($services as $service)
                                     <option @if(old('service') == $service->id) selected @endif value="{{ $service->id }}">{{ $service->name }}</option>
                                 @endforeach
@@ -80,7 +80,7 @@
                         <div class="form-group col-xl-4 col-md-4">
                             <label> Product </label>
                             <select class="select2-single form-control select2-hidden-accessible" name="product" id="product" data-select2-id="3" tabindex="-3" aria-hidden="true">
-                                <option>Select</option>
+                                <option value="">Select</option>
                                 @foreach($products as $product)
                                     <option @if(old('product') == $product->id) selected @endif value="{{ $product->id }}">{{ $product->name }}</option>
                                 @endforeach
