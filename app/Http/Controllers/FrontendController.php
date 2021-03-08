@@ -10,6 +10,7 @@ use App\Models\LeadCategory;
 use App\Models\LeadDistrict;
 use App\Models\LeadService;
 use App\Models\LeadThana;
+use App\Models\Proposal;
 use App\Models\SocialLink;
 use App\Models\WebsiteBanner;
 use App\Models\WebsiteClient;
@@ -57,6 +58,12 @@ class FrontendController extends Controller
         $service = WebsiteService::where('is_active', true)->where('slug',$slug)->first();
         return view('frontend.service-details' ,compact('service'));
     }
+    // prposal Page
+    public function prposalPage($slug){
+        $proposal = Proposal::where('slug',$slug)->first();
+        return view('frontend2.show-for-approval' ,compact('proposal'));
+    }
+
     public function leadCollectionPage(){
         $lead_categories = LeadCategory::orderBy('id', 'desc')->get();
         $lead_services = LeadService::orderBy('id', 'desc')->get();

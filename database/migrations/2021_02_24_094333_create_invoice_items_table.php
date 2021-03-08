@@ -16,11 +16,10 @@ class CreateInvoiceItemsTable extends Migration
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('invoice_id')->nullable();
-            $table->foreignId('product_id')->nullable();
-            $table->foreignId('service_id')->nullable();
+
             $table->double('vat')->default(0)->comment('in %');
             $table->double('price');
-            $table->text('note')->nullable();
+
             $table->timestamps();
         });
     }

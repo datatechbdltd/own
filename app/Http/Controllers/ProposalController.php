@@ -39,8 +39,10 @@ class ProposalController extends Controller
                     return $data->created_at->format('d/M/Y');
                 })->addColumn('action', function($data) {
                     return '<a href="'.route('pdf.proposalStream', $data).'" class="btn btn-primary" target="_blank">Stream</a>
-                    <a href="'.route('sales.proposal.edit', $data).'" class="btn btn-info" target="_blank"><i class="fa fa-edit"></i> Edit</a>
-                    <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('sales.proposal.destroy', $data).'"><i class="fa fa-trash"></i> Delete</button>';
+                    <a href="'.route('sales.proposal.edit', $data).'" class="btn btn-info" target="_blank"><i class="fa fa-edit"></i> </a>
+                    <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('sales.proposal.destroy', $data).'"><i class="fa fa-trash"></i> </button>
+                    <button class="btn btn-info" onclick="copy_function(this)" value="'.route('frontend.prposalPage', $data->slug).'"><i class="fa fa-copy"></i> </button>
+                    <a href="'.route('frontend.prposalPage', $data->slug).'" class="btn btn-success" target="_blank"><i class="fa fa-eye"></i> </a>';
                 })
                 ->rawColumns(['customer', 'service_product', 'create', 'action'])
                 ->make(true);
@@ -89,7 +91,7 @@ class ProposalController extends Controller
         $proposal->guest_email    =   $request->guest_email;
         $proposal->guest_phone    =   $request->guest_phone;
         $proposal->budget    =   $request->budget;
-        $proposal->slug    =   Carbon::now().'-'.Str::random(12);
+        $proposal->slug    =   time().'-'.Str::random(12);
         $proposal->save();
         return back()->withToastSuccess('Successfully saved.');
 
@@ -146,7 +148,7 @@ class ProposalController extends Controller
         $proposal->guest_email    =   $request->guest_email;
         $proposal->guest_phone    =   $request->guest_phone;
         $proposal->budget    =   $request->budget;
-        $proposal->slug    =   Carbon::now().'-'.Str::random(12);
+        $proposal->slug    =   time().'-'.Str::random(12);
         $proposal->save();
         return back()->withToastSuccess('Successfully saved.');
 

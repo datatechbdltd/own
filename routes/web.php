@@ -23,6 +23,7 @@ use App\Models\WebsiteBanner;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
@@ -50,6 +51,7 @@ Route::group(['as' => 'frontend.'], function () {
    Route::get('/',[FrontendController::class, 'homePage'])->name('homePage');
    Route::get('/services',[FrontendController::class, 'servicesPage'])->name('servicesPage');
    Route::get('/services/{slug}',[FrontendController::class, 'servicesDetailsPage'])->name('servicesDetailsPage');
+   Route::get('/proposal/{slug}',[FrontendController::class, 'prposalPage'])->name('prposalPage');
    Route::post('/subscribe/store',[FrontendController::class, 'subscribeStore'])->name('subscribeStore');
     Route::get('page/{slug}',[FrontendController::class, 'customPage'])->name('customPage');
    Route::get('lead-collection',[FrontendController::class, 'leadCollectionPage'])->name('leadCollectionPage');
@@ -133,13 +135,12 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::post('email', [CommunicationController::class, 'sendEmail'])->name('sendEmail');
     });
     Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
-        Route::resource('incomeCategory', IncomeCategoryController::class);
-        Route::resource('income', IncomeController::class);
         Route::resource('expenseCategory', ExpenseCategoryController::class);
         Route::resource('expense', ExpenseController::class);
     });
     Route::group(['prefix' => 'sales', 'as' => 'sales.'], function () {
         Route::resource('proposal', ProposalController::class);
+        Route::resource('invoice', InvoiceController::class);
     });
     Route::group(['prefix' => 'pdf', 'as' => 'pdf.'], function () {
         Route::get('income-download/{income}', [PdfController::class,'incomeDownload']);

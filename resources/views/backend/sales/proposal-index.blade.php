@@ -78,6 +78,7 @@
     <!-- DataTables -->
     <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
     <script>
+
         $(function() {
             $('#datatable').DataTable({
                 responsive: true,
@@ -101,6 +102,25 @@
                 }
             });
         });
+        function copy_function(objButton){
+            var url = objButton.value;
+
+            var $temp = $("<input>");
+            $("body").append($temp);
+
+            $temp.val(url).select();
+            document.execCommand("copy");
+            $temp.remove();
+            // $(this).html('Copied');
+
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Text copied',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
     </script>
 @endpush
 

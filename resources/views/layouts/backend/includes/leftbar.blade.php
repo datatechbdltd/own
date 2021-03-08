@@ -49,7 +49,6 @@
                         <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Account</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('account.income.index') }}"><i class="mdi mdi-circle"></i>Income</a></li>
                         <li><a href="{{ route('account.expense.index') }}"><i class="mdi mdi-circle"></i>Expense</a></li>
                     </ul>
                 </li>
@@ -63,8 +62,8 @@
                         <li><a href="{{ route('sales.proposal.index') }}"><i class="mdi mdi-circle"></i>Proposal  list</a></li>
 
 
-                        <li><a href="{{ route('account.income.index') }}"><i class="mdi mdi-circle"></i>Create invoice</a></li>
-                        <li><a href="{{ route('account.expense.index') }}"><i class="mdi mdi-circle"></i>Invoice  list</a></li>
+                        <li><a href="{{ route('sales.invoice.create') }}"><i class="mdi mdi-circle"></i>Create invoice</a></li>
+                        <li><a href="{{ route('sales.invoice.index') }}"><i class="mdi mdi-circle"></i>Invoice  list</a></li>
                     </ul>
                 </li>
                 <li>

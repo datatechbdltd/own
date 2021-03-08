@@ -18,7 +18,6 @@ class CreatePaymentsTable extends Migration
             $table->double('amount')->nullable();
             $table->foreignId('payment_offline_method_id')->nullable();
             $table->foreignId('payment_online_method_id')->nullable();
-            $table->foreignId('income_id')->nullable();
             $table->foreignId('invoice_id')->nullable();
             $table->timestamps();
         });
