@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompanyPad;
 use App\Models\Income;
 use App\Models\Invoice;
 use App\Models\Proposal;
@@ -34,6 +35,17 @@ class PdfController extends Controller
         return view('pdf.invoice' ,compact('invoice'));
     }
 
+    // pad stream
+     public function companyPadStream($slug){
+        $company_pad = CompanyPad::where('slug',$slug)->first();
+        $pdf = PDF::loadView('pdf.company-pad', compact('company_pad'));
+        return $pdf->stream();;
+    }
+    // pad download
+    public function companyPadDownload($invoice_id){
+        $company_pad = CompanyPad::where('invoice_id',$invoice_id)->first();
+        return view('pdf.company-pad' ,compact('company_pad'));
+    }
 
 
 }

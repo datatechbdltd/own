@@ -157,6 +157,8 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::get('proposal/download/{slug}',[PdfController::class, 'prposalDownload'])->name('prposalDownload');
         Route::get('invoice/stream/{slug}',[PdfController::class, 'invoiceStream'])->name('invoiceStream');
         Route::get('invoice/download/{slug}',[PdfController::class, 'invoiceDownload'])->name('invoiceDownload');
+        Route::get('company-pad/stream/{slug}',[PdfController::class, 'companyPadStream'])->name('companyPadStream');
+        Route::get('company-pad/download/{slug}',[PdfController::class, 'companyPadDownload'])->name('companyPadDownload');
     });
 });
 
