@@ -35,7 +35,15 @@ class ProjectStatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        $project_status = new ProjectStatus();
+
+        $project_status->name    =   $request->name;
+        $project_status->save();
+        return back()->withToastSuccess('Successfully saved.');
     }
 
     /**
@@ -80,6 +88,17 @@ class ProjectStatusController extends Controller
      */
     public function destroy(ProjectStatus $projectStatus)
     {
-        //
+        try {
+            $projectStatus->delete();
+            return response()->json([
+                'type' => 'success',
+                'message' => 'Successfully deleted.',
+            ]);
+        }catch (\Exception $exception){
+            return response()->json([
+                'type' => 'error',
+                'message' => 'Something going wrong. '.$exception->getMessage(),
+            ]);
+        }
     }
 }

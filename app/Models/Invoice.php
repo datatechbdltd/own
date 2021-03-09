@@ -30,4 +30,9 @@ class Invoice extends Model
     public function payments(){
         return $this->hasMany(Payment::class, 'invoice_id','id');
     }
+
+    //projects
+    public function projects(){
+        return $this->hasMany(Project::class, 'invoice_id','id');
+    }
 }

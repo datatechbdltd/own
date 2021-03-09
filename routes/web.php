@@ -28,6 +28,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OfflinePaymentMethodController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectStatusController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
@@ -148,6 +149,7 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('offlinePaymentMethod', OfflinePaymentMethodController::class);
     });
     Route::resource('project', ProjectController::class);
+    Route::resource('projectStatus', ProjectStatusController::class);
     Route::group(['prefix' => 'pdf', 'as' => 'pdf.'], function () {
         Route::get('income-download/{income}', [PdfController::class,'incomeDownload']);
         Route::get('income-stream/{income}', [PdfController::class,'incomeStream'])->name('incomeStream');

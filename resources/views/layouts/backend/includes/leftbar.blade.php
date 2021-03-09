@@ -69,6 +69,16 @@
                         <li><a href="{{ route('sales.payment.index') }}"><i class="mdi mdi-circle"></i>Payment  list</a></li>
                     </ul>
                 </li>
+                {{--Project--}}
+                <li>
+                    <a href="javaScript:void();">
+                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Project</span><i class="feather icon-chevron-right pull-right"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('project.create') }}"><i class="mdi mdi-circle"></i>Create project</a></li>
+                        <li><a href="{{ route('project.index') }}"><i class="mdi mdi-circle"></i>Project list</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="javaScript:void();">
                         <img src="assets/panel/vertical/images/svg-icon/layouts.svg" class="img-fluid" alt="layouts"><span>Website</span><i class="feather icon-chevron-right pull-right"></i>
