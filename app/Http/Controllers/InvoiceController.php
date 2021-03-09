@@ -25,7 +25,7 @@ class InvoiceController extends Controller
                 ->addColumn('id', function($data) {
                     return $data->invoice_id;
                 })->addColumn('customer', function($data) {
-                    if ($data->customer)
+                    if($data->customer)
                         return $data->customer->name;
                 })->addColumn('payment', function($data) {
                     $total_amount = $data->product_price+$data->service_price+$data->other_price;

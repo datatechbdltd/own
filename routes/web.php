@@ -23,7 +23,11 @@ use App\Models\WebsiteBanner;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\OfflinePaymentMethodController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
@@ -70,9 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('dashboard', function () {
-        return view('backend.dashboard.index');
-    })->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('user-to-admin-contact-list', [ContactController::class, 'userToAdminContactList'])->name('userToAdminContactList');
     Route::get('user-to-admin-contact-list/{id}', [ContactController::class, 'userToAdminContactListDetails'])->name('userToAdminContactListDetails');
     Route::post('user-to-admin-contact-list-update}', [ContactController::class, 'userToAdminContactListDetailsUpdate'])->name('userToAdminContactListDetailsUpdate');
@@ -142,7 +144,10 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::group(['prefix' => 'sales', 'as' => 'sales.'], function () {
         Route::resource('proposal', ProposalController::class);
         Route::resource('invoice', InvoiceController::class);
+        Route::resource('payment', PaymentController::class);
+        Route::resource('offlinePaymentMethod', OfflinePaymentMethodController::class);
     });
+    Route::resource('project', ProjectController::class);
     Route::group(['prefix' => 'pdf', 'as' => 'pdf.'], function () {
         Route::get('income-download/{income}', [PdfController::class,'incomeDownload']);
         Route::get('income-stream/{income}', [PdfController::class,'incomeStream'])->name('incomeStream');

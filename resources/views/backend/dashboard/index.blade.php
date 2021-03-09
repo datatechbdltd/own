@@ -42,54 +42,34 @@
     <!-- Start row -->
     <div class="row">
         <!-- Start col -->
-        <div class="col-md-12 col-lg-12 col-xl-7">
-            <div class="card m-b-30">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col-7">
-                            <h5 class="card-title mb-0">Audience</h5>
-                        </div>
-                        <div class="col-5">
-                            <ul class="list-inline-group text-right mb-0 pl-0">
-                                <li class="list-inline-item mr-0 font-12">Update <a href="#"><i class="feather icon-refresh-cw font-16 text-primary ml-1"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body pb-0">
-                    <div class="analytic-chart-label pb-3 mb-4">
-                        <div class="row align-items-center">
-                            <div class="col-md-3">
-                                <p class="mb-2">Amount</p>
-                                <h3><sup>$</sup>56</h3>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="analytic-label-perform">*Shopping Campaign has performed 47% better.</p>
-                            </div>
-                            <div class="col-md-3">
-                                <p class="mb-2"><i class="feather icon-circle text-primary mr-2"></i>Selling</p>
-                                <p class="mb-0"><i class="feather icon-circle text-warning mr-2"></i>Likes</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="morris-area-without-smooth" class="morris-chart"></div>
-                </div>
-            </div>
-        </div>
-        <!-- End col -->
-        <!-- Start col -->
-        <div class="col-md-12 col-lg-12 col-xl-5">
+        <div class="col-md-12 col-lg-12 col-12">
             <div class="row">
-                <div class="col-md-12 col-lg-6 col-xl-6">
+                <div class="col-md-6 col-lg-3 col-xl-3">
                     <div class="card m-b-30">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Total Visits</h5>
+                            <h5 class="card-title mb-0">Total Payment</h5>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <p class="dash-analytic-icon"><i class="feather icon-eye primary-rgba text-primary"></i></p>
-                                    <h3 class="mb-3">2520</h3>
+                                    <p class="dash-analytic-icon"><i class="feather icon-dollar-sign primary-rgba text-primary"></i></p>
+                                    <h3 class="mb-3">{{ $total_payment }}</h3>
+                                    <p class="mb-0"><span class="badge badge-danger-inverse font-16">10%<i class="feather icon-arrow-down-right"></i></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xl-3">
+                    <div class="card m-b-30">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Total Due</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <p class="dash-analytic-icon"><i class="feather icon-dollar-sign danger-rgba text-danger"></i></p>
+                                    <h3 class="mb-3">{{ $total_due }}</h3>
                                     <p class="mb-0"><span class="badge badge-danger-inverse font-16">10%<i class="feather icon-arrow-down-right"></i></span></p>
                                 </div>
                             </div>

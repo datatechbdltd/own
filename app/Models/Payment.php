@@ -13,4 +13,9 @@ class Payment extends Model
     public function invoice(){
         return $this->belongsTo(Invoice::class, 'invoice_id','id');
     }
+
+    //offlinePaymentMethod
+    public function offlinePaymentMethod(){
+        return $this->belongsTo(OfflinePaymentMethod::class, 'payment_offline_method_id','id');
+    }
 }

@@ -35,7 +35,18 @@ class OfflinePaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'nullable|string',
+        ]);
+
+        $offline_payment = new OfflinePaymentMethod();
+
+        $offline_payment->name    =   $request->name;
+        $offline_payment->description    =  $request->description;
+        $offline_payment->save();
+        return back()->withToastSuccess('Successfully saved.');
     }
 
     /**
@@ -80,6 +91,17 @@ class OfflinePaymentMethodController extends Controller
      */
     public function destroy(OfflinePaymentMethod $offlinePaymentMethod)
     {
-        //
+        try {
+            $offlinePaymentMethod->delete();
+            return response()->json([
+                'type' => 'success',
+                'message' => 'Successfully deleted.',
+            ]);
+        }catch (\Exception $exception){
+            return response()->json([
+                'type' => 'error',
+                'message' => 'Something going wrong. '.$exception->getMessage(),
+            ]);
+        }
     }
 }

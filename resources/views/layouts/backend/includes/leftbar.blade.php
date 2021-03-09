@@ -65,6 +65,8 @@
 
                         <li><a href="{{ route('sales.invoice.create') }}"><i class="mdi mdi-circle"></i>Create invoice</a></li>
                         <li><a href="{{ route('sales.invoice.index') }}"><i class="mdi mdi-circle"></i>Invoice  list</a></li>
+                        <li><a href="{{ route('sales.payment.create') }}"><i class="mdi mdi-circle"></i>Create payment</a></li>
+                        <li><a href="{{ route('sales.payment.index') }}"><i class="mdi mdi-circle"></i>Payment  list</a></li>
                     </ul>
                 </li>
                 <li>
