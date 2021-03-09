@@ -1,3 +1,4 @@
+
 <div class="leftbar">
     <!-- Start Sidebar -->
     <div class="sidebar">
@@ -24,7 +25,7 @@
         </div>
         <!-- End Profilebar -->
         <!-- Start Navigationbar -->
-        <div class="navigationbar">
+        <div class="navigationbar" >
             <ul class="vertical-menu">
                 <li class="vertical-header">Main</li>
 
