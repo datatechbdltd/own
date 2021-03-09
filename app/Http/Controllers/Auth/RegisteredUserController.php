@@ -47,7 +47,13 @@ class RegisteredUserController extends Controller
         ])->assignRole('marketer'));
 
         event(new Registered($user));
+        if ($request->ajax()){
+            return response()->json([
+                'type' => 'success',
+                'message' => 'Successfully deleted.',
+            ]);
+        }else{
+            return redirect(RouteServiceProvider::LEAD);}
 
-        return redirect(RouteServiceProvider::LEAD);
-    }
+        }
 }

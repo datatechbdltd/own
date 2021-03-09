@@ -26,7 +26,7 @@
                             <img src="assets/panel/horizontal/images/authentication/auth-box-icon.svg" class="img-fluid" alt="auth-box-icon">
                         </div>
                         <div class="auth-box-logo">
-                            <img src="assets/panel/horizontal/images/logo.svg" class="img-fluid " alt="logo">
+                            <img src="{{ asset(get_static_option('website_logo')) }}" class="img-fluid " alt="logo">
                         </div>
                     </div>
                 </div>

@@ -17,9 +17,10 @@
                         <li class="topbar-single-info topbar-social-icon"><a target="_blank" href="{{ get_static_option('company_linkedin_link') }}"><i class="fa fa-linkedin"></i></a></li>
                         <li class="topbar-single-info topbar-social-icon"><a target="_blank" href="{{ get_static_option('company_whatsapp_link') }}"><i class="fa fa-whatsapp mr-0"></i></a></li>
                         <li class="topbar-single-info topbar-signin sign-nav ml-3 ml-lg-0">
+
                         @guest
-                            <li class="topbar-single-info topbar-social-icon"><i class="fa fa-user-o"></i><a href="javascript:0"  data-toggle="modal" data-target="#login-modal">{{ __('Login') }}</a></li>
-                            <li class="topbar-single-info topbar-social-icon"><i class="fa fa-user-o"></i><a href="javascript:0"  data-toggle="modal" data-target="#register-modal">{{ __('Register') }}</a></li>
+                            <li class="topbar-single-info topbar-social-icon signin-modal-btn"><i class="fa fa-user-o"></i><a href="javascript:0">{{ __('Login') }}</a></li>
+                            <li class="topbar-single-info topbar-social-icon signup-modal-btn"><i class="fa fa-user-o"></i><a href="javascript:0">{{ __('Register') }}</a></li>
                         @else
                             <li class="topbar-single-info topbar-social-icon"><i class="fa fa-user-o"></i><a href="{{ route('login') }}">{{ auth()->user()->name }}</a></li>
                             <li class="topbar-single-info topbar-social-icon logout-btn"><i class="fa fa-user-o"></i><a href="javascript:0">Logout</a></li>

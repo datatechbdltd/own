@@ -73,7 +73,92 @@
 
         });
 
+        $('.signup-modal-btn').click(function (){
+            $('#signup-modal').modal('show');
+        });
+        $('.signin-modal-btn').click(function (){
+            $('#signin-modal').modal('show');
+        });
+        // registration now
+        $('.signup-btn').click(function (){
+            alert($(this).parent.find('.signup-name').val())
+            alert($(this).parent.find('.signup-phone').val())
+            alert($(this).parent.find('.signup-email').val())
+            alert($(this).parent.find('.signup-password').val())
 
+            $.ajax({
+                method: 'POST',
+                url: "/register",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: { name:  $(this).parent.find('.signup-name').val(), phone:  $(this).parent.find('.signup-phone').val(), email:  $(this).parent.find('.signup-email').val(),  password:  $(this).parent.find('.signup-password').val(), confirm_password:  $(this).parent.find('.signup-password').val()},
+                dataType: 'JSON',
+                success: function (response) {
+                    if (response.type == 'success'){
+                      location.replace('/login');
+                    }else{
+                        Swal.fire(
+                            'Sorry !',
+                            response.message,
+                            response.type
+                        )
+                    }
+                },
+                error: function (xhr) {
+                    var errorMessage = '<div class="card bg-danger">\n' +
+                        '                        <div class="card-body text-center p-5">\n' +
+                        '                            <span class="text-white">';
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        errorMessage +=(''+value+'<br>');
+                    });
+                    errorMessage +='</span>\n' +
+                        '                        </div>\n' +
+                        '                    </div>';
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        footer: errorMessage
+                    })
+                },
+            })
+        });
+
+        // login now
+        $('.signin-btn').click(function (){
+            $.ajax({
+                method: 'POST',
+                url: "/login",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: { email:  $(this).find('.signin-email').val(),  password:  $(this).find('.signin-password').val()},
+                dataType: 'JSON',
+                success: function (response) {
+                    if (response.type == 'success'){
+                      location.replace('/login');
+                    }else{
+                        Swal.fire(
+                            'Sorry !',
+                            response.message,
+                            response.type
+                        )
+                    }
+                },
+                error: function (xhr) {
+                    var errorMessage = '<div class="card bg-danger">\n' +
+                        '                        <div class="card-body text-center p-5">\n' +
+                        '                            <span class="text-white">';
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        errorMessage +=(''+value+'<br>');
+                    });
+                    errorMessage +='</span>\n' +
+                        '                        </div>\n' +
+                        '                    </div>';
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        footer: errorMessage
+                    })
+                },
+            })
+        });
     });
 
     function delete_function(objButton){

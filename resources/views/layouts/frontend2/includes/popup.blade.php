@@ -1,4 +1,4 @@
-<div class="sen-user-modal">
+<div class="sen-user-modal signin-modal">
     <!-- this is the entire modal form, including the background -->
     <div class="sen-user-modal-container">
         <!-- this is the container wrapper -->
@@ -9,18 +9,25 @@
 
         <div id="sen-login">
             <!-- log in form -->
-            <form class="sen-form">
+            <form class="sen-form" method="post" action=" {{ route('login') }} ">
+                @csrf
                 <p class="fieldset">
                     <label class="image-replace sen-email" for="signin-email">E-mail</label>
-                    <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
-                    <span class="sen-error-message">Error message here!</span>
+                    <input class="full-width has-padding has-border signin-email" id="signin-email" name="email"
+                        type="email" placeholder="E-mail" required>
+                    @error('email')
+                        <span class="sen-error-message"> {{ $message }}</span>
+                    @enderror
                 </p>
 
                 <p class="fieldset">
                     <label class="image-replace sen-password" for="signin-password">Password</label>
-                    <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="Password">
+                    <input class="full-width has-padding has-border signin-password" id="signin-password"
+                        name="password" type="text" placeholder="Password" required>
                     <a href="#0" class="hide-password">Hide</a>
-                    <span class="sen-error-message">Error message here!</span>
+                    @error('password')
+                        <span class="sen-error-message"> {{ $message }}</span>
+                    @enderror
                 </p>
 
                 <p class="fieldset">
@@ -29,7 +36,7 @@
                 </p>
 
                 <p class="fieldset">
-                    <input class="full-width" type="submit" value="Login">
+                    <input class="full-width signin-btn" type="button" id="signin-button" value="Login">
                 </p>
             </form>
 
@@ -43,19 +50,22 @@
             <form class="sen-form">
                 <p class="fieldset">
                     <label class="image-replace sen-username" for="signup-username">Username</label>
-                    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+                    <input class="full-width has-padding has-border" id="signup-username" type="text"
+                        placeholder="Username">
                     <span class="sen-error-message">Error message here!</span>
                 </p>
 
                 <p class="fieldset">
                     <label class="image-replace sen-email" for="signup-email">E-mail</label>
-                    <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+                    <input class="full-width has-padding has-border" id="signup-email" type="email"
+                        placeholder="E-mail">
                     <span class="sen-error-message">Error message here!</span>
                 </p>
 
                 <p class="fieldset">
                     <label class="image-replace sen-password" for="signup-password">Password</label>
-                    <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password">
+                    <input class="full-width has-padding has-border" id="signup-password" type="text"
+                        placeholder="Password">
                     <a href="#0" class="hide-password">Hide</a>
                     <span class="sen-error-message">Error message here!</span>
                 </p>
@@ -76,7 +86,8 @@
 
         <div id="sen-reset-password">
             <!-- reset password form -->
-            <p class="sen-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+            <p class="sen-form-message">Lost your password? Please enter your email address. You will receive a link to
+                create a new password.</p>
 
             <form class="sen-form">
                 <p class="fieldset">
@@ -98,30 +109,32 @@
     <!-- sen-user-modal-container -->
 </div>
 
-<!-- Order modal -->
-<div class="modal fade" id="order-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- signin modal -->
+<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form class="sen-form"  method="post" id="send-message-form" action=" {{ route('frontend.contactUsStore') }}">
+                <form class="sen-form" method="post" id="send-message-form"
+                    action=" {{ route('frontend.contactUsStore') }}">
                     @csrf
                     <p class="fieldset">
                         <label class="image-replace" for="name">Name</label>
-                        <input class="full-width has-padding has-border" type="text" name="name" value="{{ old('name') }}" placeholder="Name" required>
+                        <input class="full-width has-padding has-border" type="text" name="name"
+                            value="{{ old('name') }}" placeholder="Name" required>
                     </p>
                     <p class="fieldset">
                         <label class="image-replace sen-email" for="email">E-mail</label>
-                        <input class="full-width has-padding has-border" type="email" name="email" value="{{ old('email') }}" placeholder="Email" required>
+                        <input class="full-width has-padding has-border" type="email" name="email"
+                            value="{{ old('email') }}" placeholder="Email" required>
                     </p>
-<p class="fieldset">
+                    <p class="fieldset">
                     <p class="fieldset">
                         <label class="image-replace sen-phone" for="email">Phone</label>
-                        <input class="full-width has-padding has-border" type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone" required>
+                        <input class="full-width has-padding has-border" type="text" name="phone"
+                            value="{{ old('phone') }}" placeholder="Phone" required>
                     </p>
-                    <p class="fieldset">
-                        <label class="image-replace" for="message">Message</label>
-                        <textarea class="full-width has-padding has-border message-area col-12" rows="7" name="message" id="" placeholder="I need a website for my company ...." required>{{ old('message') }}</textarea>
-                    </p>
+
 
                     <p class="fieldset">
                         <input class="full-width has-padding" type="submit" value="Send Message">
@@ -132,3 +145,74 @@
     </div>
 </div>
 
+<!-- signup modal -->
+<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form class="sen-form">
+                    <p class="fieldset">
+                        <label class="image-replace" for="name">Name</label>
+                        <input class="full-width has-padding has-border signup-name" type="text" name="name"
+                            placeholder="Name" required>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace sen-email" for="email">E-mail</label>
+                        <input class="full-width has-padding has-border signup-email" type="email" name="email"
+                            placeholder="Email" required>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace sen-password" for="password">E-mail</label>
+                        <input class="full-width has-padding has-border signup-password" type="password" name="password"
+                            placeholder="Password" required>
+                    </p>
+                    <p class="fieldset">
+                        <button class="full-width has-padding signup-btn" type="button" value="Send Message">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Order modal -->
+<div class="modal fade" id="order-modal" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form class="sen-form" method="post" id="send-message-form"
+                    action=" {{ route('frontend.contactUsStore') }}">
+                    @csrf
+                    <p class="fieldset">
+                        <label class="image-replace" for="name">Name</label>
+                        <input class="full-width has-padding has-border" type="text" name="name"
+                            value="{{ old('name') }}" placeholder="Name" required>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace sen-email" for="email">E-mail</label>
+                        <input class="full-width has-padding has-border" type="email" name="email"
+                            value="{{ old('email') }}" placeholder="Email" required>
+                    </p>
+                    <p class="fieldset">
+                    <p class="fieldset">
+                        <label class="image-replace sen-phone" for="email">Phone</label>
+                        <input class="full-width has-padding has-border" type="text" name="phone"
+                            value="{{ old('phone') }}" placeholder="Phone" required>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace" for="message">Message</label>
+                        <textarea class="full-width has-padding has-border message-area col-12" rows="7" name="message"
+                            id="" placeholder="I need a website for my company ...."
+                            required>{{ old('message') }}</textarea>
+                    </p>
+
+                    <p class="fieldset">
+                        <input class="full-width has-padding" type="submit" value="Send Message">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
