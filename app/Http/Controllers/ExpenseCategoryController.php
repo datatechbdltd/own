@@ -35,7 +35,15 @@ class ExpenseCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        $expense_category = new ExpenseCategory();
+
+        $expense_category->name    =   $request->name;
+        $expense_category->save();
+        return back()->withToastSuccess('Successfully saved.');
     }
 
     /**
@@ -80,6 +88,17 @@ class ExpenseCategoryController extends Controller
      */
     public function destroy(ExpenseCategory $expenseCategory)
     {
-        //
+        try {
+            $expenseCategory->delete();
+            return response()->json([
+                'type' => 'success',
+                'message' => 'Successfully deleted.',
+            ]);
+        }catch (\Exception $exception){
+            return response()->json([
+                'type' => 'error',
+                'message' => 'Something going wrong. '.$exception->getMessage(),
+            ]);
+        }
     }
 }

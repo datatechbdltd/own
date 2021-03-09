@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expense;
+use App\Models\ExpenseCategory;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ExpenseController extends Controller
 {
@@ -20,19 +24,17 @@ class ExpenseController extends Controller
             return DataTables::of($data)
                 ->addColumn('category', function($data) {
                     return $data->category->name ?? '-';
+                })->addColumn('create', function($data) {
+                    return $data->created_at->format('d/M/Y');
+                })->addColumn('action', function($data) {
+                    return '<a href="'.route('account.expense.edit', $data).'" class="btn btn-info"><i class="fa fa-edit"></i> </a>
+
+                    <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('account.expense.destroy', $data).'"><i class="fa fa-trash"></i> </button>';
                 })
-                ->addColumn('All', function($data) {
-                    $html = '<input type="checkbox" class="filled-in chk-col-danger demo-checkbox" name="check" id="id-'.$data->id.'" value="'.$data->id.'"><label class="badge badge-pill badge-success shadow-warning m-1" for="id-'.$data->id.'">Select #'. $data->id.'</lecel>';
-                    return $html;
-                })
-                ->addColumn('action', function($data) {
-                    return '<a href="'.route('lead.lead.show', $data).'" class="btn btn-primary" target="_blank">SHOW</a>
-                            <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('lead.lead.destroy', $data).'">DELETE</button>';
-                })
-                ->rawColumns(['All','action', 'category'])
+                ->rawColumns(['category','create','action'])
                 ->make(true);
         }else{
-            return view('backend.account.income');
+            return view('backend.account.expense-index');
         }
     }
 
@@ -43,7 +45,8 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        $expense_categorys = ExpenseCategory::all();
+        return view('backend.account.expense-create', compact('expense_categorys'));
     }
 
     /**
@@ -54,7 +57,32 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_id' => 'nullable|exists:expense_categories,id',
+            'name' => 'required|string',
+            'description' => 'nullable|string',
+            'amount' => 'nullable|numeric',
+            'image' => 'nullable|image',
+        ]);
+
+        $expense = new Expense();
+
+        $expense->category_id    =   $request->expense_category;
+        $expense->name    =   $request->name;
+        $expense->description    =   $request->description;
+        $expense->amount    =   $request->amount;
+
+        if($request->hasFile('image')){
+            $image             = $request->file('image');
+            $folder_path       = 'uploads/images/expense/';
+            $image_new_name    = Str::random(20).'-'.now()->timestamp.'.'.$image->getClientOriginalExtension();
+            //resize and save to server
+            Image::make($image->getRealPath())->save($folder_path.$image_new_name);
+            $expense->image = $folder_path.$image_new_name;
+        }
+
+        $expense->save();
+        return back()->withToastSuccess('Successfully saved.');
     }
 
     /**
@@ -76,7 +104,8 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        //
+        $expense_categorys = ExpenseCategory::all();
+        return view('backend.account.expense-edit', compact('expense_categorys','expense'));
     }
 
     /**
@@ -88,7 +117,33 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
-        //
+        $request->validate([
+            'category_id' => 'nullable|exists:expense_categories,id',
+            'name' => 'required|string',
+            'description' => 'nullable|string',
+            'amount' => 'nullable|numeric',
+            'image' => 'nullable|image',
+        ]);
+
+        $expense = $expense;
+        $expense->category_id    =   $request->expense_category;
+        $expense->name    =   $request->name;
+        $expense->description    =   $request->description;
+        $expense->amount    =   $request->amount;
+
+        if($request->hasFile('image')){
+            if ($expense->image != null)
+                File::delete(public_path($expense->image)); //Old image delete
+            $image             = $request->file('image');
+            $folder_path       = 'uploads/images/expense/';
+            $image_new_name    = Str::random(20).'-'.now()->timestamp.'.'.$image->getClientOriginalExtension();
+            //resize and save to server
+            Image::make($image->getRealPath())->save($folder_path.$image_new_name);
+            $expense->image = $folder_path.$image_new_name;
+        }
+
+        $expense->save();
+        return back()->withToastSuccess('Successfully saved.');
     }
 
     /**
@@ -99,6 +154,18 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-        //
+        try {
+            if ($expense->image != null)
+                File::delete(public_path($expense->image)); //Old image delete
+
+            $expense->delete();
+            return response()->json([
+                'type' => 'success',
+            ]);
+        }catch (\Exception$exception){
+            return response()->json([
+                'type' => 'error',
+            ]);
+        }
     }
 }

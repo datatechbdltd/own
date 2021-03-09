@@ -49,7 +49,8 @@
                         <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Account</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('account.expense.index') }}"><i class="mdi mdi-circle"></i>Expense</a></li>
+                        <li><a href="{{ route('account.expense.create') }}"><i class="mdi mdi-circle"></i>Expense Create</a></li>
+                        <li><a href="{{ route('account.expense.index') }}"><i class="mdi mdi-circle"></i>Expense list</a></li>
                     </ul>
                 </li>
                 {{--Sales--}}
