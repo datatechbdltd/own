@@ -111,33 +111,23 @@
 
 <!-- signin modal -->
 <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog"
-    aria-hidden="true">
+    aria-hidden="true" style="margin-top:150px">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form class="sen-form" method="post" id="send-message-form"
-                    action=" {{ route('frontend.contactUsStore') }}">
-                    @csrf
+                <form class="sen-form" method="" id="send-message-form">
                     <p class="fieldset">
-                        <label class="image-replace" for="name">Name</label>
-                        <input class="full-width has-padding has-border" type="text" name="name"
-                            value="{{ old('name') }}" placeholder="Name" required>
+                        <label class="image-replace sen-email" for="signin-email">E-mail</label>
+                        <input class="full-width has-padding has-border signin-email" type="email" id="signin-email" name="email"
+                            placeholder="Email" required>
                     </p>
                     <p class="fieldset">
-                        <label class="image-replace sen-email" for="email">E-mail</label>
-                        <input class="full-width has-padding has-border" type="email" name="email"
-                            value="{{ old('email') }}" placeholder="Email" required>
+                        <label class="image-replace" for="signin-password">Password</label>
+                        <input class="full-width has-padding has-border signin-password" id="signin-password" type="password" name="password"
+                            placeholder="Password" required>
                     </p>
-                    <p class="fieldset">
-                    <p class="fieldset">
-                        <label class="image-replace sen-phone" for="email">Phone</label>
-                        <input class="full-width has-padding has-border" type="text" name="phone"
-                            value="{{ old('phone') }}" placeholder="Phone" required>
-                    </p>
-
-
-                    <p class="fieldset">
-                        <input class="full-width has-padding" type="submit" value="Send Message">
+                    <p class="fieldset signin-btn">
+                        <a href="javascript:0" class="btn btn-basic" tabindex="0">Login</a>
                     </p>
                 </form>
             </div>
@@ -147,7 +137,7 @@
 
 <!-- signup modal -->
 <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog"
-    aria-hidden="true">
+    aria-hidden="true" style="margin-top:150px">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -163,12 +153,17 @@
                             placeholder="Email" required>
                     </p>
                     <p class="fieldset">
+                        <label class="image-replace sen-phone" for="phone">Phone</label>
+                        <input class="full-width has-padding has-border signup-phone" type="tel" name="phone"
+                            placeholder="0171....." required>
+                    </p>
+                    <p class="fieldset">
                         <label class="image-replace sen-password" for="password">E-mail</label>
                         <input class="full-width has-padding has-border signup-password" type="password" name="password"
                             placeholder="Password" required>
                     </p>
-                    <p class="fieldset">
-                        <button class="full-width has-padding signup-btn" type="button" value="Send Message">
+                    <p class="fieldset signup-btn">
+                            <a href="javascript:0" class="btn btn-basic" tabindex="0">Register</a>
                     </p>
                 </form>
             </div>

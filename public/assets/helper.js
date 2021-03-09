@@ -81,19 +81,19 @@
         });
         // registration now
         $('.signup-btn').click(function (){
-            alert($(this).parent.find('.signup-name').val())
-            alert($(this).parent.find('.signup-phone').val())
-            alert($(this).parent.find('.signup-email').val())
-            alert($(this).parent.find('.signup-password').val())
-
             $.ajax({
                 method: 'POST',
                 url: "/register",
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: { name:  $(this).parent.find('.signup-name').val(), phone:  $(this).parent.find('.signup-phone').val(), email:  $(this).parent.find('.signup-email').val(),  password:  $(this).parent.find('.signup-password').val(), confirm_password:  $(this).parent.find('.signup-password').val()},
+                data: { name:  $(this).parent().find('.signup-name').val(), phone:  $(this).parent().find('.signup-phone').val(), email:  $(this).parent().find('.signup-email').val(),  password:  $(this).parent().find('.signup-password').val(), password_confirmation:  $(this).parent().find('.signup-password').val()},
                 dataType: 'JSON',
                 success: function (response) {
                     if (response.type == 'success'){
+                        Swal.fire(
+                            'Success !',
+                            response.message,
+                            response.type
+                        )
                       location.replace('/login');
                     }else{
                         Swal.fire(
@@ -128,10 +128,15 @@
                 method: 'POST',
                 url: "/login",
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: { email:  $(this).find('.signin-email').val(),  password:  $(this).find('.signin-password').val()},
+                data: { email:  $(this).parent().find('.signin-email').val(),  password:  $(this).parent().find('.signin-password').val()},
                 dataType: 'JSON',
                 success: function (response) {
                     if (response.type == 'success'){
+                        Swal.fire(
+                            'Success !',
+                            response.message,
+                            response.type
+                        )
                       location.replace('/login');
                     }else{
                         Swal.fire(

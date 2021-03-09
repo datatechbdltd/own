@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
         if ($request->ajax()){
             return response()->json([
                 'type' => 'success',
-                'message' => 'Successfully deleted.',
+                'message' => 'Successfully registered.',
             ]);
         }else{
             return redirect(RouteServiceProvider::LEAD);}
