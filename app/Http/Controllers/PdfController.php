@@ -3,24 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Income;
+use App\Models\Invoice;
 use App\Models\Proposal;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class PdfController extends Controller
 {
-    public function incomeStream(Income $income){
-        $pdf = PDF::loadView('pdf.income', compact('income'));
-        return $pdf->stream();;
-    }
+
     // proposal Stream
     public function proposalStream(Proposal $proposal){
         $pdf = PDF::loadView('pdf.proposal', compact('proposal'));
         return $pdf->stream();;
     }
-
-    public function incomeDownload(Income $income){
-        $pdf = PDF::loadView('pdf.income', $income);
-        return $pdf->download('invoice.pdf');
+    // prposal download
+    public function prposalDownload($slug){
+        $proposal = Proposal::where('slug',$slug)->first();
+        return view('pdf.proposal' ,compact('proposal'));
     }
+
+     // invoice stream
+     public function invoiceStream($slug){
+        $invoice = Invoice::where('slug',$slug)->first();
+        $pdf = PDF::loadView('pdf.invoice', compact('invoice'));
+        return $pdf->stream();;
+    }
+    // invoice download
+    public function invoiceDownload($invoice_id){
+        $invoice = Invoice::where('invoice_id',$invoice_id)->first();
+        return view('pdf.invoice' ,compact('invoice'));
+    }
+
+
+
 }

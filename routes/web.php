@@ -153,9 +153,10 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('projectStatus', ProjectStatusController::class);
     Route::resource('user', UserController::class);
     Route::group(['prefix' => 'pdf', 'as' => 'pdf.'], function () {
-        Route::get('income-download/{income}', [PdfController::class,'incomeDownload']);
-        Route::get('income-stream/{income}', [PdfController::class,'incomeStream'])->name('incomeStream');
-        Route::get('proposal-stream/{income}', [PdfController::class,'proposalStream'])->name('proposalStream');
+        Route::get('proposal/stream/{slug}', [PdfController::class,'proposalStream'])->name('proposalStream');
+        Route::get('proposal/download/{slug}',[PdfController::class, 'prposalDownload'])->name('prposalDownload');
+        Route::get('invoice/stream/{slug}',[PdfController::class, 'invoiceStream'])->name('invoiceStream');
+        Route::get('invoice/download/{slug}',[PdfController::class, 'invoiceDownload'])->name('invoiceDownload');
     });
 });
 

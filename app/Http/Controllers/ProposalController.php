@@ -38,7 +38,7 @@ class ProposalController extends Controller
                 })->addColumn('create', function($data) {
                     return $data->created_at->format('d/M/Y');
                 })->addColumn('action', function($data) {
-                    return '<a href="'.route('pdf.proposalStream', $data).'" class="btn btn-primary" target="_blank">Stream</a>
+                    return '<a href="'.route('pdf.proposalStream', $data->slug).'" class="btn btn-primary" target="_blank">Stream</a>
                     <a href="'.route('sales.proposal.edit', $data).'" class="btn btn-info" target="_blank"><i class="fa fa-edit"></i> </a>
                     <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('sales.proposal.destroy', $data).'"><i class="fa fa-trash"></i> </button>
                     <button class="btn btn-info" onclick="copy_function(this)" value="'.route('frontend.prposalPage', $data->slug).'"><i class="fa fa-copy"></i> </button>
