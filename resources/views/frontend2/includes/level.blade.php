@@ -1,6 +1,12 @@
 <div class="video-area-2 common-pd-bottom right-line-bg" style="background-image: url({{ asset('assets/frontend2/img/shape/pen-2.png') }});">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h3 class="title">Our latest products</h3>
+
+                </div>
+            </div>
             @foreach($website_products as $website_product)
                 <div class="col-lg-3 col-md-6">
                     <div class="single-about text-center bg-gradient">

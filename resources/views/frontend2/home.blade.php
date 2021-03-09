@@ -24,7 +24,7 @@
 </div>
 
 <!-- price-table-area start -->
-    @include('frontend2.includes.price-table')
+    {{--  @include('frontend2.includes.price-table')  --}}
 <!-- price-table-area end -->
 
 {{--<div class="shape-2" style="background-image: url({{ asset('assets/frontend2/img/shape/2.png') }});">--}}
