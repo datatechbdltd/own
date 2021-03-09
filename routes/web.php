@@ -32,6 +32,7 @@ use App\Http\Controllers\ProjectStatusController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteSeoController;
 use App\Http\Controllers\WebsiteServiceController;
 use App\Http\Controllers\WebsiteTeamController;
@@ -150,6 +151,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     });
     Route::resource('project', ProjectController::class);
     Route::resource('projectStatus', ProjectStatusController::class);
+    Route::resource('user', UserController::class);
     Route::group(['prefix' => 'pdf', 'as' => 'pdf.'], function () {
         Route::get('income-download/{income}', [PdfController::class,'incomeDownload']);
         Route::get('income-stream/{income}', [PdfController::class,'incomeStream'])->name('incomeStream');

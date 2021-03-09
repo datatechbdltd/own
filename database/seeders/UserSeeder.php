@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
         $user->assignRole('marketer');
 
         $user = new User();
-        $user->name = 'Mr. Marketer';
+        $user->name = 'Mr. Customer';
         $user->email = 'customer@gmail.com';
         $user->phone = '01304734626';
         $user->password = Hash::make('password');

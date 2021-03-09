@@ -53,6 +53,16 @@
                         <li><a href="{{ route('account.expense.index') }}"><i class="mdi mdi-circle"></i>Expense list</a></li>
                     </ul>
                 </li>
+                {{--Users--}}
+                <li>
+                    <a href="javaScript:void();">
+                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>User</span><i class="feather icon-chevron-right pull-right"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('user.create') }}"><i class="mdi mdi-circle"></i>Create User</a></li>
+                        <li><a href="{{ route('user.index') }}"><i class="mdi mdi-circle"></i>User  list</a></li>
+                    </ul>
+                </li>
                 {{--Sales--}}
                 <li>
                     <a href="javaScript:void();">
