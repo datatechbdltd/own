@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\LeadImport;
 use App\Mail\WebsiteContactUsMail;
 use App\Models\CustomPage;
+use App\Models\Invoice;
 use App\Models\Lead;
 use App\Models\LeadCategory;
 use App\Models\LeadDistrict;
@@ -58,10 +59,16 @@ class FrontendController extends Controller
         $service = WebsiteService::where('is_active', true)->where('slug',$slug)->first();
         return view('frontend.service-details' ,compact('service'));
     }
+
     // prposal Page
     public function prposalPage($slug){
         $proposal = Proposal::where('slug',$slug)->first();
         return view('frontend2.show-for-approval' ,compact('proposal'));
+    }
+    // invoice Page
+    public function invoicePage($slug){
+        $invoice = Invoice::where('slug',$slug)->first();
+        return view('frontend2.show-invoice' ,compact('invoice'));
     }
 
     public function leadCollectionPage(){

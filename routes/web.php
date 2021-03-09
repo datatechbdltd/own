@@ -52,6 +52,7 @@ Route::group(['as' => 'frontend.'], function () {
    Route::get('/services',[FrontendController::class, 'servicesPage'])->name('servicesPage');
    Route::get('/services/{slug}',[FrontendController::class, 'servicesDetailsPage'])->name('servicesDetailsPage');
    Route::get('/proposal/{slug}',[FrontendController::class, 'prposalPage'])->name('prposalPage');
+   Route::get('/invoice/{slug}',[FrontendController::class, 'invoicePage'])->name('invoicePage');
    Route::post('/subscribe/store',[FrontendController::class, 'subscribeStore'])->name('subscribeStore');
     Route::get('page/{slug}',[FrontendController::class, 'customPage'])->name('customPage');
    Route::get('lead-collection',[FrontendController::class, 'leadCollectionPage'])->name('leadCollectionPage');

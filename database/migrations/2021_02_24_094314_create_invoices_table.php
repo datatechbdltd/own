@@ -17,17 +17,22 @@ class CreateInvoicesTable extends Migration
             $table->id();
             $table->foreignId('customer_id')->nullable();
             $table->string('invoice_id')->nullable();
+
             $table->foreignId('product_id')->nullable();
             $table->foreignId('service_id')->nullable();
+
             $table->string('product_price')->nullable();
             $table->string('service_price')->nullable();
             $table->string('other_price')->nullable();
+
             $table->longText('product_note')->nullable();
             $table->longText('service_note')->nullable();
             $table->longText('other_note')->nullable();
-            $table->double('product_vat')->comment('in %');
-            $table->double('service_vat')->comment('in %');
-            $table->double('other_vat')->comment('in %');
+            $table->string('slug')->nullable();
+
+            $table->double('product_vat')->nullable()->comment('in %');
+            $table->double('service_vat')->nullable()->comment('in %');
+            $table->double('other_vat')->nullable()->comment('in %');
             $table->timestamps();
             $table->softDeletes();
         });

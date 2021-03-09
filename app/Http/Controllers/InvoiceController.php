@@ -22,19 +22,27 @@ class InvoiceController extends Controller
         if ($request->ajax()){
             $data = Invoice::orderBy('id', 'desc')->get();
             return DataTables::of($data)
-                ->addColumn('customer', function($data) {
+                ->addColumn('id', function($data) {
+                    return $data->invoice_id;
+                })->addColumn('customer', function($data) {
                     if ($data->customer)
-                    return $data->customer->name;
+                        return $data->customer->name;
+                })->addColumn('payment', function($data) {
+                    $total_amount = $data->product_price+$data->service_price+$data->other_price;
+                    $paid_amount = $data->payments->sum('amount');
+                    $due_amount = $total_amount - $paid_amount;
+                    return $due_amount;
                 })->addColumn('create', function($data) {
                     return $data->created_at->format('d/M/Y');
                 })->addColumn('action', function($data) {
                     return '<a href="'.route('pdf.proposalStream', $data).'" class="btn btn-primary" target="_blank">Stream</a>
-                    <a href="'.route('sales.proposal.edit', $data).'" class="btn btn-info" target="_blank"><i class="fa fa-edit"></i> </a>
-                    <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('sales.proposal.destroy', $data).'"><i class="fa fa-trash"></i> </button>
-                    <button class="btn btn-info" onclick="copy_function(this)" value="'.route('frontend.prposalPage', $data->slug).'"><i class="fa fa-copy"></i> </button>
-                    <a href="'.route('frontend.prposalPage', $data->slug).'" class="btn btn-success" target="_blank"><i class="fa fa-eye"></i> </a>';
+
+                    <a href="'.route('sales.invoice.edit', $data).'" class="btn btn-info"><i class="fa fa-edit"></i> </a>
+                    <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('sales.invoice.destroy', $data).'"><i class="fa fa-trash"></i> </button>
+                    <button class="btn btn-info" onclick="copy_function(this)" value="'.route('frontend.invoicePage', $data->slug).'"><i class="fa fa-copy"></i> </button>
+                    <a href="'.route('frontend.invoicePage', $data->slug).'" class="btn btn-success" target="_blank"><i class="fa fa-eye"></i> </a>';
                 })
-                ->rawColumns(['customer', 'service_product', 'create', 'action'])
+                ->rawColumns(['id','customer', 'service_product', 'create', 'action'])
                 ->make(true);
         }else{
             return view('backend.sales.invoice-index');
@@ -93,9 +101,10 @@ class InvoiceController extends Controller
         $invoice->service_vat    =   $request->service_vat;
         $invoice->product_vat    =   $request->product_vat;
 
-        $invoice->other_price    =   $request->other_price;
+        $invoice->other_price    =   $request->price;
         $invoice->product_price    =   $request->product_price;
         $invoice->service_price    =   $request->service_price;
+        $invoice->slug    =   time().'-'.Str::random(12);
 
         do {
             $invoice_id = mt_rand( 000001, 999999);
@@ -125,7 +134,10 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        //
+        $customers = User::role('customer')->get();
+        $products = Product::all();
+        $services = Service::all();
+        return view('backend.sales.invoice-edit', compact('customers', 'products','services','invoice'));
     }
 
     /**
@@ -137,7 +149,43 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        //
+        $request->validate([
+            // 'customer' => 'nullable|exists:users,id',
+            // 'service' => 'nullable|exists:services,id',
+            // 'product' => 'nullable|exists:products,id',
+            'description' => 'nullable',
+            'product_note' => 'nullable',
+            'service_note' => 'nullable',
+
+            'vat' => 'nullable',
+            'product_vat' => 'nullable',
+            'service_vat' => 'nullable',
+
+            'price' => 'nullable|numeric',
+            'product_price' => 'nullable|numeric',
+            'service_price' => 'nullable|numeric',
+        ]);
+
+        $invoice = $invoice;
+
+        $invoice->customer_id    =   $request->customer;
+        $invoice->service_id    =   $request->service;
+        $invoice->product_id    =   $request->product;
+
+        $invoice->other_note    =   $request->description;
+        $invoice->product_note    =   $request->product_note;
+        $invoice->service_note    =   $request->service_note;
+
+        $invoice->other_vat    =   $request->vat;
+        $invoice->service_vat    =   $request->service_vat;
+        $invoice->product_vat    =   $request->product_vat;
+
+        $invoice->other_price    =   $request->price;
+        $invoice->product_price    =   $request->product_price;
+        $invoice->service_price    =   $request->service_price;
+
+        $invoice->save();
+        return back()->withToastSuccess('Successfully saved.');
     }
 
     /**
@@ -148,6 +196,17 @@ class InvoiceController extends Controller
      */
     public function destroy(Invoice $invoice)
     {
-        //
+        try {
+            $invoice->delete();
+            return response()->json([
+                'type' => 'success',
+                'message' => 'Successfully deleted.',
+            ]);
+        }catch (\Exception $exception){
+            return response()->json([
+                'type' => 'error',
+                'message' => 'Something going wrong. '.$exception->getMessage(),
+            ]);
+        }
     }
 }

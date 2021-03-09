@@ -69,6 +69,11 @@ class User extends Authenticatable
         return $this->hasMany(Lead::class, 'add_by_id','id');
     }
 
+    //invoices
+    public function invoices(){
+        return $this->hasMany(Invoice::class, 'customer_id','id');
+    }
+
     //sms of this user
     public function allMessages(){
         return $this->hasMany(SmsHistory::class, 'sender_id','id')->orderBy('id', 'desc');

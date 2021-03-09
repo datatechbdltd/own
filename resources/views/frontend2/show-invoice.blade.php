@@ -1,5 +1,5 @@
 @extends('layouts.frontend2.app')
-@push('title') Proposal @endpush
+@push('title') Invoice @endpush
 @section('content')
 
     <!-- page-title area start -->
@@ -7,12 +7,13 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-6">
-                    <h3 class="title">Proposal </h3>
+                    <h3 class="title">Invoice </h3>
                 </div>
                 <div class="col-sm-6 text-center align-self-center">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Proposal</li>
+                        <li class="breadcrumb-item active" aria-current="page">Invoice</li>
+
                     </ul>
                 </div>
             </div>
@@ -23,7 +24,9 @@
     <!-- contact area start -->
     <div class="contact-area pd-bottom-85">
         <div class="container">
-            {!! $proposal->description  !!}
+            {!! $invoice->other_note  !!}
+            {!! $invoice->service_note  !!}
+            {!! $invoice->product_note  !!}
         </div>
     </div>
     <!-- contact area end -->

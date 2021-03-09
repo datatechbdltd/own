@@ -148,7 +148,6 @@ class ProposalController extends Controller
         $proposal->guest_email    =   $request->guest_email;
         $proposal->guest_phone    =   $request->guest_phone;
         $proposal->budget    =   $request->budget;
-        $proposal->slug    =   time().'-'.Str::random(12);
         $proposal->save();
         return back()->withToastSuccess('Successfully saved.');
 
