@@ -43,15 +43,13 @@
                     <h5 class="card-title">Project</h5>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="datatable" class="display table table-striped table-bordered">
+                    <div class="">
+                        <table id="datatable" class="table-responsive display table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th>Invoice</th>
                                 <th>Status</th>
-                                <th>Name</th>
                                 <th>Project id</th>
-                                <th>Image</th>
                                 <th>Create</th>
                                 <th>Action</th>
                             </tr>
@@ -63,9 +61,7 @@
                             <tr>
                                 <th>Invoice</th>
                                 <th>Status</th>
-                                <th>Name</th>
                                 <th>Project id</th>
-                                <th>Image</th>
                                 <th>Create</th>
                                 <th>Action</th>
                             </tr>
@@ -94,9 +90,7 @@
                 columns: [
                     { data: 'invoice', name: 'invoice' },
                     { data: 'status', name: 'status' },
-                    { data: 'name', name: 'name' },
                     { data: 'project_id', name: 'project_id' },
-                    { data: 'image', name: 'image' },
                     { data: 'create', name: 'create' },
                     { data: 'action', name: 'action' },
                 ], initComplete: function () {

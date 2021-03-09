@@ -40,7 +40,7 @@ Theta - Invoice
                             <div class="row">
                                 <div class="col-12 col-md-7 col-lg-7">
                                     <div class="invoice-logo">
-                                        <img src="assets/panel/vertical/images/logo.svg" class="img-fluid" alt="invoice-logo">
+                                        <img src="{{ asset(get_static_option('website_logo')) }}" class="img-fluid" alt="invoice-logo">
                                     </div>
                                     <h4>Theta Design Inc.</h4>
                                     <p>The Complete Web Solutions Partner</p>

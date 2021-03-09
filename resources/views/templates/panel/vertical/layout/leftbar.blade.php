@@ -3,7 +3,7 @@
     <div class="sidebar">
         <!-- Start Logobar -->
         <div class="logobar">
-            <a href="{{url('/template/panel-vertical/')}}" class="logo logo-large"><img src="assets/panel/vertical/images/logo.svg" class="img-fluid" alt="logo"></a>
+            <a href="{{url('/template/panel-vertical/')}}" class="logo logo-large"><img src="{{ asset(get_static_option('website_logo')) }}" class="img-fluid" alt="logo"></a>
             <a href="{{url('/template/panel-vertical/')}}" class="logo logo-small"><img src="assets/panel/vertical/images/small_logo.svg" class="img-fluid" alt="logo"></a>
         </div>
         <!-- End Logobar -->

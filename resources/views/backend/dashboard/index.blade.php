@@ -76,16 +76,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-6 col-xl-6">
+                <div class="col-md-6 col-lg-3 col-xl-3">
                     <div class="card m-b-30">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">New Users</h5>
+                            <h5 class="card-title mb-0">Total Expense</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <p class="dash-analytic-icon"><i class="feather icon-dollar-sign danger-rgba text-danger"></i></p>
+                                    <h3 class="mb-3">{{ $total_expense }}</h3>
+                                    <p class="mb-0"><span class="badge badge-danger-inverse font-16">10%<i class="feather icon-arrow-down-right"></i></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xl-3">
+                    <div class="card m-b-30">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Total Users</h5>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 text-center">
                                     <p class="dash-analytic-icon"><i class="feather icon-users warning-rgba text-warning"></i></p>
-                                    <h3 class="mb-3">15%</h3>
+                                    <h3 class="mb-3">{{ $total_user }}</h3>
                                     <p class="mb-0"><span class="badge badge-success-inverse font-16">8%<i class="feather icon-arrow-up-right"></i></span></p>
                                 </div>
                             </div>

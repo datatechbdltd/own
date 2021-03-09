@@ -29,8 +29,6 @@ class ProjectController extends Controller
                 })->addColumn('status', function($data) {
                     if($data->projectStatus)
                         return $data->projectStatus->name;
-                })->addColumn('image', function($data) {
-                    return '<img src='.asset($data->image ?? get_static_option('no_mage')).' class="rounded-circle" width="70px;" height="70px;">';
                 })->addColumn('create', function($data) {
                     return $data->created_at->format('d/M/Y');
                 })->addColumn('action', function($data) {

@@ -4,7 +4,7 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="mobile-logobar">
-                    <a href="{{url('/template/panel-vertical/')}}" class="mobile-logo"><img src="assets/panel/vertical/images/logo.svg" class="img-fluid" alt="logo"></a>
+                    <a href="{{url('/template/panel-vertical/')}}" class="mobile-logo"><img src="{{ asset(get_static_option('website_logo')) }}" class="img-fluid" alt="logo"></a>
                 </div>
                 <div class="mobile-togglebar">
                     <ul class="list-inline mb-0">
