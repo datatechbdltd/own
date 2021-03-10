@@ -38,16 +38,16 @@
         position: absolute;
         left: 0;
         top: 0;
-         background: url({{ asset('assets/frontend2/img/banner/bg-2.png') }});
-        /*background-image: -webkit-gradient(linear, left top, right top, from(rgba(118, 45, 196, 0.9)), to(rgba(252, 66, 123, 0.9)));*/
-        /*background-image: -webkit-linear-gradient(left, rgba(118, 45, 196, 0.9), rgba(252, 66, 123, 0.9));*/
-        /*background-image: -o-linear-gradient(left, rgba(118, 45, 196, 0.9), rgba(252, 66, 123, 0.9));*/
-        /*background-image: linear-gradient(to right, rgba(118, 45, 196, 0.9), rgba(252, 66, 123, 0.9));*/
+         {{--background: url({{ asset('assets/frontend2/img/banner/bg-2.png') }});--}}
+        background-image: -webkit-gradient(linear, left top, right top, from(rgb(27, 20, 100)), to(rgb(194, 53, 48)));
+        background-image: -webkit-linear-gradient(left, rgb(27, 20, 100), rgb(194, 53, 48));
+        background-image: -o-linear-gradient(left, rgb(27, 20, 100), rgb(194, 53, 48));
+        background-image: linear-gradient(to right, rgb(27, 20, 100), rgb(194, 53, 48));
         content: '';
         width: 100%;
         height: 100%;
         z-index: -1; }
     .btn-basic{
-        background-image: -webkit-gradient(linear, left top, right top, from(rgba(118, 45, 196, 0.9)), to(rgba(234, 223, 224, 0.9)));
+        background-image: -webkit-gradient(linear, left top, right top, from(rgb(27, 20, 100)), to(rgb(194, 53, 48)));
     }
 </style>
