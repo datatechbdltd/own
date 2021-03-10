@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyPad;
-use App\Models\Income;
 use App\Models\Invoice;
 use App\Models\Proposal;
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use PDF;
 
 class PdfController extends Controller
 {
 
     // proposal Stream
-    public function proposalStream(Proposal $proposal){
-        $pdf = PDF::loadView('pdf.proposal', compact('proposal'));
-        return $pdf->setPaper('A4', 'portrait')->stream(); //portrait|horizontal
+    public function proposalStream($slug){
+        $proposal = Proposal::where('slug',$slug)->first();
+        $pdf = PDF::loadView('pdf.proposal', compact('proposal',));
+        //return $pdf->download($invoice->invoice_id.'.pdf');
+        return $pdf->stream(config('app.name').'-'.$proposal->slug.'.pdf');
     }
     // prposal download
     public function prposalDownload($slug){
