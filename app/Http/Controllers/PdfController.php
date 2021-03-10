@@ -15,7 +15,7 @@ class PdfController extends Controller
     // proposal Stream
     public function proposalStream(Proposal $proposal){
         $pdf = PDF::loadView('pdf.proposal', compact('proposal'));
-        return $pdf->stream();;
+        return $pdf->setPaper('A4', 'portrait')->stream(); //portrait|horizontal
     }
     // prposal download
     public function prposalDownload($slug){
@@ -27,7 +27,7 @@ class PdfController extends Controller
      public function invoiceStream($slug){
         $invoice = Invoice::where('slug',$slug)->first();
         $pdf = PDF::loadView('pdf.invoice', compact('invoice'));
-        return $pdf->stream();;
+        return $pdf->stream();
     }
     // invoice download
     public function invoiceDownload($invoice_id){
@@ -39,7 +39,7 @@ class PdfController extends Controller
      public function companyPadStream($slug){
         $company_pad = CompanyPad::where('slug',$slug)->first();
         $pdf = PDF::loadView('pdf.company-pad', compact('company_pad'));
-        return $pdf->stream();;
+        return $pdf->stream();
     }
     // pad download
     public function companyPadDownload($invoice_id){
