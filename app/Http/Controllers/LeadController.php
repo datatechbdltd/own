@@ -193,7 +193,7 @@ class LeadController extends Controller
     // lead Category Update
     public function leadCategoryUpdate(Request $request){
         $request->validate([
-            'category_id' => 'required|exits:lead_categories,id',
+            'category_id' => 'required|exists:lead_categories,id',
         ]);
         if (!$request->input(['leads'])){
             return response()->json(['message'=>'Please select Lead.', 'type'=>'warning']);
