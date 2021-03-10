@@ -3,7 +3,7 @@
 return [
     // ...
     'mode' => 'utf-8',
-    'format'        => 'A5',//A5 is half of A4 need for vauchar
+    'format'        => 'A4',//A5 is half of A4 need for vauchar
     'orientation'   => 'P', //L | P
     'font_path'     => base_path('resources/fonts/'),
     'font_data'     => [
