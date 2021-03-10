@@ -15,13 +15,13 @@ class PdfController extends Controller
     public function proposalStream($slug){
         $proposal = Proposal::where('slug',$slug)->first();
         $pdf = PDF::loadView('pdf.proposal', compact('proposal',));
-        //return $pdf->download($invoice->invoice_id.'.pdf');
         return $pdf->stream(config('app.name').'-'.$proposal->slug.'.pdf');
     }
     // prposal download
     public function prposalDownload($slug){
         $proposal = Proposal::where('slug',$slug)->first();
-        return view('pdf.proposal' ,compact('proposal'));
+        $pdf = PDF::loadView('pdf.proposal', compact('proposal',));
+        return $pdf->download(config('app.name').'-'.$proposal->slug.'.pdf');
     }
 
      // invoice stream

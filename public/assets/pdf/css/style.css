@@ -27,24 +27,47 @@
 
 body{
     font-family: bengali_englisg, sans-serif;
-    /*
-    font-family: bengali_englisg, sans-serif;
-    font-family: bengali, sans-serif;
-    font-family: english, sans-serif;
-     */
-}
-
-.english{
-    font-family: english, sans-serif;
-}
-
-.bengali{
-    font-family: bengali, sans-serif;
-}
-
-.rcorners{
-    border: 2px solid #0a0a0a;
 }
 
 
 
+.price-box{
+    border: 2px solid #c33b32;
+    padding: 5px;
+    border-radius: 50px 20px; text-align: center;
+    color: black;
+    font-size: large;
+}
+
+/* Dashed red border */
+.hr2 {
+    border-top: 1px dashed #1b1464;
+}
+
+/* Dotted red border */
+.hr3 {
+    border-top: 1px dotted #c33b32;
+}
+
+/* Thick red border */
+.hr4 {
+    border: 1px solid #c33b32;
+}
+
+/* Large rounded green border */
+.hr5 {
+    border: 10px solid green;
+    border-radius: 5px;
+}
+
+.brand1{
+    background-color: #1b1464;
+}
+
+.brand2{
+    background-color: #c33b32;
+}
+
+.brand3{
+    background-color: #f7aa28;
+}
