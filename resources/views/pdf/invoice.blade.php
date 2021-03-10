@@ -66,7 +66,7 @@
         @if($invoice->product || $invoice->product) <br> <br> @endif
     {!! $invoice->other_note !!}
     <br>
-    <p style="width: 50%;" class="price-box">Price: {{ $invoice->sother_price ?? '0' }} ৳</p>
+    <p style="width: 50%;" class="price-box">Price: {{ $invoice->other_price ?? '0' }} ৳</p>
      @endif
         <div class="hr2"></div>
         <div class="hr3"></div>
@@ -77,7 +77,7 @@
                 <table style="width: 100%">
                     <tr>
                         <td style="width: 50%">Total:</td>
-                        <td style="width: 50%">{{ $invoice->product_price + $invoice->service_price + $invoice->sother_price }}</td>
+                        <td style="width: 50%">{{ $invoice->product_price + $invoice->service_price + $invoice->other_price }}</td>
                     </tr>
                     <tr>
                         <td style="width: 50%">Paid:</td>
@@ -85,7 +85,7 @@
                     </tr>
                     <tr>
                         <td style="width: 50%">Due:</td>
-                        <td style="width: 50%; font-size: large; color: red">{{ $invoice->product_price + $invoice->service_price + $invoice->sother_price - $invoice->payments->sum('amount') }}</td>
+                        <td style="width: 50%; font-size: large; color: red">{{ $invoice->product_price + $invoice->service_price + $invoice->other_price - $invoice->payments->sum('amount') }}</td>
                     </tr>
                 </table>
             </td>
