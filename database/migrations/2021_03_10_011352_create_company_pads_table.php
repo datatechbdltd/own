@@ -16,10 +16,12 @@ class CreateCompanyPadsTable extends Migration
         Schema::create('company_pads', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
+            $table->foreignId('creator_id');
             $table->string('title')->nullable();
             $table->string('date')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

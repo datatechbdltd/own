@@ -55,6 +55,8 @@
                     <ul class="vertical-submenu">
                         <li><a href="{{ route('account.expense.create') }}"><i class="mdi mdi-circle"></i>Expense Create</a></li>
                         <li><a href="{{ route('account.expense.index') }}"><i class="mdi mdi-circle"></i>Expense list</a></li>
+                        <li><a href="{{ route('account.asset.create') }}"><i class="mdi mdi-circle"></i>Asset Create</a></li>
+                        <li><a href="{{ route('account.asset.index') }}"><i class="mdi mdi-circle"></i>Asset list</a></li>
                     </ul>
                 </li>
                 {{--Users--}}
@@ -65,6 +67,16 @@
                     <ul class="vertical-submenu">
                         <li><a href="{{ route('user.create') }}"><i class="mdi mdi-circle"></i>Create User</a></li>
                         <li><a href="{{ route('user.index') }}"><i class="mdi mdi-circle"></i>User  list</a></li>
+                    </ul>
+                </li>
+                {{--Company pad--}}
+                <li>
+                    <a href="javaScript:void();">
+                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Company pad</span><i class="feather icon-chevron-right pull-right"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('companyPad.create') }}"><i class="mdi mdi-circle"></i>Create Company pad</a></li>
+                        <li><a href="{{ route('companyPad.index') }}"><i class="mdi mdi-circle"></i>Company pad  list</a></li>
                     </ul>
                 </li>
                 {{--Sales--}}
