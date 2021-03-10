@@ -78,9 +78,17 @@ class FrontendController extends Controller
         $lead_thanas = LeadThana::orderBy('id', 'desc')->get();
         if (Auth::check()){
             $leads = auth()->user()->leads;
-            return view('frontend.lead-collection', compact('lead_categories','lead_services','lead_districts','lead_thanas', 'leads'));
+            if (get_static_option('frontend_style') == 'Second Style'){
+                return view('frontend2.lead-collection', compact('lead_categories','lead_services','lead_districts','lead_thanas', 'leads'));
+            }else{
+                return view('frontend.lead-collection', compact('lead_categories','lead_services','lead_districts','lead_thanas', 'leads'));
+            }
         }else{
-            return view('frontend.lead-collection');
+            if (get_static_option('frontend_style') == 'Second Style'){
+                return view('frontend2.lead-collection');
+            }else{
+                return view('frontend.lead-collection');
+            }
         }
 
     }

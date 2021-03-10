@@ -152,7 +152,7 @@
                               <ul class="info-list">
                                   <li>
                                       <span class="icon"></span>
-                                      <strong>Today's leads</strong>
+                                      <strong>Today\'s leads</strong>
                                       {{ $leads->where('created_at', '>=', \Carbon\Carbon::today())->count() }}
                                   </li>
                                   <li>
