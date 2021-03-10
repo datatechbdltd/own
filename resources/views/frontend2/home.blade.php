@@ -267,16 +267,14 @@
     @include('frontend2.includes.customer')
 <!-- customer-slider-area end -->
 
-<!-- blog-area start -->
-    @include('frontend2.includes.blog')
-<!-- blog-area end -->
+{{--<!-- blog-area start -->--}}
+{{--    @include('frontend2.includes.blog')--}}
+{{--<!-- blog-area end -->--}}
 
-<!-- message--area start -->
-    @include('frontend2.includes.message')
-<!-- message--area end -->
+{{--<!-- message--area start -->--}}
+{{--    @include('frontend2.includes.message')--}}
+{{--<!-- message--area end -->--}}
 
     @include('frontend2.includes.testimonial')
     @include('frontend2.includes.client')
-
-
 @endsection

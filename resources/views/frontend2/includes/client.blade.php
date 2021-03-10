@@ -5,9 +5,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="partner-slider owl-carousel owl-theme">
-                        @foreach($websiteAllClients as $websiteClient)
+                        @foreach($websiteAllClients as $websiteClient4)
                             <div class="item">
-                                <a target="_blank" href="{{ $websiteClient->company_url }}"><img width="171px;" height="60px;"  src="{{ asset($websiteClient->company_logo ?? get_static_option('no_image')) }}" alt="client"></a>
+                                <a target="_blank" href="{{ $websiteClient4->company_url }}"><img width="171px;" height="60px;"  src="{{ asset($websiteClient->company_logo ?? get_static_option('no_image')) }}" alt="client"></a>
                             </div>
                         @endforeach
                     </div>

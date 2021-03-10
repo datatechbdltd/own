@@ -16,12 +16,10 @@
                                 <div class="btn-wrapper animated fadeInUpBig text-left">
                                     <a target="_blank" href="{!! $banner->btn_url !!}" class="btn btn-basic">Click Me</a>
                                     <a target="_blank" href="{!! $banner->video_url !!}" class="video-popup mfp-iframe play-icon-pulse"><i class="fa fa-play"></i></a>
-
                                 </div>
                             </div>
                             <!-- //.banner inner -->
                         </div>
-
                     </div>
                     <div class="col-lg-5 d-none d-lg-block">
                         <div class="banner-image">
@@ -30,8 +28,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

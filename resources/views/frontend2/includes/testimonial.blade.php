@@ -24,14 +24,14 @@
                 </div>
                 <div class="col-lg-6 align-self-center">
                     <div class="testimonial-thumb-slider-wrap">
-                        @foreach($website_clients as $website_client)
-                        <img class="testimonial-thumb-slider--img testimonial-thumb-slider--img-{{ $loop->iteration }}" width="90px;" height="90px;" src="{{ asset($website_client->image ?? get_static_option('no_image')) }}" alt="img">
+                        @foreach($website_clients as $website_client2)
+                        <img class="testimonial-thumb-slider--img testimonial-thumb-slider--img-{{ $loop->iteration }}" width="90px;" height="90px;" src="{{ asset($website_client2->image ?? get_static_option('no_image')) }}" alt="img">
                         @endforeach
                         <div class="testimonial-thumb-slider-img testimonial-thumb-slider">
-                        @foreach($website_clients as $website_client)
+                        @foreach($website_clients as $website_client3)
                             <div class="item">
                                 <div class="single-thumb-client">
-                                    <img src="{{ asset($website_client->image ?? get_static_option('no_image')) }}" alt="img">
+                                    <img src="{{ asset($website_client3->image ?? get_static_option('no_image')) }}" alt="img">
                                 </div>
                             </div>
                         @endforeach
