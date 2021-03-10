@@ -12,7 +12,8 @@ class PdfController extends Controller
 {
 
     // proposal Stream
-    public function proposalStream(Proposal $proposal){
+    public function proposalStream($slug){
+        $proposal = Proposal::where('slug',$slug)->first();
         $pdf = PDF::loadView('pdf.proposal', compact('proposal',));
         //return $pdf->download($invoice->invoice_id.'.pdf');
         return $pdf->stream(config('app.name').'-'.$proposal->slug.'.pdf');
