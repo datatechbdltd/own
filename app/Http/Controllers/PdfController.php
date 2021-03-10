@@ -15,37 +15,39 @@ class PdfController extends Controller
     public function proposalStream($slug){
         $proposal = Proposal::where('slug',$slug)->first();
         $pdf = PDF::loadView('pdf.proposal', compact('proposal',));
-        return $pdf->stream(config('app.name').'-'.$proposal->slug.'.pdf');
+        return $pdf->stream(config('app.name').'-proposal-'.$proposal->slug.'.pdf');
     }
     // prposal download
     public function prposalDownload($slug){
         $proposal = Proposal::where('slug',$slug)->first();
         $pdf = PDF::loadView('pdf.proposal', compact('proposal',));
-        return $pdf->download(config('app.name').'-'.$proposal->slug.'.pdf');
+        return $pdf->download(config('app.name').'-proposal-'.$proposal->slug.'.pdf');
     }
 
      // invoice stream
      public function invoiceStream($slug){
         $invoice = Invoice::where('slug',$slug)->first();
         $pdf = PDF::loadView('pdf.invoice', compact('invoice'));
-        return $pdf->stream();
+        return $pdf->stream(config('app.name').'-invoice-'.$invoice->slug.'.pdf');
     }
     // invoice download
-    public function invoiceDownload($invoice_id){
-        $invoice = Invoice::where('invoice_id',$invoice_id)->first();
-        return view('pdf.invoice' ,compact('invoice'));
+    public function invoiceDownload($slug){
+        $invoice = Invoice::where('slug',$slug)->first();
+        $pdf = PDF::loadView('pdf.invoice', compact('invoice'));
+        return $pdf->download(config('app.name').'-invoice-'.$invoice->slug.'.pdf');
     }
 
     // pad stream
      public function companyPadStream($slug){
         $company_pad = CompanyPad::where('slug',$slug)->first();
         $pdf = PDF::loadView('pdf.company-pad', compact('company_pad'));
-        return $pdf->stream();
+        return $pdf->stream(config('app.name').'-ID-'.$company_pad->id.'.pdf');
     }
     // pad download
-    public function companyPadDownload($invoice_id){
-        $company_pad = CompanyPad::where('invoice_id',$invoice_id)->first();
-        return view('pdf.company-pad' ,compact('company_pad'));
+    public function companyPadDownload($slug){
+        $company_pad = CompanyPad::where('slug',$slug)->first();
+        $pdf = PDF::loadView('pdf.company-pad', compact('company_pad'));
+        return $pdf->download(config('app.name').'-ID-'.$company_pad->id.'.pdf');
     }
 
 
