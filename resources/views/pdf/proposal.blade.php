@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link href="{{ asset('assets/pdf/css/proposal.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('assets/pdf/css/style.css') }}" rel="stylesheet" type="text/css">
         <style>
             @page {
                 header: page-header;
