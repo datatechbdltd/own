@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AssetCategoryController;
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\CronJobController;
 use App\Http\Controllers\CustomPageController;
 use App\Http\Controllers\EmailCampaignController;
@@ -14,6 +16,7 @@ use App\Http\Controllers\LeadThanaController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CommunicationController;
+use App\Http\Controllers\CompanyPadController;
 use App\Http\Controllers\SmsCampaignController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -137,6 +140,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
         Route::resource('expenseCategory', ExpenseCategoryController::class);
         Route::resource('expense', ExpenseController::class);
+        Route::resource('asset', AssetController::class);
+        Route::resource('assetCategory', AssetCategoryController::class);
     });
     Route::group(['prefix' => 'sales', 'as' => 'sales.'], function () {
         Route::resource('proposal', ProposalController::class);
@@ -147,6 +152,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('project', ProjectController::class);
     Route::resource('projectStatus', ProjectStatusController::class);
     Route::resource('user', UserController::class);
+    Route::resource('companyPad', CompanyPadController::class);
     Route::group(['prefix' => 'pdf', 'as' => 'pdf.'], function () {
         Route::get('proposal/stream/{slug}', [PdfController::class,'proposalStream'])->name('proposalStream');
         Route::get('proposal/download/{slug}',[PdfController::class, 'prposalDownload'])->name('prposalDownload');
