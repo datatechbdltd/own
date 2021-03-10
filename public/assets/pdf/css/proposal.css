@@ -14,7 +14,6 @@
     margin-header: 0; /* <any of the usual CSS values for margins> */
     margin-footer: 0; /* <any of the usual CSS values for margins> */
     marks: none;/*crop | cross | none*/
-    background-image:'/assetd/pdf/backgrounf-image.png';
     /*
     background: ...
     background-image: ...
