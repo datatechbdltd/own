@@ -178,6 +178,20 @@ Route::group(['prefix' => 'test'], function () {
 
       dd(geoip()->getLocation($ip));
    });
+
+   Route::get('/client-ip/ip', function (){
+      dd(get_client_ip());
+   });
+   Route::get('/client-ip/os', function (){
+    dd(get_client_os());
+   });
+   Route::get('/client-ip/browser', function (){
+    dd(get_client_browser());
+
+   });
+   Route::get('/client-ip/device', function (){
+    dd(get_client_device());
+   });
 });
 
 
