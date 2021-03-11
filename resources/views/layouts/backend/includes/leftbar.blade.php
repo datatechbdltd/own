@@ -105,6 +105,15 @@
                         <li><a href="{{ route('project.index') }}"><i class="mdi mdi-circle"></i>Project list</a></li>
                     </ul>
                 </li>
+                {{--Visitor--}}
+                <li>
+                    <a href="javaScript:void();">
+                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Visitor</span><i class="feather icon-chevron-right pull-right"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('visitorInfo.index') }}"><i class="mdi mdi-circle"></i>Visitor list</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="javaScript:void();">
                         <img src="assets/panel/vertical/images/svg-icon/layouts.svg" class="img-fluid" alt="layouts"><span>Website</span><i class="feather icon-chevron-right pull-right"></i>
@@ -203,7 +212,7 @@
                 </li>
                 <li>
                     <a href="javaScript:void();">
-                      <img src="assets/panel/vertical/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>Lead management</span><i class="feather icon-chevron-right pull-right"></i>
+                      <img src="assets/panel/vertical/images/svg-icon/apps.svg" class="img-fluid" alt="apps"><span>Leads</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
                         <li>

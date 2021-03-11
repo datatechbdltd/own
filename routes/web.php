@@ -31,6 +31,7 @@ use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\WebsiteBannerController;
 use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisitorInfoController;
 use App\Http\Controllers\WebsiteSeoController;
 use App\Http\Controllers\WebsiteServiceController;
 use App\Http\Controllers\WebsiteTeamController;
@@ -149,6 +150,7 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('payment', PaymentController::class);
         Route::resource('offlinePaymentMethod', OfflinePaymentMethodController::class);
     });
+    Route::resource('visitorInfo', VisitorInfoController::class);
     Route::resource('project', ProjectController::class);
     Route::resource('projectStatus', ProjectStatusController::class);
     Route::resource('user', UserController::class);

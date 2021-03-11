@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\VisitorInfo;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class VisitorInfoController extends Controller
 {
@@ -12,9 +13,25 @@ class VisitorInfoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //$data = VisitorInfo::all();
+        //echo($data);
+        if ($request->ajax()){
+
+            return datatables::of($data)
+                ->addColumn('url', function($data) {
+                    return '
+                    <a target="_blank" class="small" href="'.$data->url.'">'.$data->url.' </a>';
+                })
+                ->addColumn('create', function($data) {
+                    return $data->created_at->format('d/M/Y');
+                })
+                ->rawColumns(['create','url'])
+                ->make(true);
+        }else{
+            return view('backend.visitor.index');
+        }
     }
 
     /**
