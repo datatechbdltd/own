@@ -25,6 +25,7 @@
         "renatomarinho/laravel-page-speed": "^2.0",
         "spatie/laravel-activitylog": "^3.16",
         "spatie/laravel-permission": "^4.0",
+        "torann/geoip": "^3.0",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {

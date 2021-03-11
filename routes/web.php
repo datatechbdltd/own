@@ -173,6 +173,11 @@ Route::group(['prefix' => 'test'], function () {
    Route::get('/message', function (){
        send_message('01304734623', 'Hello message');
    });
+   Route::get('/client-ip', function (){
+      $ip = geoip()->getClientIP();
+
+      dd(geoip()->getLocation($ip));
+   });
 });
 
 
