@@ -52,7 +52,7 @@
                             <thead>
                             <tr>
                                 <th>Category</th>
-                                <th>Expense name/th>
+                                <th>Expense name</th>
                                 <th>Amount</th>
                                 <th>Created</th>
                                 <th>Action</th>

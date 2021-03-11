@@ -52,7 +52,7 @@
                             <thead>
                             <tr>
                                 <th>Category</th>
-                                <th>Asset name/th>
+                                <th>Asset name</th>
                                 <th>Price</th>
                                 <th>Created</th>
                                 <th>Action</th>
