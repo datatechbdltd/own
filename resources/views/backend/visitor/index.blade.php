@@ -25,21 +25,223 @@
                     </ol>
                 </div>
             </div>
-            <div class="col-md-4 col-lg-4">
-
-            </div>
         </div>
     </div>
     <!-- End Breadcrumbbar -->
     <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start col -->
-        <div class="col-lg-12">
+       <div class="row">
+        <div class="col-md-6 col-lg-6 col-xl-4">
             <div class="card m-b-30">
-                <div class="card-header">
-                    <h5 class="card-title">Asset list</h5>
+                <div class="card-header bg-danger">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h5 class="card-title mb-0">Browser</h5>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
+                    <div class="table-responsive dash-flag-icon">
+                      <table class="table table-borderless mb-2">
+                        <thead>
+                          <tr>
+                            <th scope="col">Sr.No</th>
+                            <th scope="col">Browser</th>
+                            <th scope="col">Counter</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Internet Explorer</td>
+                            <td>{{ $visitors->where('browser', 'Internet Explorer')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Firefox</td>
+                            <td>{{ $visitors->where('browser', 'Firefox')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Safari</td>
+                            <td>{{ $visitors->where('browser', 'Safari')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Chrome</td>
+                            <td>{{ $visitors->where('browser', 'Chrome')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>Edge</td>
+                            <td>{{ $visitors->where('browser', 'Edge')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>Opera</td>
+                            <td>{{ $visitors->where('browser', 'Opera')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">6</th>
+                            <td>Netscape</td>
+                            <td>{{ $visitors->where('browser', 'Netscape')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">7</th>
+                            <td>Maxthon</td>
+                            <td>{{ $visitors->where('browser', 'Maxthon')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">8</th>
+                            <td>Konqueror</td>
+                            <td>{{ $visitors->where('browser', 'Konqueror')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">9</th>
+                            <td>UC Browser</td>
+                            <td>{{ $visitors->where('browser', 'UC Browser')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">10</th>
+                            <td>Handheld Browser</td>
+                            <td>{{ $visitors->where('browser', 'Handheld Browser')->count() }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xl-4">
+            <div class="card m-b-30">
+                <div class="card-header bg-danger">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h5 class="card-title mb-0">OS/Device</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dash-flag-icon">
+                      <table class="table table-borderless mb-2">
+                        <thead>
+                          <tr>
+                            <th scope="col">Sr.No</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Counter</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mobile</td>
+                            <td>{{ $visitors->where('os', 'Mobile')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>BlackBerry</td>
+                            <td>{{ $visitors->where('os', 'BlackBerry')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Android</td>
+                            <td>{{ $visitors->where('os', 'Android')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>iPad</td>
+                            <td>{{ $visitors->where('os', 'iPad')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>iPod</td>
+                            <td>{{ $visitors->where('os', 'iPod')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>Ubuntu</td>
+                            <td>{{ $visitors->where('os', 'Ubuntu')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">6</th>
+                            <td>Linux</td>
+                            <td>{{ $visitors->where('os', 'Linux')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">7</th>
+                            <td>Windows 10</td>
+                            <td>{{ $visitors->where('os', 'Windows 10')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">9</th>
+                            <td>Windows 8.1</td>
+                            <td>{{ $visitors->where('os', 'Windows 8.1')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">10</th>
+                            <td>Windows 8</td>
+                            <td>{{ $visitors->where('os', 'Windows 8')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">8</th>
+                            <td>Windows 7</td>
+                            <td>{{ $visitors->where('os', 'Windows 7')->count() }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xl-4">
+            <div class="card m-b-30">
+                <div class="card-header bg-danger">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h5 class="card-title mb-0">Country/Location</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dash-flag-icon">
+                      <table class="table table-borderless mb-2">
+                        <thead>
+                          <tr>
+                            <th scope="col">Sr.No</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Counter</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>All</td>
+                            <td>{{ $visitors->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Bangladesh</td>
+                            <td>{{ $visitors->where('country', 'Bangladesh')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>India</td>
+                            <td>{{ $visitors->where('country', 'India')->count() }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </div>
+        <div class="col-lg-12">
+            <div class="card m-b-30">
+                <div class="card-header bg-danger">
+                    <h5 class="card-title">Visitor history</h5>
+                </div>
+                <div class="card-body card-primary">
                     <div class="table-responsive">
                         <table id="datatable" class="display table table-striped table-bordered">
                             <thead>
@@ -129,7 +331,9 @@
                     { data: 'os', name: 'os' },
                     { data: 'create', name: 'create' },
                     { data: 'url', name: 'url' },
-                ], initComplete: function () {
+                ],
+                order: [[ 0, 'desc' ]],
+                initComplete: function () {
                     this.api().columns().every(function () {
                         var column = this;
                         var input = document.createElement("input");

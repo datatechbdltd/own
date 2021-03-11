@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\VisitorInfo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -15,10 +16,8 @@ class VisitorInfoController extends Controller
      */
     public function index(Request $request)
     {
-        //$data = VisitorInfo::all();
-        //echo($data);
         if ($request->ajax()){
-
+            $data = VisitorInfo::orderBy('id', 'desc')->get();
             return datatables::of($data)
                 ->addColumn('url', function($data) {
                     return '
@@ -30,7 +29,69 @@ class VisitorInfoController extends Controller
                 ->rawColumns(['create','url'])
                 ->make(true);
         }else{
-            return view('backend.visitor.index');
+            $visitors = VisitorInfo::all();
+            return view('backend.visitor.index', compact('visitors'));
+        }
+    }
+
+    public function today(Request $request)
+    {
+        if ($request->ajax()){
+            $data = VisitorInfo::whereDate('created_at', Carbon::today())->get();
+            return datatables::of($data)
+                ->addColumn('url', function($data) {
+                    return '
+                    <a target="_blank" class="small" href="'.$data->url.'">'.$data->url.' </a>';
+                })
+                ->addColumn('create', function($data) {
+                    return $data->created_at->format('d/M/Y');
+                })
+                ->rawColumns(['create','url'])
+                ->make(true);
+        }else{
+            $visitors = VisitorInfo::whereDate('created_at', Carbon::today())->get();
+            return view('backend.visitor.index', compact('visitors'));
+        }
+    }
+
+    public function last_seven_day(Request $request)
+    {
+        if ($request->ajax()){
+            $data = VisitorInfo::where('created_at', '>=', Carbon::today()->subDays(7))->get();
+            return datatables::of($data)
+                ->addColumn('url', function($data) {
+                    return '
+                    <a target="_blank" class="small" href="'.$data->url.'">'.$data->url.' </a>';
+                })
+                ->addColumn('create', function($data) {
+                    return $data->created_at->format('d/M/Y');
+                })
+                ->rawColumns(['create','url'])
+                ->make(true);
+        }else{
+            $visitors = VisitorInfo::where('created_at', '>=', Carbon::today()->subDays(7))->get();
+            return view('backend.visitor.index', compact('visitors'));
+        }
+    }
+
+
+    public function last_thirty_day(Request $request)
+    {
+        if ($request->ajax()){
+            $data = VisitorInfo::where('created_at', '>=', Carbon::today()->subDays(30))->get();
+            return datatables::of($data)
+                ->addColumn('url', function($data) {
+                    return '
+                    <a target="_blank" class="small" href="'.$data->url.'">'.$data->url.' </a>';
+                })
+                ->addColumn('create', function($data) {
+                    return $data->created_at->format('d/M/Y');
+                })
+                ->rawColumns(['create','url'])
+                ->make(true);
+        }else{
+            $visitors = VisitorInfo::where('created_at', '>=', Carbon::today()->subDays(30))->get();
+            return view('backend.visitor.index', compact('visitors'));
         }
     }
 

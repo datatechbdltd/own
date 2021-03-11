@@ -150,11 +150,14 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('payment', PaymentController::class);
         Route::resource('offlinePaymentMethod', OfflinePaymentMethodController::class);
     });
-    Route::resource('visitorInfo', VisitorInfoController::class);
     Route::resource('project', ProjectController::class);
     Route::resource('projectStatus', ProjectStatusController::class);
     Route::resource('user', UserController::class);
     Route::resource('companyPad', CompanyPadController::class);
+    Route::resource('visitorInfo', VisitorInfoController::class);
+    Route::get('visitors/today', [VisitorInfoController::class,'today'])->name('visitor.today');
+    Route::get('visitors/last_seven_day', [VisitorInfoController::class,'last_seven_day'])->name('visitor.last_seven_day');
+    Route::get('visitors/last_thirty_day', [VisitorInfoController::class,'last_thirty_day'])->name('visitor.last_thirty_day');
 });
 
 Route::group(['prefix' => 'pdf', 'as' => 'pdf.'], function () {

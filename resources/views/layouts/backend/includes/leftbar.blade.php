@@ -113,6 +113,15 @@
                     <ul class="vertical-submenu">
                         <li><a href="{{ route('visitorInfo.index') }}"><i class="mdi mdi-circle"></i>Visitor list</a></li>
                     </ul>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('visitor.today') }}"><i class="mdi mdi-circle"></i>Visitor today</a></li>
+                    </ul>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('visitor.last_seven_day') }}"><i class="mdi mdi-circle"></i>Visitor last 7 day</a></li>
+                    </ul>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('visitor.last_thirty_day') }}"><i class="mdi mdi-circle"></i>Visitor last 30 day</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="javaScript:void();">
