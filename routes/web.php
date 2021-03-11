@@ -176,7 +176,7 @@ Route::group(['prefix' => 'test'], function () {
    Route::get('/client-ip', function (){
       $ip = geoip()->getClientIP();
 
-      dd(geoip()->getLocation($ip));
+      dd(geoip()->getLocation($ip)->country);
    });
 
    Route::get('/client-ip/ip', function (){
