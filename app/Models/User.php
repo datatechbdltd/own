@@ -88,4 +88,10 @@ class User extends Authenticatable
     public function allEmails(){
         return $this->hasMany(EmailHistory::class, 'sender_id','id')->orderBy('id', 'desc');
     }
+
+
+    //proposals
+    public function proposals(){
+        return $this->hasMany(Proposal::class, 'customer_id','id');
+    }
 }

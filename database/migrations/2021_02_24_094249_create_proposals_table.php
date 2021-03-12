@@ -26,7 +26,6 @@ class CreateProposalsTable extends Migration
             $table->string('approval_device_name')->nullable();
             $table->string('approval_ip_address')->nullable();
             $table->string('slug')->nullable();
-            $table->foreignId('invoice_id')->nullable();
             $table->string('budget')->nullable();
             $table->timestamps();
             $table->softDeletes();

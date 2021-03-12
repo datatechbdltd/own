@@ -1,5 +1,9 @@
 <html>
 <head>
+<meta name="description" content="{!! $meta_description  ?? get_static_option('meta_description') !!}">
+<meta name="author" content="{{ $meta_author ?? get_static_option('meta_author') ?? config('app.name') }}">
+<meta property="og:image" content="{{ $meta_image ?? get_static_option('website_logo') ?? get_static_option('no_image')}}" />
+<title> {{ __('Official Pad') }} | {{ config('app.name') }}</title>
     <link href="{{ asset('assets/pdf/css/style.css') }}" rel="stylesheet" type="text/css">
     <style>
         @page {

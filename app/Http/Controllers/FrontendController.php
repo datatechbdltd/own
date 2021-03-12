@@ -57,18 +57,21 @@ class FrontendController extends Controller
     // all services Details Page
     public function servicesDetailsPage($slug){
         $service = WebsiteService::where('is_active', true)->where('slug',$slug)->first();
-        return view('frontend.service-details' ,compact('service'));
+        $meta_description = $service->short_description;
+        return view('frontend.service-details' ,compact('service', 'meta_description'));
     }
 
     // prposal Page
     public function prposalPage($slug){
         $proposal = Proposal::where('slug',$slug)->first();
-        return view('frontend2.show-for-approval' ,compact('proposal'));
+        $meta_description = 'Please  check the proposal from DATATECH BD LTD.'.$proposal->description;
+        return view('frontend2.show-proposal-for-approval' ,compact('proposal', 'meta_description'));
     }
     // invoice Page
     public function invoicePage($slug){
         $invoice = Invoice::where('slug',$slug)->first();
-        return view('frontend2.show-invoice' ,compact('invoice'));
+        $meta_description = 'Please  check your invoice from DATATECH BD LTD. Your invoice no: #'.$invoice->invoice_id;
+        return view('frontend2.show-invoice' ,compact('invoice', 'meta_description'));
     }
 
     public function leadCollectionPage(){

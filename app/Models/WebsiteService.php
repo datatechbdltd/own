@@ -12,4 +12,9 @@ class WebsiteService extends Model
          public function invoices(){
             return $this->hasMany(Invoice::class, 'service_id','id');
         }
+
+         //proposals
+         public function proposals(){
+            return $this->hasMany(Proposal::class, 'service_id','id');
+        }
 }
