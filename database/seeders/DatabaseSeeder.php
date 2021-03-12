@@ -29,8 +29,6 @@ class DatabaseSeeder extends Seeder
 //        $this->call(EmailCampaignSeeder::class);
         $this->call(WebsiteTeamSeeder::class);
         $this->call(WebsiteProductSeeder::class);
-        $this->call(ServiceSeeder::class);
-        $this->call(ProductSeeder::class);
         $this->call(OfflinePaymentMethodSeeder::class);
         $this->call(WebsiteCounterSeeder::class);
         $this->call(WebsiteClientSeeder::class);

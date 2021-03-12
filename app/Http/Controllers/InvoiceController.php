@@ -6,6 +6,8 @@ use App\Models\Invoice;
 use App\Models\Product;
 use App\Models\Service;
 use App\Models\User;
+use App\Models\WebsiteProduct;
+use App\Models\WebsiteService;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
@@ -56,8 +58,8 @@ class InvoiceController extends Controller
     public function create()
     {
         $customers = User::role('customer')->get();
-        $products = Product::all();
-        $services = Service::all();
+        $products = WebsiteProduct::all();
+        $services = WebsiteService::all();
         return view('backend.sales.invoice-create', compact('customers', 'products','services'));
     }
 
@@ -134,8 +136,8 @@ class InvoiceController extends Controller
     public function edit(Invoice $invoice)
     {
         $customers = User::role('customer')->get();
-        $products = Product::all();
-        $services = Service::all();
+        $products = WebsiteProduct::all();
+        $services = WebsiteService::all();
         return view('backend.sales.invoice-edit', compact('customers', 'products','services','invoice'));
     }
 

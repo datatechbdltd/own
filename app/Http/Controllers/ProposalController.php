@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerGroup;
-use App\Models\OfflinePaymentMethod;
-use App\Models\Product;
 use App\Models\Proposal;
-use App\Models\Service;
 use App\Models\User;
+use App\Models\WebsiteProduct;
+use App\Models\WebsiteService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -28,13 +26,6 @@ class ProposalController extends Controller
                 ->addColumn('customer', function($data) {
                     if ($data->customer)
                     return $data->customer->name;
-                // })->addColumn('service_product', function($data) {
-                //     $html = "";
-                //     if ($data->service)
-                //         $html .= $data->service->name;
-                //     if ($data->product)
-                //         $html .= $data->product->name;
-                //     return $html;
                 })->addColumn('create', function($data) {
                     return $data->created_at->format('d/M/Y');
                 })->addColumn('action', function($data) {
@@ -59,8 +50,8 @@ class ProposalController extends Controller
     public function create()
     {
         $customers = User::role('customer')->get();
-        $products = Product::all();
-        $services = Service::all();
+        $products = WebsiteProduct::all();
+        $services = WebsiteService::all();
         return view('backend.sales.proposal-create', compact('customers', 'products','services'));
     }
 

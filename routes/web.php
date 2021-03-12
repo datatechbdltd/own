@@ -39,6 +39,7 @@ use App\Http\Controllers\WebsiteProductController;
 use App\Http\Controllers\WebsiteContactController;
 use App\Http\Controllers\WebsiteCounterController;
 use App\Http\Controllers\WebsiteClientController;
+use Database\Seeders\RoleAndPermissionSeeder;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,13 +70,15 @@ Route::group(['as' => 'frontend.'], function () {
    Route::get('products',[FrontendController::class, 'products'])->name('products');
    Route::post('contact-us/store',[FrontendController::class, 'contactUsStore'])->name('contactUsStore');
 });
+
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', [ProfileController::class, 'profile'])->name('profile');
     Route::post('profile-password-update', [ProfileController::class, 'profilePasswordUpdate'])->name('profilePasswordUpdate');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('user-to-admin-contact-list', [ContactController::class, 'userToAdminContactList'])->name('userToAdminContactList');
     Route::get('user-to-admin-contact-list/{id}', [ContactController::class, 'userToAdminContactListDetails'])->name('userToAdminContactListDetails');
     Route::post('user-to-admin-contact-list-update}', [ContactController::class, 'userToAdminContactListDetailsUpdate'])->name('userToAdminContactListDetailsUpdate');
@@ -175,28 +178,16 @@ Route::group(['prefix' => 'cron', 'as' => 'cron.'], function () {
 });
 
 Route::group(['prefix' => 'test'], function () {
-   Route::get('/message', function (){
-       send_message('01304734623', 'Hello message');
-   });
-   Route::get('/client-ip', function (){
-      $ip = geoip()->getClientIP();
+   Route::get('/seed', function (){
+    $seeder = new RoleAndPermissionSeeder();
 
-      dd(geoip()->getLocation($ip)->country);
+    if($seeder->run()){
+        echo('Run');
+    }else{
+        echo('Not Run');
+    }
    });
 
-   Route::get('/client-ip/ip', function (){
-      dd(get_client_ip());
-   });
-   Route::get('/client-ip/os', function (){
-    dd(get_client_os());
-   });
-   Route::get('/client-ip/browser', function (){
-    dd(get_client_browser());
-
-   });
-   Route::get('/client-ip/device', function (){
-    dd(get_client_device());
-   });
 });
 
 

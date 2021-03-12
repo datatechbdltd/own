@@ -18,12 +18,12 @@ class Invoice extends Model
 
     //product
     public function product(){
-        return $this->belongsTo(Product::class, 'product_id','id');
+        return $this->belongsTo(WebsiteProduct::class, 'product_id','id');
     }
 
     //service
     public function service(){
-        return $this->belongsTo(Service::class, 'service_id','id');
+        return $this->belongsTo(WebsiteService::class, 'service_id','id');
     }
 
     //payments
