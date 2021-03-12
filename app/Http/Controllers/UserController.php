@@ -55,7 +55,7 @@ class UserController extends Controller
             'name' => 'required',
             'user_status' => 'required',
             'email' => 'required|email|unique:users,email',
-            'phone' => 'nullable',
+            'phone' => 'required|phone|unique:users,phone',
             'password' => 'required|string|min:6',
         ]);
 
@@ -105,7 +105,7 @@ class UserController extends Controller
             'name' => 'required',
             'user_status' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
-            'phone' => 'nullable',
+            'phone' => 'required|phone|unique:users,phone,'.$id,
             'password' => 'nullable|string|min:6',
         ]);
 
