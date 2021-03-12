@@ -108,8 +108,8 @@ class ProposalController extends Controller
     public function edit(Proposal $proposal)
     {
         $customers = User::role('customer')->get();
-        $products = Product::all();
-        $services = Service::all();
+        $products = WebsiteProduct::all();
+        $services = WebsiteService::all();
         return view('backend.sales.proposal-edit', compact('customers', 'products','services', 'proposal'));
     }
 
