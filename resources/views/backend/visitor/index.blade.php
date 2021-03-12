@@ -216,8 +216,13 @@
                         <tbody>
                           <tr>
                             <th scope="row">1</th>
-                            <td>All</td>
+                            <td>All of page visit</td>
                             <td>{{ $visitors->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>All of visitor</td>
+                            <td>{{ $visitors->groupBy('ip')->count() }}</td>
                           </tr>
                           <tr>
                             <th scope="row">1</th>
