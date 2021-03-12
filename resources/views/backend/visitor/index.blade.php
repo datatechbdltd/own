@@ -220,19 +220,29 @@
                             <td>{{ $visitors->count() }}</td>
                           </tr>
                           <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">2</th>
                             <td>All of visitor</td>
                             <td>{{ $visitors->groupBy('ip')->count() }}</td>
                           </tr>
                           <tr>
-                            <th scope="row">1</th>
-                            <td>Bangladesh</td>
+                            <th scope="row">3</th>
+                            <td>Page visit from Bangladesh </td>
                             <td>{{ $visitors->where('country', 'Bangladesh')->count() }}</td>
                           </tr>
                           <tr>
-                            <th scope="row">2</th>
-                            <td>India</td>
+                            <th scope="row">4</th>
+                            <td>Bangladeshi visitor </td>
+                            <td>{{ $visitors->where('country', 'Bangladesh')->groupBy('ip')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>Page visit from India</td>
                             <td>{{ $visitors->where('country', 'India')->count() }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">6</th>
+                            <td>Indian visitor</td>
+                            <td>{{ $visitors->where('country', 'India')->groupBy('ip')->count() }}</td>
                           </tr>
                         </tbody>
                       </table>
