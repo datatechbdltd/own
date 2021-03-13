@@ -197,6 +197,14 @@ class FrontendController extends Controller
 
     }
 
+    public function maskingSms(){
+        return view('frontend2.masking-sms');
+    }
+
+    public function nonMaskingSms(){
+        return view('frontend2.non-masking-sms');
+    }
+
     // store subscribers
     public function subscribeStore(Request $request){
         $request->validate([

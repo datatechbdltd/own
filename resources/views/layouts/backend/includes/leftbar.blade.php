@@ -33,8 +33,23 @@
                     <a href="{{ route('dashboard') }}">
                       <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Dashboard</span>
                     </a>
+                </li>
+                 {{--Contact--}}
+                <li>
                     <a href="{{ route('userToAdminContactList') }}">
-                      <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Website contact</span>
+                      <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Website contact</span><span class="badge badge-danger-inverse font-16">{{ website_contacts()->where('is_process_complete', false)->count() }}</span>
+                    </a>
+                </li>
+                 {{--nonMaskingSmsOrder--}}
+                <li>
+                    <a href="{{ route('nonMaskingSmsOrder.index') }}">
+                      <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Non Masking SMS</span><span class="badge badge-danger-inverse font-16">{{ website_contacts()->where('is_process_complete', false)->count() }}</span>
+                    </a>
+                </li>
+                 {{--maskingSmsOrder--}}
+                <li>
+                    <a href="{{ route('maskingSmsOrder.index') }}">
+                      <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Masking SMS</span><span class="badge badge-danger-inverse font-16">{{ website_contacts()->where('is_process_complete', false)->count() }}</span>
                     </a>
                 </li>
                 {{--Communication--}}
@@ -47,52 +62,18 @@
                         <li><a href="{{ route('communication.getEmailSenderPage') }}"><i class="mdi mdi-circle"></i>Email</a></li>
                     </ul>
                 </li>
-                {{--Account--}}
-                <li>
-                    <a href="javaScript:void();">
-                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Account</span><i class="feather icon-chevron-right pull-right"></i>
-                    </a>
-                    <ul class="vertical-submenu">
-                        <li><a href="{{ route('account.expense.create') }}"><i class="mdi mdi-circle"></i>Expense Create</a></li>
-                        <li><a href="{{ route('account.expense.index') }}"><i class="mdi mdi-circle"></i>Expense list</a></li>
-                        <li><a href="{{ route('account.asset.create') }}"><i class="mdi mdi-circle"></i>Asset Create</a></li>
-                        <li><a href="{{ route('account.asset.index') }}"><i class="mdi mdi-circle"></i>Asset list</a></li>
-                    </ul>
-                </li>
-                {{--Users--}}
-                <li>
-                    <a href="javaScript:void();">
-                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>User</span><i class="feather icon-chevron-right pull-right"></i>
-                    </a>
-                    <ul class="vertical-submenu">
-                        <li><a href="{{ route('user.create') }}"><i class="mdi mdi-circle"></i>Create User</a></li>
-                        <li><a href="{{ route('user.index') }}"><i class="mdi mdi-circle"></i>User  list</a></li>
-                    </ul>
-                </li>
-                {{--Company pad--}}
-                <li>
-                    <a href="javaScript:void();">
-                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Company pad</span><i class="feather icon-chevron-right pull-right"></i>
-                    </a>
-                    <ul class="vertical-submenu">
-                        <li><a href="{{ route('companyPad.create') }}"><i class="mdi mdi-circle"></i>Create Company pad</a></li>
-                        <li><a href="{{ route('companyPad.index') }}"><i class="mdi mdi-circle"></i>Company pad  list</a></li>
-                    </ul>
-                </li>
                 {{--Sales--}}
                 <li>
                     <a href="javaScript:void();">
                         <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Sales</span><i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
-                        <li><a href="{{ route('sales.proposal.create') }}"><i class="mdi mdi-circle"></i>Create proposal</a></li>
-                        <li><a href="{{ route('sales.proposal.index') }}"><i class="mdi mdi-circle"></i>Proposal  list</a></li>
-
-
                         <li><a href="{{ route('sales.invoice.create') }}"><i class="mdi mdi-circle"></i>Create invoice</a></li>
                         <li><a href="{{ route('sales.invoice.index') }}"><i class="mdi mdi-circle"></i>Invoice  list</a></li>
                         <li><a href="{{ route('sales.payment.create') }}"><i class="mdi mdi-circle"></i>Create payment</a></li>
                         <li><a href="{{ route('sales.payment.index') }}"><i class="mdi mdi-circle"></i>Payment  list</a></li>
+                        <li><a href="{{ route('sales.proposal.create') }}"><i class="mdi mdi-circle"></i>Create proposal</a></li>
+                        <li><a href="{{ route('sales.proposal.index') }}"><i class="mdi mdi-circle"></i>Proposal  list</a></li>
                     </ul>
                 </li>
                 {{--Project--}}
@@ -103,6 +84,41 @@
                     <ul class="vertical-submenu">
                         <li><a href="{{ route('project.create') }}"><i class="mdi mdi-circle"></i>Create project</a></li>
                         <li><a href="{{ route('project.index') }}"><i class="mdi mdi-circle"></i>Project list</a></li>
+                    </ul>
+                </li>
+                 {{--Company pad--}}
+                 <li>
+                    <a href="javaScript:void();">
+                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Company pad</span><i class="feather icon-chevron-right pull-right"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('companyPad.create') }}"><i class="mdi mdi-circle"></i>Create Company pad</a></li>
+                        <li><a href="{{ route('companyPad.index') }}"><i class="mdi mdi-circle"></i>Company pad  list</a></li>
+                    </ul>
+                </li>
+
+                {{--Users--}}
+                <li>
+                    <a href="javaScript:void();">
+                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>User</span><i class="feather icon-chevron-right pull-right"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('user.create') }}"><i class="mdi mdi-circle"></i>Create User</a></li>
+                        <li><a href="{{ route('user.index') }}"><i class="mdi mdi-circle"></i>User  list</a></li>
+                    </ul>
+                </li>
+
+
+                 {{--Account--}}
+                 <li>
+                    <a href="javaScript:void();">
+                        <img src="assets/panel/vertical/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Account</span><i class="feather icon-chevron-right pull-right"></i>
+                    </a>
+                    <ul class="vertical-submenu">
+                        <li><a href="{{ route('account.expense.create') }}"><i class="mdi mdi-circle"></i>Expense Create</a></li>
+                        <li><a href="{{ route('account.expense.index') }}"><i class="mdi mdi-circle"></i>Expense list</a></li>
+                        <li><a href="{{ route('account.asset.create') }}"><i class="mdi mdi-circle"></i>Asset Create</a></li>
+                        <li><a href="{{ route('account.asset.index') }}"><i class="mdi mdi-circle"></i>Asset list</a></li>
                     </ul>
                 </li>
                 {{--Visitor--}}

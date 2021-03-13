@@ -48,15 +48,26 @@
                         <a href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#">About Us</a>
+                        <a href="javascript:0">About Us</a>
                         <ul class="sub-menu">
                             @foreach(active_custom_pages() as $page)
                                 <li> <a href="{{ route('frontend.customPage', $page->slug) }}"> <i class="fa fa-long-arrow-right"></i> {{ $page->name }} </a></li>
                             @endforeach
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{ route('frontend.servicesPage') }}">Services</a>
+                    <li class="menu-item-has-children">
+                        <a href="javascript:0">Services</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{ route('frontend.maskingSms') }}">Masking SMS</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('frontend.nonMaskingSms') }}">Non Masking SMS</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('frontend.servicesPage') }}">All Services</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="{{ route('frontend.products') }}">Products</a>

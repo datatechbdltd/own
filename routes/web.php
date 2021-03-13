@@ -23,6 +23,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\MaskingSmsOrderController;
+use App\Http\Controllers\NonMaskingSmsOrderController;
 use App\Http\Controllers\OfflinePaymentMethodController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProjectController;
@@ -69,6 +71,8 @@ Route::group(['as' => 'frontend.'], function () {
    Route::get('/contact-us',[FrontendController::class, 'contactUs'])->name('contactUs');
    Route::get('/products',[FrontendController::class, 'products'])->name('products');
    Route::post('/contact-us/store',[FrontendController::class, 'contactUsStore'])->name('contactUsStore');
+   Route::get('/sms/masking',[FrontendController::class, 'maskingSms'])->name('maskingSms');
+   Route::get('/sms/non-masking',[FrontendController::class, 'nonMaskingSms'])->name('nonMaskingSms');
 });
 
 
@@ -82,6 +86,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('user-to-admin-contact-list', [ContactController::class, 'userToAdminContactList'])->name('userToAdminContactList');
     Route::get('user-to-admin-contact-list/{id}', [ContactController::class, 'userToAdminContactListDetails'])->name('userToAdminContactListDetails');
     Route::post('user-to-admin-contact-list-update}', [ContactController::class, 'userToAdminContactListDetailsUpdate'])->name('userToAdminContactListDetailsUpdate');
+    Route::resource('nonMaskingSmsOrder', NonMaskingSmsOrderController::class);
+    Route::resource('maskingSmsOrder', MaskingSmsOrderController::class);
     Route::group(['prefix' => 'website', 'as' => 'website.'], function () {
         Route::resource('websiteBanner', WebsiteBannerController::class);
         Route::resource('socialLink', SocialLinkController::class);
