@@ -207,4 +207,8 @@ if (!function_exists('random_code')){
     function active_custom_pages(){
        return \App\Models\CustomPage::where('status', true)->orderBy('serial', 'asc')->get();
     }
+
+    function offline_payment_methods(){
+       return \App\Models\OfflinePaymentMethod::all();
+    }
 }

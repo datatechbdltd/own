@@ -37,6 +37,8 @@ body{
     border-radius: 50px 20px; text-align: center;
     color: black;
     font-size: large;
+    text-align: center;
+    width: 100%;
 }
 
 /* Dashed red border */

@@ -49,13 +49,27 @@
     <p style="width: 100%; margin-top: -3px; text-align: center;" class="brand2"><a target="_blank" href="https://g.page/datatech-bd-ltd--dhaka?share" style="color: white; text-decoration: none; font-size: small; ">{{ 'Shawpno Neer, 272/Kha/3/F, West Agargaon, She-E-Bangla Nagar, Dhaka-1207' }}</a></p>
 </div>
 {{--  Body  --}}
+<div style="text-align: center; width: 100%;" class="brand1">
+    <b style="font-size: 14px; color:white">Infoice for:</b>
+    @if($invoice->customer)
+    <b style="font-size: 14px; color:white">{{ $invoice->customer->name }}</b>
+    <b style="font-size: 14px; color:white">{{ $invoice->customer->email }}</b>
+    <b style="font-size: 14px; color:white">{{ $invoice->customer->phone }}</b>
+    @endif
+    @if($invoice->guest_email)
+    <b style="font-size: 14px; color:white">{{ $invoice->guest_email }}</b>
+    @endif
+    @if($invoice->guest_phone)
+    <b style="font-size: 14px; color:white">{{ $invoice->guest_phone }}</b>
+    @endif
+
+</div>
 <div style="background-color: whitesmoke; width: 100%; height: 100%;">
     @if($invoice->product)
     <b>{{ $invoice->product->name }}</b>
         <div class="hr2"></div>
     {!! $invoice->product_note !!}
         <br>
-        <p style="width: 50%;" class="price-box">Price: {{ $invoice->product_price }} ৳</p>
     @endif
     @if($invoice->service)
             @if($invoice->product) <br> <br> @endif
@@ -63,20 +77,20 @@
                 <div class="hr2"></div>
     {!! $invoice->service_note !!}
     <br>
-    <p style="width: 50%;" class="price-box">Price: {{ $invoice->service_price }} ৳</p>
     @endif
 
     @if($invoice->other_note)
         @if($invoice->product || $invoice->product) <br> <br> @endif
     {!! $invoice->other_note !!}
     <br>
-    <p style="width: 50%;" class="price-box">Price: {{ $invoice->other_price ?? '0' }} ৳</p>
      @endif
         <div class="hr2"></div>
         <div class="hr3"></div>
     <table style="width: 100%">
         <tr>
-            <td style="width: 50%"></td>
+            <td style="width: 50%">
+
+            </td>
             <td style="width: 50%">
                 <table style="width: 100%">
                     <tr>
@@ -95,6 +109,11 @@
             </td>
         </tr>
     </table>
+    @if( $invoice->product_price + $invoice->service_price + $invoice->other_price - $invoice->payments->sum('amount') > 0)
+    <p class="price-box">Please clear due payment: {{ $invoice->product_price + $invoice->service_price + $invoice->other_price - $invoice->payments->sum('amount') }} ৳</p>
+    @else
+    <p class="price-box"><b>Thank You for due clear</b></p>
+    @endif
 </div>
 {{--  Foot and contact info  --}}
 <htmlpagefooter name="page-footer">
