@@ -33,7 +33,46 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-
+                <div class="col-lg-12">
+                    <div class="single-facility media  bg-success">
+                        <span class="number bg-danger"><b><i class="fa fa-star"></i></b></span>
+                        <div class="facility-details media-body">
+                            <div class="row">
+                                <div class="col-lg-5 align-self-center">
+                                    <h3 class="title"><i class="fa fa-comment-o"></i>Purchase</h3>
+                                </div>
+                                <div class="col-lg-12 align-self-center">
+                                    <form class="sen-form"  method="post" id="send-message-form" action=" {{ route('frontend.contactUsStore') }}">
+                                        @csrf
+                                        <p class="fieldset">
+                                            <label class="image-replace" for="name">Name</label>
+                                            <input class="full-width has-padding has-border" type="text" name="name" value="{{ old('name') }}" placeholder="Name" required>
+                                        </p>
+                                        <p class="fieldset">
+                                            <label class="image-replace sen-email" for="email">E-mail</label>
+                                            <input class="full-width has-padding has-border" type="email" name="email" value="{{ old('email') }}" placeholder="Email" required>
+                                        </p>
+                                        <p class="fieldset">
+                                            <label class="image-replace sen-phone" for="email">Phone</label>
+                                            <input class="full-width has-padding has-border" type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone" required>
+                                        </p>
+                                        <p class="fieldset">
+                                            <label class="image-replace sen-phone" for="payment_amount">Payment amount</label>
+                                            <input class="full-width has-padding has-border" type="text" id="payment_amount" name="payment_amount" value="{{ old('payment_amount') }}" placeholder="Payment amount" required>
+                                        </p>
+                                        <p class="fieldset">
+                                            <label class="image-replace sen-phone" for="payment_transaction_id">Transaction ID</label>
+                                            <input class="full-width has-padding has-border" type="text" id="payment_transaction_id" name="payment_transaction_id" value="{{ old('payment_transaction_id') }}" placeholder="Transaction ID " required>
+                                        </p>
+                                        <p class="fieldset">
+                                            <input class="full-width has-padding" type="submit" value="Purchased now">
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
