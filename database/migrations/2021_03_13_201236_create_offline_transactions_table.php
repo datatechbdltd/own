@@ -18,7 +18,6 @@ class CreateOfflineTransactionsTable extends Migration
             $table->double('amount')->nullable();
             $table->string('transaction_id')->nullable();
             $table->string('image')->nullable();
-            $table->string('image')->nullable();
             $table->foreignId('customer_id')->nullable();
             $table->foreignId('approved_by_id')->nullable();
             $table->boolean('is_approved')->default(false);
