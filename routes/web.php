@@ -60,15 +60,15 @@ Route::group(['as' => 'frontend.'], function () {
    Route::get('/proposal/{slug}',[FrontendController::class, 'prposalPage'])->name('prposalPage');
    Route::get('/invoice/{slug}',[FrontendController::class, 'invoicePage'])->name('invoicePage');
    Route::post('/subscribe/store',[FrontendController::class, 'subscribeStore'])->name('subscribeStore');
-    Route::get('page/{slug}',[FrontendController::class, 'customPage'])->name('customPage');
-   Route::get('lead-collection',[FrontendController::class, 'leadCollectionPage'])->name('leadCollectionPage');
-   Route::post('lead-collection',[FrontendController::class, 'storeLead'])->name('storeLead')->middleware(['permission:store_lead']);
+    Route::get('/page/{slug}',[FrontendController::class, 'customPage'])->name('customPage');
+   Route::get('/lead-collection',[FrontendController::class, 'leadCollectionPage'])->name('leadCollectionPage');
+   Route::post('/lead-collection',[FrontendController::class, 'storeLead'])->name('storeLead')->middleware(['permission:store_lead']);
 //   if(get_static_option('is_bulk_import_from_website') == 'yes')
-   Route::post('lead-import',[FrontendController::class, 'importLead'])->name('importLead')->middleware(['permission:import_lead']);
+   Route::post('/lead-import',[FrontendController::class, 'importLead'])->name('importLead')->middleware(['permission:import_lead']);
 
-   Route::get('contact-us',[FrontendController::class, 'contactUs'])->name('contactUs');
-   Route::get('products',[FrontendController::class, 'products'])->name('products');
-   Route::post('contact-us/store',[FrontendController::class, 'contactUsStore'])->name('contactUsStore');
+   Route::get('/contact-us',[FrontendController::class, 'contactUs'])->name('contactUs');
+   Route::get('/products',[FrontendController::class, 'products'])->name('products');
+   Route::post('/contact-us/store',[FrontendController::class, 'contactUsStore'])->name('contactUsStore');
 });
 
 
