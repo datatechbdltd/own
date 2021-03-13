@@ -50,7 +50,7 @@
 </div>
 {{--  Body  --}}
 <div style="text-align: center; width: 100%;" class="brand1">
-    <b style="font-size: 14px; color:white">Infoice for:</b>
+    <b style="font-size: 14px; color:white">Invoice for:</b>
     @if($invoice->customer)
     <b style="font-size: 14px; color:white">{{ $invoice->customer->name }}</b>
     <b style="font-size: 14px; color:white">{{ $invoice->customer->email }}</b>
