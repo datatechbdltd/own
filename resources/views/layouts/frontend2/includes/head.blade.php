@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="keywords" content="{{ $meta_keywords  ?? get_static_option('meta_keywords')}}">
-<meta name="description" content="{!! $meta_description  ?? get_static_option('meta_description') !!}">
+<meta name="description" content="{{ $meta_description  ?? get_static_option('meta_description') }}">
 <meta name="author" content="{{ $meta_author ?? get_static_option('meta_author') ?? config('app.name') }}">
 <meta property="og:image" content="{{ $meta_image ?? get_static_option('website_logo') ?? get_static_option('no_image')}}" />
 <title> @stack('title') | {{ config('app.name') }}</title>

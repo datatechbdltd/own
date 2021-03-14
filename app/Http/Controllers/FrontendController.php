@@ -70,7 +70,9 @@ class FrontendController extends Controller
     // invoice Page
     public function invoicePage($slug){
         $invoice = Invoice::where('slug',$slug)->first();
+
         $meta_description = 'Please  check your invoice from DATATECH BD LTD. Your invoice no: #'.$invoice->invoice_id;
+
         return view('frontend2.show-invoice' ,compact('invoice', 'meta_description'));
     }
 
