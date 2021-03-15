@@ -185,8 +185,13 @@ Route::group(['prefix' => 'cron', 'as' => 'cron.'], function () {
 });
 
 Route::group(['prefix' => 'test'], function () {
-   Route::get('/sms-campaign', function (){
-     send_sms_from_campaign(smsCampaign::find(1));
+
+
+   Route::get('/printing', function (){
+    Printing::newPrintTask()
+    ->printer($printerId)
+    ->file('path_to_file.pdf')
+    ->send();
    });
 
 });
