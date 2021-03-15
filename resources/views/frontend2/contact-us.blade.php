@@ -68,7 +68,7 @@
 
     <!-- contact-map area start -->
     <div class="main-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47702.39047195484!2d-91.5744685628408!3d41.6471117474476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e441c16a208817%3A0x6d711867870582b0!2sIowa%20City%2C%20IA%2C%20USA!5e0!3m2!1sen!2sbd!4v1581251336408!5m2!1sen!2sbd"
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.0133007741124!2d90.36988341434908!3d23.78254069346602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c1bb07d0e771%3A0x127069c31b3f2ad7!2sDATATECH%20BD%20LTD.!5e0!3m2!1sbn!2sbd!4v1615650025797!5m2!1sbn!2sbd"
                 style="border:0;" allowfullscreen=""></iframe>
     </div>
     <!-- contact-map area end -->

@@ -214,4 +214,8 @@ if (!function_exists('random_code')){
     function offline_payment_methods(){
        return \App\Models\OfflinePaymentMethod::all();
     }
+
+    function website_contacts(){
+       return \App\Models\WebsiteContact::all();
+    }
 }
