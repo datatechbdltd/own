@@ -37,7 +37,7 @@ class CommunicationController extends Controller
         if ($response_of_sent_message === true){
             return back()->withSuccess('Message successfully sent to '.$request->phone);
         }else{
-            return back()->withErrors('Something going wrong. Response: '.$response_of_sent_message);
+            return back()->withErrors($response_of_sent_message);
         }
     }
     public function getEmailPage(){

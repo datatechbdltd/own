@@ -123,11 +123,12 @@ if (!function_exists('random_code')){
             ],
         ]);
 
-        if ($response->getStatusCode() == "200"){
+        $response = json_decode($response->getBody(), true);  //$response['statusCode'] or $response['message']
+        if ($response['statusCode']  == 200){
             $smsCampaign->repeat++;
             $smsCampaign->save();
         }
-        return '#campaign ID:'.$smsCampaign->id.' Response: '.$response->getBody();
+        return '#campaign ID:'.$smsCampaign->id.' Response: '. $response['message'];
     }
 
     //Email campaign
@@ -165,17 +166,19 @@ if (!function_exists('random_code')){
                 "messageid" => "0"
             ],
         ]);
-        $sms_history = new \App\Models\SmsHistory();
-        if (auth()->check()){
-            $sms_history->sender_id = auth()->user()->id;
-        }
-        $sms_history->number = $number;
-        $sms_history->message = $message;
-        if ($response->getStatusCode() == "200"){
+
+        $response = json_decode($response->getBody(), true);  //$response['statusCode'] or $response['message']
+        if ($response['statusCode']  == 200){
+            $sms_history = new \App\Models\SmsHistory();
+            if (auth()->check()){
+                $sms_history->sender_id = auth()->user()->id;
+            }
+            $sms_history->number = $number;
+            $sms_history->message = $message;
             $sms_history->save();
-            return $response->getBody();
+            return true;
         }else{
-            return $response->getBody();
+            return $response['message'];
         }
     }
 
