@@ -108,7 +108,7 @@ if (!function_exists('random_code')){
        $raw_data = $smsCampaign->leadCategory->smsLeads->pluck('phone');
        $search  = array('-', '+', ' ', '.', '\n');
        $replace = array('');
-       $clear_data = str_replace($search, $replace, $raw_data);
+       $clear_data = explode( ',', str_replace($search, $replace, $raw_data)); //use explode for string to array format back;
 
         $client = new Client(); //Http client
         $url = "https://gpcmp.grameenphone.com/ecmapigw/webresources/ecmapigw.v2";
