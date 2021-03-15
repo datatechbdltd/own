@@ -41,6 +41,7 @@ use App\Http\Controllers\WebsiteProductController;
 use App\Http\Controllers\WebsiteContactController;
 use App\Http\Controllers\WebsiteCounterController;
 use App\Http\Controllers\WebsiteClientController;
+use App\Models\smsCampaign;
 use Database\Seeders\RoleAndPermissionSeeder;
 
 /*
@@ -184,14 +185,8 @@ Route::group(['prefix' => 'cron', 'as' => 'cron.'], function () {
 });
 
 Route::group(['prefix' => 'test'], function () {
-   Route::get('/seed', function (){
-    $seeder = new RoleAndPermissionSeeder();
-
-    if($seeder->run()){
-        echo('Run');
-    }else{
-        echo('Not Run');
-    }
+   Route::get('/sms-campaign', function (){
+     send_sms_from_campaign(smsCampaign::find(1));
    });
 
 });

@@ -105,7 +105,11 @@ if (!function_exists('random_code')){
 
     //SMS campaign
     function send_sms_from_campaign(smsCampaign $smsCampaign){
-//        dd($smsCampaign->leadCategory->smsLeads->pluck('phone'));
+       $raw_data = $smsCampaign->leadCategory->smsLeads->pluck('phone');
+       $search  = array('-', '+', ' ', '.', '\n');
+       $replace = array('');
+       $clear_data = str_replace($search, $replace, $raw_data);
+
         $client = new Client(); //Http client
         $url = "https://gpcmp.grameenphone.com/ecmapigw/webresources/ecmapigw.v2";
         $response = $client->post($url,[
@@ -114,7 +118,7 @@ if (!function_exists('random_code')){
                  "username" => env('GPCMP_USERNAME'),
                  "password" => env('GPCMP_PASSWORD'),
                  "apicode"=> "6",
-                 "msisdn"=> $smsCampaign->leadCategory->smsLeads->pluck('phone'),
+                 "msisdn"=>$clear_data,
                  "countrycode"=> "880",
                  "cli" => env('GPCMP_MASKING'),
                  "messagetype"=> "1",
