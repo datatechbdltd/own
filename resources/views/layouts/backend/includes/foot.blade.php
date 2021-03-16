@@ -19,7 +19,7 @@
     $('.summernote-description').summernote({
         placeholder: 'Description...',
         tabsize: 2,
-        height: 120,
+        height: 250,
         toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
