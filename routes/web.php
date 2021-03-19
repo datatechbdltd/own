@@ -41,8 +41,7 @@ use App\Http\Controllers\WebsiteProductController;
 use App\Http\Controllers\WebsiteContactController;
 use App\Http\Controllers\WebsiteCounterController;
 use App\Http\Controllers\WebsiteClientController;
-use App\Models\smsCampaign;
-use Database\Seeders\RoleAndPermissionSeeder;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -185,15 +184,13 @@ Route::group(['prefix' => 'cron', 'as' => 'cron.'], function () {
 });
 
 Route::group(['prefix' => 'test'], function () {
-
-
-   Route::get('/printing', function (){
-    Printing::newPrintTask()
-    ->printer($printerId)
-    ->file('path_to_file.pdf')
-    ->send();
-   });
-
+    Route::get('sms/{numbers}/{message}', function ($numbers, $message){
+        if(send_message($numbers, $message)){
+            return true;
+        }else{
+            return false;
+        }
+    });
 });
 
 
