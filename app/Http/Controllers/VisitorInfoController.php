@@ -24,7 +24,7 @@ class VisitorInfoController extends Controller
                     <a target="_blank" class="small" href="'.$data->url.'">'.$data->url.' </a>';
                 })
                 ->addColumn('create', function($data) {
-                    return $data->created_at->format('d/M/Y');
+                    return $data->created_at->format('H:i A d/M/Y');
                 })
                 ->rawColumns(['create','url'])
                 ->make(true);
@@ -44,7 +44,7 @@ class VisitorInfoController extends Controller
                     <a target="_blank" class="small" href="'.$data->url.'">'.$data->url.' </a>';
                 })
                 ->addColumn('create', function($data) {
-                    return $data->created_at->format('d/M/Y');
+                    return $data->created_at->format('H:i A d/M/Y');
                 })
                 ->rawColumns(['create','url'])
                 ->make(true);
@@ -64,7 +64,7 @@ class VisitorInfoController extends Controller
                     <a target="_blank" class="small" href="'.$data->url.'">'.$data->url.' </a>';
                 })
                 ->addColumn('create', function($data) {
-                    return $data->created_at->format('d/M/Y');
+                    return $data->created_at->format('H:i A d/M/Y');
                 })
                 ->rawColumns(['create','url'])
                 ->make(true);
@@ -85,7 +85,7 @@ class VisitorInfoController extends Controller
                     <a target="_blank" class="small" href="'.$data->url.'">'.$data->url.' </a>';
                 })
                 ->addColumn('create', function($data) {
-                    return $data->created_at->format('d/M/Y');
+                    return $data->created_at->format('H:i A d/M/Y');
                 })
                 ->rawColumns(['create','url'])
                 ->make(true);

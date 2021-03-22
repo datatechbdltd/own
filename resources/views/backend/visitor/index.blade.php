@@ -262,19 +262,9 @@
                             <thead>
                             <tr>
                                 <th>ip</th>
-                                <th>iso_code</th>
                                 <th>country</th>
                                 <th>city</th>
-                                <th>state</th>
-                                <th>state_name</th>
-                                <th>postal_code</th>
-                                <th>lat</th>
-                                <th>lon</th>
-                                <th>timexone</th>
-                                <th>continent</th>
                                 <th>currency</th>
-                                <th>default</th>
-                                <th>cached</th>
                                 <th>browser</th>
                                 <th>device</th>
                                 <th>os</th>
@@ -283,24 +273,14 @@
                             </tr>
                             </thead>
                             <tbody>
-
+                            {{--    data imported by ajax datatables     --}}
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>ip</th>
-                                <th>iso_code</th>
                                 <th>country</th>
                                 <th>city</th>
-                                <th>state</th>
-                                <th>state_name</th>
-                                <th>postal_code</th>
-                                <th>lat</th>
-                                <th>lon</th>
-                                <th>timexone</th>
-                                <th>continent</th>
                                 <th>currency</th>
-                                <th>default</th>
-                                <th>cached</th>
                                 <th>browser</th>
                                 <th>device</th>
                                 <th>os</th>
@@ -325,22 +305,20 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('visitorInfo.index') !!}',
+                @if(Request::is('visitorInfo.index'))
+                    ajax: '{!! route('visitorInfo.index') !!}',
+                @elseif(Request::is('visitor.today'))
+                    ajax: '{!! route('visitor.today') !!}',
+                @elseif(Request::is('visitor.last_seven_day'))
+                    ajax: '{!! route('visitor.last_seven_day') !!}',
+                @elseif(Request::is('visitor.last_thirty_day'))
+                    ajax: '{!! route('visitor.last_thirty_day') !!}',
+                @endif
                 columns: [
                     { data: 'ip', name: 'ip' },
-                    { data: 'iso_code', name: 'iso_code' },
                     { data: 'country', name: 'country' },
                     { data: 'city', name: 'city' },
-                    { data: 'state', name: 'state' },
-                    { data: 'state_name', name: 'state_name' },
-                    { data: 'postal_code', name: 'postal_code' },
-                    { data: 'lat', name: 'lat' },
-                    { data: 'lon', name: 'lon' },
-                    { data: 'timexone', name: 'timexone' },
-                    { data: 'continent', name: 'continent' },
                     { data: 'currency', name: 'currency' },
-                    { data: 'default', name: 'default' },
-                    { data: 'cached', name: 'cached' },
                     { data: 'browser', name: 'browser' },
                     { data: 'device', name: 'device' },
                     { data: 'os', name: 'os' },
