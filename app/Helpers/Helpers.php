@@ -121,7 +121,7 @@ if (!function_exists('random_code')){
                  "msisdn"=>$clear_data,
                  "countrycode"=> "880",
                  "cli" => env('GPCMP_MASKING'),
-                 "messagetype"=> "1",
+                 "messagetype"=> "3",
                  "message" => "$smsCampaign->message",
                  "messageid"=> "0",
             ],
