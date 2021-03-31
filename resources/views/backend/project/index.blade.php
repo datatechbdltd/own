@@ -47,11 +47,10 @@
                         <table id="datatable" class="table-responsive display table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>Invoice</th>
-                                <th>Status</th>
-                                <th>Project id</th>
-                                <th>Create</th>
-                                <th>Action</th>
+                                <th>invoice</th>
+                                <th>status</th>
+                                <th>create</th>
+                                <th>action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -59,11 +58,10 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>Invoice</th>
-                                <th>Status</th>
-                                <th>Project id</th>
-                                <th>Create</th>
-                                <th>Action</th>
+                                <th>invoice</th>
+                                <th>status</th>
+                                <th>create</th>
+                                <th>action</th>
                             </tr>
                             </tfoot>
                         </table>
