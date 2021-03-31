@@ -26,9 +26,11 @@ class ProjectController extends Controller
                 ->addColumn('invoice', function($data) {
                     if($data->invoice)
                         return $data->invoice->invoice_id;
+                        return '-';
                 })->addColumn('status', function($data) {
                     if($data->projectStatus)
                         return $data->projectStatus->name;
+                    return '-';
                 })->addColumn('create', function($data) {
                     return $data->created_at->format('d/M/Y');
                 })->addColumn('action', function($data) {
