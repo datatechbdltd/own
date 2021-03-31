@@ -35,7 +35,7 @@ class ProjectController extends Controller
                     return '<a href="'.route('project.edit', $data).'" class="btn btn-info"><i class="fa fa-edit"></i> </a>
                     <button class="btn btn-danger" onclick="delete_function(this)" value="'.route('project.destroy', $data).'"><i class="fa fa-trash"></i> </button>';
                 })
-                ->rawColumns(['invoice','status', 'image', 'create', 'action'])
+                ->rawColumns(['invoice','status', 'create', 'action'])
                 ->make(true);
         }else{
             return view('backend.project.index');
