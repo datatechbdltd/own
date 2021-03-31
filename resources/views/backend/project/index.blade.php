@@ -47,6 +47,7 @@
                         <table id="datatable" class="table-responsive display table table-striped table-bordered">
                             <thead>
                             <tr>
+                                <th>Project</th>
                                 <th>invoice</th>
                                 <th>status</th>
                                 <th>create</th>
@@ -58,6 +59,7 @@
                             </tbody>
                             <tfoot>
                             <tr>
+                                <th>Project</th>
                                 <th>invoice</th>
                                 <th>status</th>
                                 <th>create</th>
@@ -86,6 +88,7 @@
                 serverSide: true,
                 ajax: '{!! route('project.index') !!}',
                 columns: [
+                    { data: 'project_id', name: 'project_id' },
                     { data: 'invoice', name: 'invoice' },
                     { data: 'status', name: 'status' },
                     { data: 'create', name: 'create' },
