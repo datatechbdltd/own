@@ -90,7 +90,7 @@
                 columns: [
                     { data: 'invoice', name: 'invoice' },
                     { data: 'status', name: 'status' },
-                    { data: 'status', name: 'project_id' },
+                    { data: 'status', name: 'status' },
                     { data: 'create', name: 'create' },
                     { data: 'action', name: 'action' },
                 ], initComplete: function () {
